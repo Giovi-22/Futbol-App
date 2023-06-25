@@ -1,1 +1,8 @@
-<p>header works!</p>
+<div class="header">
+    <div class="header__logo">
+            <button class="btn btn-outline-secondary" routerLink="/">Futbol App</button>
+    </div>
+    <app-nav-bar (openMenu)="setMenu($event)"></app-nav-bar>
+    
+</div>
+<!--<app-prueba class="nada" *ngIf="showMenu"></app-prueba> -->
