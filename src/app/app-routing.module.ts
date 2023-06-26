@@ -1,12 +1,17 @@
 // Angular Imports
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+import { HomeComponent } from './components/Pages/Home/home.component'
 
 const routes: Routes = [
 	{
 		path: '',
-		redirectTo: 'board',
-		pathMatch: 'full',
+		component:HomeComponent,
+	},
+	{
+		path: '**',
+		redirectTo:'',
+		pathMatch:'full'
 	},
 ]
 
