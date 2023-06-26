@@ -1,0 +1,16 @@
+:host{
+    width: 100%;
+}
+footer{
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    background-color: aliceblue;
+    p{
+        margin:0;
+        padding: 0;
+    }
+}
