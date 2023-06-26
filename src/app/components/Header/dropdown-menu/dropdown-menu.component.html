@@ -1,5 +1,5 @@
 <div class="dropdown">
-    <div class="dropdown__items" *ngFor="let item of competitions" >
+    <div class="dropdown__items" *ngFor="let item of competitions" (click)="getData(item.code)" >
         <img src={{item.image}}>
         <p>{{item.name}}</p> 
     </div>

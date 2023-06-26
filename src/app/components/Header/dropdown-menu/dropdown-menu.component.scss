@@ -37,3 +37,7 @@ $backgroundColor: tools.colors("white");
         margin:0;
     }
 }
+.dropdown__items:hover{
+    border-radius: 8px;
+    box-shadow: 0px 1px 33px -8px rgba(0,0,0,1);
+}

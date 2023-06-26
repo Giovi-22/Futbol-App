@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CompetitionCard } from 'src/app/models/interfaces';
+import { FetchDataService } from 'src/app/services/fetch-data.service';
 
 @Component({
   selector: 'app-dropdown-menu',
@@ -90,7 +91,14 @@ export class DropdownMenuComponent implements OnInit {
       id:2152
     }
 ]
-  constructor() { }
+  urlCompetition:string='http://api.football-data.org/v4/competitions/';
+  constructor(private getApiData: FetchDataService) { }
+
+  getData(competitionCode:string){
+    this.getApiData.fetchData(`${this.urlCompetition}${competitionCode}`).subscribe({
+      next:(result => console.log(result))
+    })
+  }
 
   ngOnInit(): void {
   }
