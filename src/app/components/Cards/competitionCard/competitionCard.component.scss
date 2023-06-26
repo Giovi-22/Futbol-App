@@ -5,18 +5,19 @@
     align-items: center;
     border: 1px solid rgba(122, 114, 114, 0.377);
     border-radius: 5px;
+    height: 150px;
+    width: 150px;
     img{
         width: auto;
         height: auto;
-        max-width: 80%;
-        max-height: 80%;
+        max-width: 70%;
+        max-height: 70%;
         padding-bottom: 5px;
         margin-top: auto;
     }
     p{
         padding: 0;
         margin: 0;
-        font-size: 100%;
         text-align: center;
     }
 }
