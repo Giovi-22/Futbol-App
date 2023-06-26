@@ -4,4 +4,4 @@
     </div>
     <app-nav-bar (openMenu)="setMenu($event)"></app-nav-bar> 
 </div>
-<!--<app-prueba class="nada" *ngIf="showMenu"></app-prueba> -->
+<app-dropdown-menu *ngIf="showMenu" (mouseleave)="setMenu(false)"></app-dropdown-menu>
