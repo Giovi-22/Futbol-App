@@ -7,6 +7,7 @@ import { environment } from '@environment'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { HeaderComponent } from './components/Header/header/header.component'
+import { FooterComponent } from './components/Footer/footer/footer.component'
 
 @NgModule({
 	declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { HeaderComponent } from './components/Header/header/header.component'
 		AppRoutingModule,
 		HttpClientModule,
 		HeaderComponent,
+		FooterComponent
 	],
 	providers: [],
 	bootstrap: [AppComponent],
