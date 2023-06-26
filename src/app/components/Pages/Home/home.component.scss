@@ -9,13 +9,14 @@
     gap:20px;
     h5{
         align-self: flex-start;
+        padding-left:10px;
     }
 }
 .home_competitions, .home_teams{
-    width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     gap: 30px;
+    width: 100%;
 }
