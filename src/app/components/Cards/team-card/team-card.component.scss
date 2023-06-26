@@ -1,0 +1,30 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 150px;
+    width: 150px;
+    border: 1px solid rgba(122, 114, 114, 0.377);
+    border-radius: 5px;
+    img{
+        width: auto;
+        height: auto;
+        max-width: 70%;
+        max-height: 70%;
+        margin-top: auto;
+        padding-bottom: 10px;
+    }
+    p{
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+}
+
+.card:hover{
+    -webkit-box-shadow: 10px -5px 12px -8px rgba(0,0,0,0.57);
+    -moz-box-shadow: 10px -5px 12px -8px rgba(0,0,0,0.57);
+    box-shadow: 10px -5px 12px -8px rgba(0,0,0,0.57);
+    
+}
