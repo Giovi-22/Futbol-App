@@ -6,6 +6,7 @@ import { environment } from '@environment'
 // This Module Imports
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { HeaderComponent } from './components/Header/header/header.component'
 
 @NgModule({
 	declarations: [AppComponent],
@@ -13,6 +14,7 @@ import { AppComponent } from './app.component'
 		BrowserModule,
 		AppRoutingModule,
 		HttpClientModule,
+		HeaderComponent,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

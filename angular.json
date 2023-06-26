@@ -44,11 +44,11 @@
 								"output": "assets"
 							}
 						],
-						"styles": ["src/index.scss"],
+						"styles": ["src/index.scss","./node_modules/bootstrap/scss/bootstrap.scss"],
 						"stylePreprocessorOptions": {
 							"includePaths": ["./src/app/styles"]
 						},
-						"scripts": [],
+						"scripts": ["./node_modules/bootstrap/dist/js/bootstrap.min.js"],
 						"aot": true,
 						"vendorChunk": true,
 						"extractLicenses": false,
