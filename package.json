@@ -5,7 +5,7 @@
 	"homepage": "https://syloper.com",
 	"scripts": {
 		"ng": "ng",
-		"start": "ng serve",
+		"start": "ng serve --proxy-config proxy.conf.json",
 		"start:open": "ng serve --open",
 		"start:host": "ng serve --host 0.0.0.0",
 		"start:prod": "ng serve --configuration production",

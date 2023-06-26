@@ -91,11 +91,11 @@ export class DropdownMenuComponent implements OnInit {
       id:2152
     }
 ]
-  urlCompetition:string='http://api.football-data.org/v4/competitions/';
+  urlCompetition:string='https://api.football-data.org/v4/competitions/';
   constructor(private getApiData: FetchDataService) { }
 
   getData(competitionCode:string){
-    this.getApiData.fetchData(`${this.urlCompetition}${competitionCode}`).subscribe({
+    this.getApiData.fetchData(`${this.urlCompetition}${competitionCode}/teams`).subscribe({
       next:(result => console.log(result))
     })
   }
