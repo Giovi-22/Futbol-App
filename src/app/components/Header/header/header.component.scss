@@ -8,23 +8,18 @@ $backgroundColor: tools.colors("white");
 .header{
     background-color: $backgroundColor;
     display:flex;
-    height: 80px;
-    padding: 0;
-    margin: 0;
     justify-content: center;
     align-items: center;
+    height: 80px;
     border-bottom: 1px solid #e1e0e7;
+}
 
-}
-.nada{
-    order:0;
-}
 .header__logo{
-    order:2;
     background-color: $backgroundColor;
     display:flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
     width:auto;
     margin: 0 10px;
 }
