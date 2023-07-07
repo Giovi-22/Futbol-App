@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TeamCard } from 'src/app/models/interfaces';
 import { Team } from 'src/app/models/interfaces/competitionInterfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-team-card',
@@ -12,8 +12,12 @@ import { Team } from 'src/app/models/interfaces/competitionInterfaces';
 })
 export class TeamCardComponent implements OnInit {
   @Input() teamData:Team;
-  constructor() { 
+  constructor(private router:Router) { 
     this.teamData = {};
+  }
+
+  navigateTo(tid:number){
+    this.router.navigate([`/team/${tid}`]);
   }
 
   ngOnInit(): void {

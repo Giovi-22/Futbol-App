@@ -8,7 +8,7 @@ import { TeamComponent } from './components/Pages/Team/team/team.component'
 
 const routes: Routes = [
 	{
-		path: 'team',
+		path: 'team/:tid',
 		component:TeamComponent,
 	},
 	{
