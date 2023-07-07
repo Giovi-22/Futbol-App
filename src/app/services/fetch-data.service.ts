@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Competitions } from '../models/interfaces/competitionInterfaces';
 
 
 @Injectable({
@@ -17,6 +18,6 @@ export class FetchDataService {
    }
 
   fetchData(url:string){
-    return this.http.get(url,this.#options);
+    return this.http.get<Competitions>(url,this.#options);
   }
 }

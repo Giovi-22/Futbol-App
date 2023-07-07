@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TeamCard } from 'src/app/models/interfaces';
+import { Team } from 'src/app/models/interfaces/competitionInterfaces';
 
 @Component({
   selector: 'app-team-card',
@@ -10,15 +11,10 @@ import { TeamCard } from 'src/app/models/interfaces';
   styleUrls: ['./team-card.component.scss']
 })
 export class TeamCardComponent implements OnInit {
-  @Input() teamData: TeamCard={
-    name:"",
-    image: "",
-    tla: "",
-    areaName: "",
-    areaCode: "",
-    id: 0
-};
-  constructor() { }
+  @Input() teamData:Team;
+  constructor() { 
+    this.teamData = {};
+  }
 
   ngOnInit(): void {
   }

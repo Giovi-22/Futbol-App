@@ -19,8 +19,8 @@ $backgroundColor: tools.colors("white");
     padding: 5px 30px;
     background-color: white;
     box-shadow: 0px 16px 33px -18px rgba(0,0,0,1);
-    -webkit-animation: slide-in-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-    animation: slide-in-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    -webkit-animation: slide-in-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     
 }
 

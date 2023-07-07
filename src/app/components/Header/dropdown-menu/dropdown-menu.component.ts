@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CompetitionCard } from 'src/app/models/interfaces';
 import { FetchDataService } from 'src/app/services/fetch-data.service';
+//------------import for router params--------------------------------
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
 
+//--------------------------------------------------------
 @Component({
   selector: 'app-dropdown-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './dropdown-menu.component.html',
   styleUrls: ['./dropdown-menu.component.scss']
 })
@@ -92,12 +96,23 @@ export class DropdownMenuComponent implements OnInit {
     }
 ]
   urlCompetition:string='https://api.football-data.org/v4/competitions/';
-  constructor(private getApiData: FetchDataService) { }
+
+  competition$ = new Observable((observer)=>observer.next(this.selectedCode));
+  selectedCode:string; 
+  constructor(private getApiData: FetchDataService, private route: ActivatedRoute, private router: Router) {
+    this.selectedCode = "PL";
+    
+  }
 
   getData(competitionCode:string){
     this.getApiData.fetchData(`${this.urlCompetition}${competitionCode}/teams`).subscribe({
       next:(result => console.log(result))
     })
+  }
+
+  navigateTo(competitionCode:string){
+    this.selectedCode = competitionCode;
+    this.router.navigate([`/competitions/${competitionCode}`]);
   }
 
   ngOnInit(): void {

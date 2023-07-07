@@ -1,6 +1,7 @@
 <div class="dropdown">
-    <div class="dropdown__items" *ngFor="let item of competitions" (click)="getData(item.code)" >
+    <div class="dropdown__items" *ngFor="let item of competitions" (click)="navigateTo(item.code)">
         <img src={{item.image}}>
-        <p>{{item.name}}</p> 
+        <!--<a [routerLink]="['/competitions',item.code]" >{{item.name}}</a> -->
+        <p>{{item.name}}</p>
     </div>
 </div>

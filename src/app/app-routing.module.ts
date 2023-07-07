@@ -11,7 +11,7 @@ const routes: Routes = [
 		component:HomeComponent,
 	},
 	{
-		path: 'competitions',
+		path: 'competitions/:cid',
 		component:CompetitionsComponent,
 	},
 	{
@@ -24,6 +24,7 @@ const routes: Routes = [
 		pathMatch:'full'
 	},
 ]
+
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes)],
