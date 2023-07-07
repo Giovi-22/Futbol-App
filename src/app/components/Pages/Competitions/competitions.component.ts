@@ -18,7 +18,7 @@ export class CompetitionsComponent implements OnInit {
   competitionCode:string;
   urlCompetition:string='https://api.football-data.org/v4/competitions/';
   teams: Team[];
-  
+  selectedCode:string = "";
   constructor(private route: ActivatedRoute, private fetchApiData: FetchDataService) {
     this.competitionCode = "PL";
     this.teams = [];
@@ -26,6 +26,7 @@ export class CompetitionsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("dentro del inicio del componente")
+    
     this.route.url.subscribe({
       next:((value)=>{       
         if(!value[1].path){
