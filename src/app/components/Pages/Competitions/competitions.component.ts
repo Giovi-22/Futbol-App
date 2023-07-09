@@ -7,9 +7,9 @@ import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
 import { TeamCard } from 'src/app/models/storeModelsInterfaces';
 import { Competition, Team } from 'src/app/models/interfaces/competitionInterfaces';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/state/app.state';
-import { loadTeams, loadedTeams } from 'src/app/state/actions/teams.actions';
-import { selectLoadingTeams, selectTeamsList } from 'src/app/state/selectors/teams.selectors';
+import { AppState } from 'src/app/data/state/app.state';
+import { loadTeams, loadedTeams } from 'src/app/data/state/actions/teams.actions';
+import { selectLoadingTeams, selectTeamsList } from 'src/app/data/state/selectors/teams.selectors';
 
 @Component({
   selector: 'app-competitions',

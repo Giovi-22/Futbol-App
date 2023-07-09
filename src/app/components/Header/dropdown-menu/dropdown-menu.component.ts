@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 //--------------------------------------------------------
 //---------------------NGRX-SOTORE---------------------
-import { loadCompetitions, loadedCompetitions } from 'src/app/state/actions/competitions.actions';
+import { loadCompetitions, loadedCompetitions } from 'src/app/data/state/actions/competitions.actions';
 import { DropdownItemComponent } from './dropdown-item/dropdown-item.component';
-import { selectCompetitionsList, selectLoadingCompetitions } from 'src/app/state/selectors/competitions.selectors';
-import { AppState } from 'src/app/state/app.state';
+import { selectCompetitionsList, selectLoadingCompetitions } from 'src/app/data/state/selectors/competitions.selectors';
+import { AppState } from 'src/app/data/state/app.state';
 import { competitions } from 'src/app/services/competitions';
 
 //---------------------------------------------------------
