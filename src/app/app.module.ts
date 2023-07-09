@@ -9,7 +9,9 @@ import { AppComponent } from './app.component'
 import { HeaderComponent } from './components/Header/header/header.component'
 import { FooterComponent } from './components/Footer/footer/footer.component'
 import { MainComponent } from './components/Main/main/main.component';
-import { StoreModule } from '@ngrx/store'
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 
 @NgModule({
 	declarations: [AppComponent],
@@ -20,7 +22,8 @@ import { StoreModule } from '@ngrx/store'
 		HeaderComponent,
 		MainComponent,
 		FooterComponent,
-		StoreModule.forRoot({}, {})
+		StoreModule.forRoot({}, {}),
+		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
 	],
 	providers: [],
 	bootstrap: [AppComponent],

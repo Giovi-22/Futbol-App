@@ -1635,7 +1635,14 @@
   "resolved" "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz"
   "version" "2.0.4"
 
-"@ngrx/store@^14.3.3":
+"@ngrx/store-devtools@^14.3.3":
+  "integrity" "sha512-YQFFKYRnmREHCUb0aAaAgSXWKjZqV+5pmzsjW6HZ0GTKoy9R3JI7Miw0gplwkJpLO7Z3AFCuLQIpTs5ryAOwPQ=="
+  "resolved" "https://registry.npmjs.org/@ngrx/store-devtools/-/store-devtools-14.3.3.tgz"
+  "version" "14.3.3"
+  dependencies:
+    "tslib" "^2.0.0"
+
+"@ngrx/store@^14.3.3", "@ngrx/store@14.3.3":
   "integrity" "sha512-VhPDR2a5OQJfrVRah3vdJgL/F6UC8NU/X7lxKFqBW3NC+pmlIeFO/y8jLrZOKBXwG45tY9wrg15S70nEGoZtHA=="
   "resolved" "https://registry.npmjs.org/@ngrx/store/-/store-14.3.3.tgz"
   "version" "14.3.3"
