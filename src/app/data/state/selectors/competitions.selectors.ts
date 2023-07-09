@@ -14,3 +14,8 @@ export const selectLoadingCompetitions = createSelector(
     selectCompetitionsFeature,
   (state: CompetitionsState) => state.loading
 );
+
+export const selectCurrentCompetition = createSelector(
+  selectCompetitionsFeature,
+(state: CompetitionsState) => state.current
+);

@@ -12,7 +12,8 @@ import { loadCompetitions, loadedCompetitions } from 'src/app/data/state/actions
 import { DropdownItemComponent } from './dropdown-item/dropdown-item.component';
 import { selectCompetitionsList, selectLoadingCompetitions } from 'src/app/data/state/selectors/competitions.selectors';
 import { AppState } from 'src/app/data/state/app.state';
-import { competitions } from 'src/app/services/competitions';
+import { CompetitionManagerService } from 'src/app/services/competition-manager.service';
+import { Competition } from 'src/app/models/interfaces/competitionInterfaces';
 
 //---------------------------------------------------------
 @Component({
@@ -28,12 +29,14 @@ export class DropdownMenuComponent implements OnInit {
   
   loading$:Observable<boolean> = new Observable();
   competitions$:Observable<any> = new Observable();
+  //competitions$:Array<any> = [];
   selectedCode:string; 
   constructor(
     private getApiData: FetchDataService, 
     private route: ActivatedRoute, 
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private competitionM: CompetitionManagerService
     ) {
     this.selectedCode = "PL";
     
@@ -48,13 +51,19 @@ export class DropdownMenuComponent implements OnInit {
   navigateTo(competitionCode:string){
     this.selectedCode = competitionCode;
     this.router.navigate([`/competitions/${competitionCode}`]);
+    this.competitionM.setCurrentCompetition(competitionCode);
   }
 
   ngOnInit(): void {
+    console.log("dentro de ngOnInit dropdown")
+    this.competitionM.saveCompetitions();
+    this.competitions$ = this.competitionM.getAll()
+/*
     this.store.dispatch(loadCompetitions());
     this.store.dispatch(loadedCompetitions({competitions}))
     this.loading$ = this.store.select(selectLoadingCompetitions);
     this.competitions$ = this.store.select(selectCompetitionsList);
+    */
   }
 
 }

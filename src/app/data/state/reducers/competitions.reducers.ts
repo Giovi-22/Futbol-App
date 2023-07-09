@@ -1,8 +1,8 @@
 import { createReducer, on } from "@ngrx/store";
-import { loadCompetitions, loadedCompetitions } from "../actions/competitions.actions";
+import { currentCompetition, loadCompetitions, loadedCompetitions } from "../actions/competitions.actions";
 import { CompetitionsState } from "src/app/models/storeModelsInterfaces";
 
-export const initialState:CompetitionsState = {loading:false,competitions:[]};
+export const initialState:CompetitionsState = {loading:false,competitions:[],current:"PL"};
 
 export const competitionReducer = createReducer(
     initialState,
@@ -13,5 +13,12 @@ export const competitionReducer = createReducer(
             loading:false,
             competitions
         };
+    }),
+    on(currentCompetition,(state,{current})=>{
+        return {
+            ...state,
+            loading:false,
+            current
+        }
     })
 )

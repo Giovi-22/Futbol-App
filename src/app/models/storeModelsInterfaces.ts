@@ -1,6 +1,7 @@
 import { Competition, Team } from './interfaces/competitionInterfaces';
 export interface CompetitionsState{
     loading:boolean,
+    current:string,
     competitions:ReadonlyArray<CompetitionCard>
 }
 
