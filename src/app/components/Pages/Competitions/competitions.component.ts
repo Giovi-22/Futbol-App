@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges, OnChanges, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
@@ -14,25 +14,31 @@ import { Competition, Team } from 'src/app/models/interfaces/competitionInterfac
   templateUrl: './competitions.component.html',
   styleUrls: ['./competitions.component.scss']
 })
-export class CompetitionsComponent implements OnInit {
+export class CompetitionsComponent implements OnInit, OnChanges {
   competitionCode:string;
   urlCompetition:string='https://api.football-data.org/v4/competitions/';
   teams: Team[];
   selectedCode:string = "";
+  @Input() cambio:boolean = false;
   constructor(private route: ActivatedRoute, private fetchApiData: FetchDataService) {
     this.competitionCode = "PL";
     this.teams = [];
-   }
+   
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+console.log("Dentro de onchanges en competitions")
+  }
 
   ngOnInit(): void {
     console.log("dentro del inicio del componente")
     
     this.route.url.subscribe({
-      next:((value)=>{       
+      next:((value)=>{      
         if(!value[1].path){
           return console.log("Error: no se encuentra el codigo")
         }
         this.competitionCode = value[1].path;
+        this.cambio = !this.cambio;
       }),
       error(error){
         console.log("el error es: ",error)

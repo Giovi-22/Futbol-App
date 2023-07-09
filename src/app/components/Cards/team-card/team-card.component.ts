@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class TeamCardComponent implements OnInit {
   @Input() teamData:Team;
+  
   constructor(private router:Router) { 
     this.teamData = {};
   }
@@ -19,6 +20,7 @@ export class TeamCardComponent implements OnInit {
   navigateTo(tid:number){
     this.router.navigate([`/team/${tid}`]);
   }
+
 
   ngOnInit(): void {
   }
