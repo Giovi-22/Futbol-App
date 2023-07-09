@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CompetitionCard } from 'src/app/models/interfaces';
+import { CompetitionCard } from 'src/app/models/storeModelsInterfaces';
 import { FetchDataService } from 'src/app/services/fetch-data.service';
 //------------import for router params--------------------------------
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
-
+import { Store } from '@ngrx/store';
 //--------------------------------------------------------
+//---------------------NGRX-SOTORE---------------------
+import { loadCompetitions } from 'src/app/state/actions/competitions.actions';
+import { DropdownItemComponent } from './dropdown-item/dropdown-item.component';
+import { selectLoadingCompetitions } from 'src/app/state/selectors/competitions.selectors';
+
+//---------------------------------------------------------
 @Component({
   selector: 'app-dropdown-menu',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule,RouterModule,DropdownItemComponent],
   templateUrl: './dropdown-menu.component.html',
   styleUrls: ['./dropdown-menu.component.scss']
 })
@@ -96,10 +102,15 @@ export class DropdownMenuComponent implements OnInit {
     }
 ]
   urlCompetition:string='https://api.football-data.org/v4/competitions/';
-
+  loading$:Observable<boolean> = new Observable();
   competition$ = new Observable((observer)=>observer.next(this.selectedCode));
   selectedCode:string; 
-  constructor(private getApiData: FetchDataService, private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private getApiData: FetchDataService, 
+    private route: ActivatedRoute, 
+    private router: Router,
+    private store: Store<any>
+    ) {
     this.selectedCode = "PL";
     
   }
@@ -116,6 +127,8 @@ export class DropdownMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading$ = this.store.select(selectLoadingCompetitions)
+    this.store.dispatch(loadCompetitions())
   }
 
 }

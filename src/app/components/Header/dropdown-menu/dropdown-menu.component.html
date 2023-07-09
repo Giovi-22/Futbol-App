@@ -1,7 +1,4 @@
 <div class="dropdown">
-    <div class="dropdown__items" *ngFor="let item of competitions" (click)="navigateTo(item.code)">
-        <img src={{item.image}}>
-        <!--<a [routerLink]="['/competitions',item.code]" >{{item.name}}</a> -->
-        <p>{{item.name}}</p>
-    </div>
+    <p *ngIf="(loading$ |async)">Cargando....</p>
+    <app-dropdown-item *ngFor="let value of competitions" [item]="{name:value.name,image:value.image}"></app-dropdown-item>
 </div>

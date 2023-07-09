@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CompetitionCard } from 'src/app/models/interfaces';
+import { CompetitionCard } from 'src/app/models/storeModelsInterfaces';
 
 @Component({
   selector: 'app-competition-card',

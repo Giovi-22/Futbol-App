@@ -1,0 +1,20 @@
+.dropdown__items{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 50px;
+    width: auto;
+    img{
+        width: auto;
+        height: auto;
+        max-width: 70%;
+        max-height: 70%;
+    }
+    p{
+        margin:0;
+    }
+}
+.dropdown__items:hover{
+    border-radius: 8px;
+    box-shadow: 0px 1px 33px -8px rgba(0,0,0,1);
+}

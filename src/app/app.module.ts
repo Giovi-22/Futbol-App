@@ -11,6 +11,8 @@ import { FooterComponent } from './components/Footer/footer/footer.component'
 import { MainComponent } from './components/Main/main/main.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ROOT_REDUCERS } from './state/app.state'
+
 
 
 @NgModule({
@@ -22,7 +24,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 		HeaderComponent,
 		MainComponent,
 		FooterComponent,
-		StoreModule.forRoot({}, {}),
+		StoreModule.forRoot(ROOT_REDUCERS),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
 	],
 	providers: [],

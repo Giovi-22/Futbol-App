@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
 import { FetchDataService } from 'src/app/services/fetch-data.service';
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
-import { TeamCard } from 'src/app/models/interfaces';
+import { TeamCard } from 'src/app/models/storeModelsInterfaces';
 import { Competition, Team } from 'src/app/models/interfaces/competitionInterfaces';
 
 @Component({

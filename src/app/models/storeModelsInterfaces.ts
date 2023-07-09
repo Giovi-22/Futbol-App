@@ -1,3 +1,13 @@
+import { Competition } from './interfaces/competitionInterfaces';
+
+export interface CompetitionsState{
+    loading:boolean,
+    competitions:ReadonlyArray<Competition>
+}
+
+
+//------------------------------------------
+
 export interface CompetitionCard{
     name:string,
     code:string,

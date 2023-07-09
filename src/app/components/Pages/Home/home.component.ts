@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CompetitionCardComponent } from '../../Cards/competitionCard/competitionCard.component';
-import { CompetitionCard, TeamCard } from 'src/app/models/interfaces';
+import { CompetitionCard, TeamCard } from 'src/app/models/storeModelsInterfaces';
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
 
 @Component({
