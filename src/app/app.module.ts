@@ -8,7 +8,8 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { HeaderComponent } from './components/Header/header/header.component'
 import { FooterComponent } from './components/Footer/footer/footer.component'
-import { MainComponent } from './components/Main/main/main.component'
+import { MainComponent } from './components/Main/main/main.component';
+import { StoreModule } from '@ngrx/store'
 
 @NgModule({
 	declarations: [AppComponent],
@@ -18,7 +19,8 @@ import { MainComponent } from './components/Main/main/main.component'
 		HttpClientModule,
 		HeaderComponent,
 		MainComponent,
-		FooterComponent
+		FooterComponent,
+		StoreModule.forRoot({}, {})
 	],
 	providers: [],
 	bootstrap: [AppComponent],

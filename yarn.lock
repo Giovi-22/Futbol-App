@@ -251,7 +251,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/core@^14.0.0 || ^15.0.0", "@angular/core@14.2.8":
+"@angular/core@^14.0.0", "@angular/core@^14.0.0 || ^15.0.0", "@angular/core@14.2.8":
   "integrity" "sha512-cgnII9vJGJDLsfr7KsBfU2l+QQUmQIRIP3ImKhBxicw2IHKCSb2mYwoeLV46jaLyHyUMTLRHKUYUR4XtSPnb8A=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-14.2.8.tgz"
   "version" "14.2.8"
@@ -1634,6 +1634,13 @@
   "integrity" "sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A=="
   "resolved" "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz"
   "version" "2.0.4"
+
+"@ngrx/store@^14.3.3":
+  "integrity" "sha512-VhPDR2a5OQJfrVRah3vdJgL/F6UC8NU/X7lxKFqBW3NC+pmlIeFO/y8jLrZOKBXwG45tY9wrg15S70nEGoZtHA=="
+  "resolved" "https://registry.npmjs.org/@ngrx/store/-/store-14.3.3.tgz"
+  "version" "14.3.3"
+  dependencies:
+    "tslib" "^2.0.0"
 
 "@ngtools/webpack@14.2.8":
   "integrity" "sha512-ugQRiOgQBbZUFSRRfj+KOUrtGHWI7IyVfnK3HA08+QFQOygY6igs07D6v4l5RHkUnyQkCgUE30EaFaj58fGJjg=="
@@ -6492,7 +6499,7 @@
   dependencies:
     "queue-microtask" "^1.2.2"
 
-"rxjs@^6.5.3 || ^7.4.0", "rxjs@^7.5.5", "rxjs@7.5.7":
+"rxjs@^6.5.3 || ^7.4.0", "rxjs@^6.5.3 || ^7.5.0", "rxjs@^7.5.5", "rxjs@7.5.7":
   "integrity" "sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA=="
   "resolved" "https://registry.npmjs.org/rxjs/-/rxjs-7.5.7.tgz"
   "version" "7.5.7"
@@ -7211,7 +7218,7 @@
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   "version" "1.14.1"
 
-"tslib@^2.1.0", "tslib@^2.3.0", "tslib@2.4.1":
+"tslib@^2.0.0", "tslib@^2.1.0", "tslib@^2.3.0", "tslib@2.4.1":
   "integrity" "sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.4.1.tgz"
   "version" "2.4.1"
