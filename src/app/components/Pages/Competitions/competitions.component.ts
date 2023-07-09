@@ -6,6 +6,10 @@ import { FetchDataService } from 'src/app/services/fetch-data.service';
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
 import { TeamCard } from 'src/app/models/storeModelsInterfaces';
 import { Competition, Team } from 'src/app/models/interfaces/competitionInterfaces';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { loadTeams, loadedTeams } from 'src/app/state/actions/teams.actions';
+import { selectLoadingTeams, selectTeamsList } from 'src/app/state/selectors/teams.selectors';
 
 @Component({
   selector: 'app-competitions',
@@ -17,36 +21,32 @@ import { Competition, Team } from 'src/app/models/interfaces/competitionInterfac
 export class CompetitionsComponent implements OnInit, OnChanges {
   competitionCode:string;
   urlCompetition:string='https://api.football-data.org/v4/competitions/';
-  teams: Team[];
+  teams$:Observable<any> = new Observable();
   selectedCode:string = "";
   @Input() cambio:boolean = false;
-  constructor(private route: ActivatedRoute, private fetchApiData: FetchDataService) {
+  constructor(
+    private route: ActivatedRoute, 
+    private fetchApiData: FetchDataService,
+    private store: Store<AppState>
+    ) {
     this.competitionCode = "PL";
-    this.teams = [];
    
   }
   ngOnChanges(changes: SimpleChanges): void {
-console.log("Dentro de onchanges en competitions")
+    console.log("Dentro de onchanges en competitions")
   }
 
   ngOnInit(): void {
     console.log("dentro del inicio del componente")
-    
-    this.route.url.subscribe({
-      next:((value)=>{      
-        if(!value[1].path){
-          return console.log("Error: no se encuentra el codigo")
-        }
-        this.competitionCode = value[1].path;
-        this.cambio = !this.cambio;
-      }),
-      error(error){
-        console.log("el error es: ",error)
-      }
-    })
+    this.store.select(selectLoadingTeams)
     this.fetchApiData.fetchData(`${this.urlCompetition}${this.competitionCode}/teams`).subscribe({
-      next:((result) => result.teams?.map(team=>this.teams.push(team)))
-    })
+      next:((result) =>
+      {
+      const teamsArray:Team[]=result.teams?.map(team =>team) || [];
+      this.store.dispatch(loadedTeams({teams:teamsArray}))
+      })
+      })
+    this.teams$ = this.store.select(selectTeamsList);
   }
 
 }

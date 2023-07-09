@@ -1,11 +1,13 @@
-import { Competition } from './interfaces/competitionInterfaces';
-
+import { Competition, Team } from './interfaces/competitionInterfaces';
 export interface CompetitionsState{
     loading:boolean,
-    competitions:ReadonlyArray<Competition>
+    competitions:ReadonlyArray<CompetitionCard>
 }
 
-
+export interface TeamsState{
+    loading:boolean,
+    teams:ReadonlyArray<Team>
+}
 //------------------------------------------
 
 export interface CompetitionCard{
