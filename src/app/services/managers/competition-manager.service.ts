@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CompetitionRepositoryNgrxStoreService } from '../data/repositories/competition-repository-ngrx-store.service';
-import { competitions } from '../data/competitions';
-import { Observable } from 'rxjs';
-import { Competition } from '../models/interfaces/competitionInterfaces';
+
+import { competitions } from 'src/app/data/competitions';
+import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories/competition-repository-ngrx-store.service';
 
 @Injectable({
   providedIn: 'root'

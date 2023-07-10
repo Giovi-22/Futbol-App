@@ -1,16 +1,11 @@
-import { Component, OnInit, SimpleChanges, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Observable, of, switchMap } from 'rxjs';
-import { FetchDataService } from 'src/app/services/fetch-data.service';
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
-import { TeamCard } from 'src/app/models/storeModelsInterfaces';
-import { Competition, Team } from 'src/app/models/interfaces/competitionInterfaces';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/data/state/app.state';
-import { loadTeams, loadedTeams } from 'src/app/data/state/actions/teams.actions';
-import { selectLoadingTeams, selectTeamsList } from 'src/app/data/state/selectors/teams.selectors';
-import { CompetitionManagerService } from 'src/app/services/competition-manager.service';
+import { CompetitionManagerService } from 'src/app/services/managers/competition-manager.service';
+import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
+import { Team } from 'src/app/models/interfaces/competitionInterfaces';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-competitions',
@@ -19,44 +14,42 @@ import { CompetitionManagerService } from 'src/app/services/competition-manager.
   templateUrl: './competitions.component.html',
   styleUrls: ['./competitions.component.scss']
 })
-export class CompetitionsComponent implements OnInit, OnChanges {
-  competitionCode:any;
-  urlCompetition:string='https://api.football-data.org/v4/competitions/';
-  //teams$:Observable<any> = new Observable();
-  teams$:Array<any> = [];
+export class CompetitionsComponent implements OnInit, OnDestroy {
 
-  selectedCode:string = "";
   @Input() cambio:boolean = false;
+  teams: Team[];
+  teamSubscription:Subscription = new Subscription();
+  competitionSubscription:Subscription = new Subscription();
+
   constructor(
-    private route: ActivatedRoute, 
-    private fetchApiData: FetchDataService,
-    private store: Store<AppState>,
-    private competitionM: CompetitionManagerService
+    private competitionM: CompetitionManagerService,
+    private teamM: TeamManagerService
     ) {
-    this.competitionCode = "PL";
-   
+    this.teams = [];
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log("Dentro de onchanges en competitions")
-  }
+
 
   ngOnInit(): void {
     console.log("dentro del inicio del componente")
     this.competitionM.getCurrentCompetition().subscribe(
       (competition)=>{
-        this.competitionCode = competition;
-        this.fetchApiData.fetchData(`${this.urlCompetition}${this.competitionCode}/teams`).subscribe({
-          next:((result) =>
-          {
-          this.teams$ = result.teams || [];
-          const teamsArray:Team[]=result.teams?.map(team =>team) || [];
-          this.store.dispatch(loadedTeams({teams:teamsArray}))
-          })
-          })
+        const competitionCode:any = competition;
+        this.teamM.getApiTeams(competitionCode)
       }
     );
-    
-    //this.teams$ = this.store.select(selectTeamsList);
+
+    this.teamSubscription = this.teamM.getTeamsList().subscribe(
+      (teams)=>{
+        this.teams = teams;
+      },
+      (error)=>{
+        console.log(error)
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.teamSubscription.unsubscribe();
+    this.competitionSubscription.unsubscribe();
   }
 
 }

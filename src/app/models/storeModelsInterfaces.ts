@@ -7,7 +7,7 @@ export interface CompetitionsState{
 
 export interface TeamsState{
     loading:boolean,
-    teams:ReadonlyArray<Team>
+    teams:Array<Team>
 }
 //------------------------------------------
 
