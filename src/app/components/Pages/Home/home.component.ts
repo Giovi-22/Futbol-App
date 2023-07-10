@@ -15,25 +15,25 @@ export class HomeComponent implements OnInit {
   competitions:CompetitionCard[] = [
     {
       name:"Premier League",
-      image:"https://crests.football-data.org/PL.png",
+      crest:"https://crests.football-data.org/PL.png",
       code:"PL",
       id:2021
     },
     {
       name:"Campeonato Brasileiro Série A",
-      image:"https://crests.football-data.org/764.svg",
+      crest:"https://crests.football-data.org/764.svg",
       code:"BSA",
       id:213
     },
     {
       name:"UEFA Champions League",
-      image:"https://crests.football-data.org/CL.png",
+      crest:"https://crests.football-data.org/CL.png",
       code:"CL",
       id:2001
     },
     {
       name:"Copa Libertadores",
-      image:"https://crests.football-data.org/CLI.svg",
+      crest:"https://crests.football-data.org/CLI.svg",
       code:"CLI",
       id:2152
     }
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
 teams:TeamCard[]=[
   {
   name:"Fluminense FC",
-  image: "https://crests.football-data.org/1765.svg",
+  crest: "https://crests.football-data.org/1765.svg",
   tla: "FLU",
   areaName: "Brazil",
   areaCode: "BRA",
@@ -49,15 +49,15 @@ teams:TeamCard[]=[
 },
 {
   name:"Borussia Dortmund",
-  image: "https://crests.football-data.org/4.png",
+  crest: "https://crests.football-data.org/4.png",
   tla: "BVB",
   areaName: "Germany",
   areaCode: "DEU",
-  id: 1765
+  id: 4
 },
 {
   name:"Real Madrid CF",
-  image: "https://crests.football-data.org/86.png",
+  crest: "https://crests.football-data.org/86.png",
   tla: "RMA",
   areaName: "Spain",
   areaCode: "ESP",
@@ -65,7 +65,7 @@ teams:TeamCard[]=[
 },
 {
   name:"Sporting Clube de Portugal",
-  image: "https://crests.football-data.org/498.png",
+  crest: "https://crests.football-data.org/498.png",
   tla: "SPO",
   areaName: "Portugal",
   areaCode: "POR",

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Team } from 'src/app/models/interfaces/competitionInterfaces';
 import { TeamCardComponent } from 'src/app/components/Cards/team-card/team-card.component';
+import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
 
 @Component({
   selector: 'app-team',
@@ -11,24 +12,30 @@ import { TeamCardComponent } from 'src/app/components/Cards/team-card/team-card.
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })
-export class TeamComponent implements OnInit, OnChanges{
+export class TeamComponent implements OnInit {
 
   team:Team;
   @Input() cambio:boolean = false;
 
-  constructor() {
+  constructor(
+    private teamM: TeamManagerService
+  ) {
     this.team = {};
+    
     console.log("El constructor")
    }
    setChange(change:boolean){
     this.cambio = change;
     console.log("El valor de cambio es: ",this.cambio)
   }
-   ngOnChanges(changes: SimpleChanges): void {
-    console.log("dentro de onchanges")
-   }
+
   ngOnInit(): void {
-    console.log("on init")
+    console.log("on init team")
+    this.teamM.getCurrent().subscribe(
+      (team:Team)=>{
+        this.team = team;
+      }
+    )
   }
 
 }

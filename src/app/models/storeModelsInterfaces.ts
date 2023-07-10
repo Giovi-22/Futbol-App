@@ -7,6 +7,7 @@ export interface CompetitionsState{
 
 export interface TeamsState{
     loading:boolean,
+    current:Team,
     teams:Array<Team>
 }
 //------------------------------------------
@@ -14,13 +15,13 @@ export interface TeamsState{
 export interface CompetitionCard{
     name:string,
     code:string,
-    image:string,
+    crest:string,
     id:number
 }
 
 export interface TeamCard{
     name:string,
-    image: string,
+    crest: string,
     tla: string,
     areaName: string,
     areaCode: string,

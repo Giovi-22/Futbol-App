@@ -14,3 +14,8 @@ export const selectLoadingTeams = createSelector(
     selectTeamsFeature,
   (state: TeamsState) => state.loading
 );
+
+export const selectedTeam = createSelector(
+  selectTeamsFeature,
+  (state: TeamsState)=> state.current
+)

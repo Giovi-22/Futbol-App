@@ -10,7 +10,7 @@ import { CompetitionCard } from 'src/app/models/storeModelsInterfaces';
 export class CompetitionCardComponent implements OnInit {
   @Input() cardData:CompetitionCard={
     name:"",
-    image:"",
+    crest:"",
     code:"",
     id:0
   }

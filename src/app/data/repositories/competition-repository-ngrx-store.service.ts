@@ -5,7 +5,7 @@ import { currentCompetition, loadedCompetitions } from '../state/actions/competi
 import { CompetitionCard } from 'src/app/models/storeModelsInterfaces';
 import { selectCompetitionsList, selectCurrentCompetition } from '../state/selectors/competitions.selectors';
 import { Observable } from 'rxjs';
-import { error } from 'console';
+
 
 @Injectable({
   providedIn: 'root'

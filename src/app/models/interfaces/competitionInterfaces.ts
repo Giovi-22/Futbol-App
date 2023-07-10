@@ -13,10 +13,10 @@ export interface Competition {
     code:                     string;
     type:                     Type;
     emblem:                   string;
-    plan:                     Plan;
-    currentSeason:            CurrentSeason;
-    numberOfAvailableSeasons: number;
-    lastUpdated:              Date;
+    plan?:                     Plan;
+    currentSeason?:            CurrentSeason;
+    numberOfAvailableSeasons?: number;
+    lastUpdated?:              Date;
 }
 
 export interface Area {

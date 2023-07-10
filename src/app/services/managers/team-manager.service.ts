@@ -8,7 +8,8 @@ import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team-r
 })
 export class TeamManagerService {
   #urlCompetition:string='https://api.football-data.org/v4/competitions/';
-
+  #urlTeams:string='https://api.football-data.org/v4/team/'
+  
   constructor(
     private apiHttp: FetchDataService,
     private teamRepository: TeamRepositoryNgrxStoreService
@@ -22,6 +23,14 @@ export class TeamManagerService {
         this.teamRepository.saveTeams(result.teams||[]);
       })
       })
+  }
+
+  getTeam(teamCode:number){
+    return this.teamRepository.getTeam(teamCode);
+  }
+
+  getCurrent(){
+    return this.teamRepository.getCurrent();
   }
   getTeamsList(){
     return this.teamRepository.getTeams();

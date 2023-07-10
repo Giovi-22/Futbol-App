@@ -9,3 +9,8 @@ export const loadedTeams = createAction(
     '[Team List] Uploaded successfully',
     props<{teams: Team[]}>()
 );
+
+export const loadTeam = createAction(
+    '[Team Team] Uploaded team successfully',
+    props<{team:Team}>()
+)
