@@ -9,7 +9,8 @@ import { TeamManagerService } from 'src/app/services/managers/team-manager.servi
   standalone: true,
   imports: [CommonModule],
   templateUrl: './team-card.component.html',
-  styleUrls: ['./team-card.component.scss']
+  styleUrls: ['./team-card.component.scss'],
+  
 })
 export class TeamCardComponent implements OnInit {
   @Input() teamData:Team;
@@ -22,7 +23,7 @@ export class TeamCardComponent implements OnInit {
   }
 
   navigateTo(tid:number){
-    this.teamM.getTeam(tid);
+    this.teamM.getOne(tid);
     this.router.navigate([`/team/${tid}`]);
   }
 

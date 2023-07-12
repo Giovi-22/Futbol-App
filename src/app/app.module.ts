@@ -12,6 +12,8 @@ import { MainComponent } from './components/Main/main/main.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from './data/state/app.state'
+import StrategyFactory from './services/factory/strategyFactory'
+import { TeamManagerService } from './services/managers/team-manager.service'
 
 
 
@@ -19,15 +21,15 @@ import { ROOT_REDUCERS } from './data/state/app.state'
 	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
-		AppRoutingModule,
 		HttpClientModule,
+		AppRoutingModule,
 		HeaderComponent,
 		MainComponent,
 		FooterComponent,
 		StoreModule.forRoot(ROOT_REDUCERS),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
 	],
-	providers: [],
+	providers: [StrategyFactory],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

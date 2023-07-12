@@ -12,13 +12,8 @@ import { FetchDataService } from 'src/app/services/fetch-data.service';
 })
 export class TeamRepositoryNgrxStoreService {
 
-  #urlCompetition:string='https://api.football-data.org/v4/competitions/';
-  #urlTeams:string='https://api.football-data.org/v4/teams'
-  
   constructor(
     private store: Store<AppState>,
-    private apiHttp: FetchDataService,
-
   ) { }
 
   saveTeams(teams:Team[]){
@@ -27,16 +22,6 @@ export class TeamRepositoryNgrxStoreService {
   }
 
   getTeam(teamCode:number){
-   
-    this.apiHttp.apiTeam(`${this.#urlTeams}/${teamCode}`).subscribe(
-      (response)=>{
-        this.store.dispatch(loadTeam({team:response}))
-      },
-      (error)=>{
-        console.log(error);
-      }
-
-    )
     return new Observable<Team>((observer)=>{
       this.store.select(selectedTeam).subscribe(
         (team)=>{
@@ -46,8 +31,7 @@ export class TeamRepositoryNgrxStoreService {
           console.log(error);
         }
       )
-    })
-    
+    })   
   }
 
   getTeams(){

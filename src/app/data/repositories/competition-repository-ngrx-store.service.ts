@@ -55,4 +55,7 @@ export class CompetitionRepositoryNgrxStoreService {
       console.log("La lista de equipos es: ",list,"el tipo es: ",typeof list);
     })
   }
+  getTeam(teamCode:number){
+    return new Observable();
+  }
 }

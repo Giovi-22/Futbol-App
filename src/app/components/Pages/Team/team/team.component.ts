@@ -31,11 +31,18 @@ export class TeamComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("on init team")
-    this.teamM.getCurrent().subscribe(
+    //this.teamM.selectStrategy('api');
+    this.teamM.getTeam(86).subscribe(
+      (result)=>console.log("El resultado es: ",result)
+    )
+   // this.teamM.selectStrategy('api');
+   // this.teamM.getTeam(86);
+    /*this.teamM.getCurrent().subscribe(
       (team:Team)=>{
         this.team = team;
       }
     )
+    */
   }
 
 }

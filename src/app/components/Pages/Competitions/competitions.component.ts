@@ -37,7 +37,7 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
         this.teamM.getApiTeams(competitionCode)
       }
     );
-
+/*
     this.teamSubscription = this.teamM.getTeamsList().subscribe(
       (teams)=>{
         this.teams = teams;
@@ -45,6 +45,7 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
       (error)=>{
         console.log(error)
       });
+      */
   }
 
   ngOnDestroy(): void {
