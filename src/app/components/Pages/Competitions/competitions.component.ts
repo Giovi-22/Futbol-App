@@ -35,8 +35,7 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
     console.log("dentro del inicio del componente")
     this.competitionM.getCurrentCompetition().subscribe(
       (competition)=>{
-        const competitionCode:any = competition;
-        this.teamM.getApiTeams(competitionCode)
+        this.teamM.getApiTeams(competition)
       }
     );
     this.teamSubscription = this.teamM.getTeams().subscribe(

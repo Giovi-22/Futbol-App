@@ -23,7 +23,6 @@ export class CompetitionBannerComponent implements OnInit {
   ngOnInit(): void {
     this.competitionM.getCompetition().subscribe(
       (competition)=>{
-        console.log("La competicion es: ",competition)
         this.competition = competition;
       }
     )

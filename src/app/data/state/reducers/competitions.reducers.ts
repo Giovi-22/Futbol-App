@@ -6,7 +6,7 @@ import { CompetitionEntity } from "src/app/models/entities/CompetitionEntity";
 export const initialState:CompetitionsState = {
     loading:false,
     competitions:[],
-    competition: null,
+    competition:null,
     current: "PL"
 };
 
@@ -14,10 +14,11 @@ export const competitionReducer = createReducer(
     initialState,
     on(loadCompetitions,(state)=>{return {...state,loading:true}}),
     on(saveCompetition,(state,{competition})=>{
+        console.log("CUrrent: ",competition)
         return{
             ...state,
             loading:false,
-            competition:competition
+            competition:new CompetitionEntity(competition)
         }
     }),
     on(loadedCompetitions,(state,{competitions})=>{

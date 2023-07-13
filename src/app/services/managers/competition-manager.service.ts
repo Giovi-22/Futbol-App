@@ -45,13 +45,15 @@ export class CompetitionManagerService {
     this.storage.getCompetition().subscribe(
       (competition)=>{
         if(!competition){
+          console.log("la competicion no existe, yendo a buscar")
           this.getCurrentCompetition().subscribe(
             (current)=>{
-              this.getApiCompetition(current);
+              const competition = this.getApiCompetition(current);
             }
           )
         }
         else{
+          console.log("la competicion existe: ",competition)
           observer.next(competition);
         }
       }
