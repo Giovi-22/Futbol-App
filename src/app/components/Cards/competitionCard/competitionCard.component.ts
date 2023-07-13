@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CompetitionCard } from 'src/app/models/storeModelsInterfaces';
+import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
 
 @Component({
   selector: 'app-competition-card',
@@ -8,9 +8,9 @@ import { CompetitionCard } from 'src/app/models/storeModelsInterfaces';
   styleUrls: ['./competitionCard.component.scss']
 })
 export class CompetitionCardComponent implements OnInit {
-  @Input() cardData:CompetitionCard={
+  @Input() cardData:CompetitionEntity={
     name:"",
-    crest:"",
+    logo:"",
     code:"",
     id:0
   }

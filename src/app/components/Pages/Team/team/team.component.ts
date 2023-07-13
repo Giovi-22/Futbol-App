@@ -6,6 +6,7 @@ import { TeamCardComponent } from 'src/app/components/Cards/team-card/team-card.
 import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
 import { Observable, map } from 'rxjs';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';
+import { Squad } from '../../../../models/interfaces/dtoInterfaces';
 
 @Component({
   selector: 'app-team',
@@ -17,7 +18,7 @@ import { TeamEntity } from 'src/app/models/entities/TeamEntity';
 export class TeamComponent implements OnInit {
 
   team:TeamEntity;
-  team$ = new Observable<any[]>();
+  //team$ = new Observable<Array<any>();
   @Input() cambio:boolean = false;
 
   constructor(private teamM: TeamManagerService) { 
@@ -31,12 +32,14 @@ export class TeamComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("on init team")
+  
     this.teamM.getCurrent().subscribe(
       (team)=>{
         console.log("dentro del init; ",team)
         this.team = team;
       }
     )
+    
   
   }
     /*

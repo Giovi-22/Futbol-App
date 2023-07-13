@@ -1,8 +1,8 @@
 <h5>Popular competitions</h5>
     <section class="home_competitions"> 
-        <app-competition-card *ngFor="let item of competitions" [cardData]="item"></app-competition-card>
+        <app-competition-card *ngFor="let item of competitions.slice(0,4)" [cardData]="item"></app-competition-card>
     </section>
 <h5>Most wanted teams</h5>
     <section class="home_teams">
-        <app-team-card *ngFor="let item of teams" [teamData]="item"></app-team-card>
+        <!---<app-team-card *ngFor="let item of teams" [teamData]="item"></app-team-card>-->
     </section>

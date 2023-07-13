@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import { AppState } from '../state/app.state';
 import { currentCompetition, loadedCompetitions } from '../state/actions/competitions.actions';
-import { CompetitionCard } from 'src/app/models/storeModelsInterfaces';
 import { selectCompetitionsList, selectCurrentCompetition } from '../state/selectors/competitions.selectors';
-import { Observable } from 'rxjs';
+import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ export class CompetitionRepositoryNgrxStoreService {
     private store:Store<AppState>
   ) { }
 
-  saveCompetitions(competitions:CompetitionCard[]){
+  saveCompetitions(competitions:CompetitionEntity[]){
     console.log("guardando las competiciones en el store")
     this.store.dispatch(loadedCompetitions({competitions}))
   }
@@ -26,29 +27,13 @@ export class CompetitionRepositoryNgrxStoreService {
   }
 
   getCurrent(){
-    return new Observable((observer)=>{
-      this.store.pipe(select(selectCurrentCompetition)).subscribe(
-        (competition)=>{
-          observer.next(competition);
-        },
-        (error)=>{
-          observer.error(error);
-        }
-      )
-    })
+    return this.store.select(selectCurrentCompetition);
   }
-  getAll(){
-    return new Observable((observer)=>{
-      this.store.pipe(select(selectCompetitionsList)).subscribe(
-      (list)=>{
-        observer.next(list);
-      },
-      (error)=>{
-        observer.error(error);
-      }
-      )
-    })
 
+  getCompetitions(){
+
+      return this.store.select(selectCompetitionsList);
+      
   }
   getOne(competitionCode:string){
     this.store.pipe(select(selectCompetitionsList)).subscribe((list)=>{

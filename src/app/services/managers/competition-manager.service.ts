@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { competitions } from 'src/app/data/competitions';
 import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories/competition-repository-ngrx-store.service';
+import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +14,27 @@ export class CompetitionManagerService {
   ) { }
 
   saveCompetitions(){
-    this.storage.saveCompetitions(competitions);
+    this.storage.getCompetitions().subscribe(
+      (list)=>{
+        if(!list.length){
+          this.storage.saveCompetitions(competitions);
+        }
+      },
+      (error)=>{
+        throw new Error(`No se pudieron obtener las competiciones: ${error}`)
+      })
   }
 
-  setCurrentCompetition(competitionCode:string){
-    this.storage.setCurrent(competitionCode);
+  setCurrentCompetition(competition:string){
+    this.storage.setCurrent(competition);
   }
 
   getCurrentCompetition(){
     return this.storage.getCurrent();
   }
 
-  getAll(){
-    return this.storage.getAll();
+  getCompetitions(){
+    return this.storage.getCompetitions();
   }
 
   getOne(competitionCode:string){

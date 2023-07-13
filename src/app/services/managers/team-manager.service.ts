@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, observable } from 'rxjs';
 
 import StrategyFactory from '../factory/strategyFactory';
 import { teamStrategy } from 'src/app/models/interfaces/strategiesInterfaces';
@@ -66,6 +66,7 @@ export class TeamManagerService implements teamStrategy {
   getCurrent(){
     return this.store.getCurrent();
   }
+
 
   getTeams(){
    return new Observable<TeamEntity[]>((observer)=>{

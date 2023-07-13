@@ -39,7 +39,7 @@ export class DropdownMenuComponent implements OnInit {
   ngOnInit(): void {
     console.log("dentro de ngOnInit dropdown")
     this.competitionM.saveCompetitions();
-    this.competitions$ = this.competitionM.getAll();
+    this.competitions$ = this.competitionM.getCompetitions();
   }
 
 }

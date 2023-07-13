@@ -25,7 +25,7 @@ export interface Competitions {
 
 export interface CompetitionDto {
     id:                       number;
-    area:                     AreaDto;
+    area?:                     AreaDto;
     name:                     string;
     code:                     string;
     logo:                     string;
