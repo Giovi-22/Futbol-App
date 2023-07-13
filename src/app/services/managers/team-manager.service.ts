@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import StrategyFactory from '../factory/strategyFactory';
 import { teamStrategy } from 'src/app/models/interfaces/strategiesInterfaces';
@@ -16,18 +16,22 @@ type Strategies = TeamRepositoryNgrxStoreService | CompetitionRepositoryNgrxStor
 })
 export class TeamManagerService implements teamStrategy {
   
-  private strategy = inject(StrategyFactory);
-  private selectedStrategy!:Strategies;
-  constructor() 
+
+  constructor(
+    private http:FetchDataService,
+    private store: TeamRepositoryNgrxStoreService
+  ) 
   { 
-    this.selectedStrategy = this.strategy.create('teamStorage')
-  }
-  selectStrategy(str:string){
-    this.selectedStrategy = this.strategy.create(str);
+    
   }
 
-  getApiTeams(competitionCode:string ="PL"){
-    //this.#selectedStrategy.getTeam()
+
+  getApiTeam(teamCode:number=86){
+    this.http.getTeam(teamCode).subscribe(
+      (team)=>{
+        this.store.setTeam(team);
+      }
+    )
     /*
     this.apiHttp.fetchData(`${this.#urlCompetition}${competitionCode}/teams`).subscribe({
       next:((result) =>
@@ -38,36 +42,52 @@ export class TeamManagerService implements teamStrategy {
       */
   }
 
-/*
-  getApiTeams(teamCode:number =86){
-   
-    this.strategy.getTeam(teamCode).subscribe(
-    (result)=>{
-      console.log("El resultado es: ",result)
-    },
-    (error)=>{
-      console.log("Se ha producido un error: ",error)
-    }
-   )
-   
+
+  getApiTeams(competitionCode:string ="PL"){
+    this.http.getTeams(competitionCode).subscribe(
+      (result)=>{
+        this.store.saveTeams(result)
+      },
+      (error)=>{
+        throw new Error(`No se pudieron obtener los equipos, error: ${error}`)
+      }
+
+    )
   }
-*/
+
 
   getTeam(teamCode:number){
     return new Observable<TeamEntity>((observer)=>{
-    this.selectedStrategy.getTeam(teamCode).subscribe(
-      (result)=> console.log(result)
-    )
+    
     });
     
   }
 
   getCurrent(){
-    //return this.teamRepository.getCurrent();
+    return this.store.getCurrent();
   }
+
   getTeams(){
-   // return this.teamRepository.getTeams();
-   return new Observable<TeamEntity[]>();
+   return new Observable<TeamEntity[]>((observer)=>{
+    this.store.getTeams().subscribe(
+      (teams)=>{
+        observer.next(teams)
+      },
+      (error)=>{throw new Error(`No hay equipos disponibles, error: ${error}`)}
+    )
+   });
   }
   
 }
+
+/*
+newTeam = new TeamEntity({
+            area:undefined,     
+            id:0,    
+            name:"",    
+            shortName:"",
+            tla:"",    
+            logo:"",
+            coach:undefined,
+            squad:[]
+            */

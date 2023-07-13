@@ -6,6 +6,7 @@ import { AppState } from '../state/app.state';
 import { selectTeamsList, selectedTeam } from '../state/selectors/teams.selectors';
 import { Observable } from 'rxjs';
 import { FetchDataService } from 'src/app/services/fetch-data.service';
+import { TeamEntity } from 'src/app/models/entities/TeamEntity';
 
 @Injectable({
   providedIn: 'root'
@@ -16,40 +17,40 @@ export class TeamRepositoryNgrxStoreService {
     private store: Store<AppState>,
   ) { }
 
-  saveTeams(teams:Team[]){
+  saveTeams(teams:TeamEntity[]){
     console.log("guardando los equipos en el store")
     this.store.dispatch(loadedTeams({teams}))
   }
 
-  getTeam(teamCode:number){
-    return new Observable<Team>((observer)=>{
-      this.store.select(selectedTeam).subscribe(
-        (team)=>{
-          observer.next(team);
-        },
-        (error)=>{
-          console.log(error);
-        }
-      )
-    })   
+  setTeam(team:TeamEntity){
+    this.store.dispatch(loadTeam({team}))
   }
 
   getTeams(){
-   return new Observable<Team[]>((observer)=>{
+   return new Observable<TeamEntity[]>((observer)=>{
     this.store.select(selectTeamsList).subscribe(
       (value)=>{observer.next(value)}
      )
    })
   }
-
+/*
   getCurrent(){
-    return new Observable<Team>(
+    return new Observable<TeamEntity>(
       (observer)=>{
         this.store.select(selectedTeam).subscribe(
           (team)=>{
-            observer.next(team)
+            const currentTeam = new TeamEntity({...team});
+            observer.next(currentTeam)
           }
         )
     })
   }
+*/
+ 
+  getCurrent(){
+    return this.store.select(selectedTeam)
+      
+
+  }
+
 }

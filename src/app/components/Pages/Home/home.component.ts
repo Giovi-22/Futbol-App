@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CompetitionCardComponent } from '../../Cards/competitionCard/competitionCard.component';
 import { CompetitionCard, TeamCard } from 'src/app/models/storeModelsInterfaces';
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
+import { TeamEntity } from 'src/app/models/entities/TeamEntity';
 
 @Component({
   selector: 'app-home',
@@ -38,37 +39,33 @@ export class HomeComponent implements OnInit {
       id:2152
     }
 ]
-teams:TeamCard[]=[
+teams:TeamEntity[]=[
   {
   name:"Fluminense FC",
-  crest: "https://crests.football-data.org/1765.svg",
+  shortName:"Fluminense",
+  logo: "https://crests.football-data.org/1765.svg",
   tla: "FLU",
-  areaName: "Brazil",
-  areaCode: "BRA",
   id: 1765
 },
 {
   name:"Borussia Dortmund",
-  crest: "https://crests.football-data.org/4.png",
+  shortName:"Dortmund",
+  logo: "https://crests.football-data.org/4.png",
   tla: "BVB",
-  areaName: "Germany",
-  areaCode: "DEU",
   id: 4
 },
 {
   name:"Real Madrid CF",
-  crest: "https://crests.football-data.org/86.png",
+  shortName:"Madrid",
+  logo: "https://crests.football-data.org/86.png",
   tla: "RMA",
-  areaName: "Spain",
-  areaCode: "ESP",
   id: 86
 },
 {
   name:"Sporting Clube de Portugal",
-  crest: "https://crests.football-data.org/498.png",
+  shortName:"Sporting",
+  logo: "https://crests.football-data.org/498.png",
   tla: "SPO",
-  areaName: "Portugal",
-  areaCode: "POR",
   id: 498
 }
 ]

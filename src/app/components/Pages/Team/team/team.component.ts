@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { Team } from 'src/app/models/interfaces/competitionInterfaces';
 import { TeamCardComponent } from 'src/app/components/Cards/team-card/team-card.component';
 import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
+import { Observable, map } from 'rxjs';
+import { TeamEntity } from 'src/app/models/entities/TeamEntity';
 
 @Component({
   selector: 'app-team',
@@ -14,16 +16,14 @@ import { TeamManagerService } from 'src/app/services/managers/team-manager.servi
 })
 export class TeamComponent implements OnInit {
 
-  team:Team;
+  team:TeamEntity;
+  team$ = new Observable<any[]>();
   @Input() cambio:boolean = false;
 
-  constructor(
-    private teamM: TeamManagerService
-  ) {
-    this.team = {};
-    
-    console.log("El constructor")
-   }
+  constructor(private teamM: TeamManagerService) { 
+    this.team = new TeamEntity({});
+  }
+
    setChange(change:boolean){
     this.cambio = change;
     console.log("El valor de cambio es: ",this.cambio)
@@ -31,18 +31,24 @@ export class TeamComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("on init team")
-    //this.teamM.selectStrategy('api');
-    this.teamM.getTeam(86).subscribe(
-      (result)=>console.log("El resultado es: ",result)
-    )
-   // this.teamM.selectStrategy('api');
-   // this.teamM.getTeam(86);
-    /*this.teamM.getCurrent().subscribe(
-      (team:Team)=>{
+    this.teamM.getCurrent().subscribe(
+      (team)=>{
+        console.log("dentro del init; ",team)
         this.team = team;
       }
     )
+  
+  }
+    /*
+    this.teamM.getCurrent().subscribe(
+      (result)=>console.log("EL equipo: ",result)
+    );
     */
+    /*
+    this.teamM.getCurrent().subscribe(
+      (result)=>{
+        this.team = result;
+        console.log("el equipo es: ",result)
+        */
   }
 
-}

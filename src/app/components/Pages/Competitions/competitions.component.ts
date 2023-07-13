@@ -5,6 +5,7 @@ import { CompetitionManagerService } from 'src/app/services/managers/competition
 import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
 import { Team } from 'src/app/models/interfaces/competitionInterfaces';
 import { Subscription } from 'rxjs';
+import { TeamEntity } from 'src/app/models/entities/TeamEntity';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { Subscription } from 'rxjs';
 export class CompetitionsComponent implements OnInit, OnDestroy {
 
   @Input() cambio:boolean = false;
-  teams: Team[];
+  teams: TeamEntity[];
   teamSubscription:Subscription = new Subscription();
   competitionSubscription:Subscription = new Subscription();
 
@@ -37,15 +38,14 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
         this.teamM.getApiTeams(competitionCode)
       }
     );
-/*
-    this.teamSubscription = this.teamM.getTeamsList().subscribe(
+    this.teamSubscription = this.teamM.getTeams().subscribe(
       (teams)=>{
         this.teams = teams;
       },
       (error)=>{
         console.log(error)
       });
-      */
+
   }
 
   ngOnDestroy(): void {

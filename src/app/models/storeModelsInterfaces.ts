@@ -1,3 +1,4 @@
+import { TeamEntity } from './entities/TeamEntity';
 import { Competition, Team } from './interfaces/competitionInterfaces';
 export interface CompetitionsState{
     loading:boolean,
@@ -7,8 +8,8 @@ export interface CompetitionsState{
 
 export interface TeamsState{
     loading:boolean,
-    current:Team,
-    teams:Array<Team>
+    current:TeamEntity,
+    teams:Array<TeamEntity>
 }
 //------------------------------------------
 
