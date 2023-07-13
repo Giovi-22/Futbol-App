@@ -6,6 +6,7 @@ import { competitionStrategy, teamStrategy } from '../models/interfaces/strategi
 import { CompetitionDto, TeamDto } from '../models/interfaces/dtoInterfaces';
 import { TeamEntity } from '../models/entities/TeamEntity';
 import { CompetitionEntity } from '../models/entities/CompetitionEntity';
+import { competitions } from '../data/competitions';
 
 
 @Injectable({
@@ -24,6 +25,12 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
   constructor(private http: HttpClient) {
    }
 
+   getCompetitions(): Observable<CompetitionEntity[]> {
+     return new Observable((observer)=>{
+        observer.next(competitions);
+     })
+   }
+/*
   getCompetitions(){
    return new Observable<CompetitionEntity[]>((observer)=>{
     this.http.get<Competitions>(this.#urlCompetition,this.#options).subscribe(
@@ -40,6 +47,7 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
     )
   });
   }
+  */
 
   getCompetition(competitionCode:string){
     return new Observable<CompetitionEntity>((observer)=>{
