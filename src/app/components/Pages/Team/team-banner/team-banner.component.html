@@ -1,0 +1,9 @@
+<div class="team__banner">
+    <ng-container *ngIf="team; else elseTemplate">
+        <img src={{team.logo}} class="slide-in-left">
+        <h2>{{team.name}}</h2>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <app-spinner></app-spinner>
+    </ng-template>
+</div>
