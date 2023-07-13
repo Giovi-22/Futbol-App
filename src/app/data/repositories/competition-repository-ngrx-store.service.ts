@@ -3,8 +3,8 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { AppState } from '../state/app.state';
-import { currentCompetition, loadedCompetitions } from '../state/actions/competitions.actions';
-import { selectCompetitionsList, selectCurrentCompetition } from '../state/selectors/competitions.selectors';
+import { currentCompetition, loadedCompetitions, saveCompetition } from '../state/actions/competitions.actions';
+import { selectCompetition, selectCompetitionsList, selectCurrentCompetition } from '../state/selectors/competitions.selectors';
 import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
 
 
@@ -21,6 +21,10 @@ export class CompetitionRepositoryNgrxStoreService {
     console.log("guardando las competiciones en el store")
     this.store.dispatch(loadedCompetitions({competitions}))
   }
+  saveCompetition(competition:CompetitionEntity){
+    console.log("guardando las competiciones en el store")
+    this.store.dispatch(saveCompetition({competition}))
+  }
 
   setCurrent(competitionCode:string){
       this.store.dispatch(currentCompetition({current:competitionCode}))
@@ -35,10 +39,8 @@ export class CompetitionRepositoryNgrxStoreService {
       return this.store.select(selectCompetitionsList);
       
   }
-  getOne(competitionCode:string){
-    this.store.pipe(select(selectCompetitionsList)).subscribe((list)=>{
-      console.log("La lista de equipos es: ",list,"el tipo es: ",typeof list);
-    })
+  getCompetition(){
+    return this.store.select(selectCompetition)
   }
   getTeam(teamCode:number){
     return new Observable();

@@ -6,6 +6,7 @@ import { TeamManagerService } from 'src/app/services/managers/team-manager.servi
 import { Team } from 'src/app/models/interfaces/competitionInterfaces';
 import { Subscription } from 'rxjs';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';
+import { CompetitionBannerComponent } from './competition-banner/competition-banner.component';
 
 
 @Component({

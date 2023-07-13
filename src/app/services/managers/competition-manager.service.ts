@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { competitions } from 'src/app/data/competitions';
 import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories/competition-repository-ngrx-store.service';
 import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
+import { FetchDataService } from '../fetch-data.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ export class CompetitionManagerService {
 
   constructor( 
     private storage:  CompetitionRepositoryNgrxStoreService,
-  ) { }
+    private http: FetchDataService
+    ) { }
 
   saveCompetitions(){
     this.storage.getCompetitions().subscribe(
@@ -37,7 +40,30 @@ export class CompetitionManagerService {
     return this.storage.getCompetitions();
   }
 
-  getOne(competitionCode:string){
-    this.storage.getOne(competitionCode);
+  getCompetition(){
+    return new Observable<CompetitionEntity>((observer)=>{
+    this.storage.getCompetition().subscribe(
+      (competition)=>{
+        if(!competition){
+          this.getCurrentCompetition().subscribe(
+            (current)=>{
+              this.getApiCompetition(current);
+            }
+          )
+        }
+        else{
+          observer.next(competition);
+        }
+      }
+    );
+  });
+  }
+
+  getApiCompetition(competitionCode:string){
+    this.http.getCompetition(competitionCode).subscribe(
+      (result)=>{
+        this.storage.saveCompetition(result)
+      }
+    )
   }
 }

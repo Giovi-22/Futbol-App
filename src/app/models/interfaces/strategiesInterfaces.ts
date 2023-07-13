@@ -2,6 +2,7 @@ import { Observable } from "rxjs"
 import { Competition, Team } from "./competitionInterfaces"
 import { TeamDto } from "./dtoInterfaces"
 import { TeamEntity } from "../entities/TeamEntity"
+import { CompetitionEntity } from "../entities/CompetitionEntity"
 
 export interface teamStrategy{
     getTeam(code?:number):Observable<TeamEntity>,
@@ -9,6 +10,6 @@ export interface teamStrategy{
 }
 
 export interface competitionStrategy{
-    getCompetition(competitionCode?:string):Observable<Competition>,
-    getCompetitions():Observable<Competition[]>
+    getCompetition(competitionCode?:string):Observable<CompetitionEntity>,
+    getCompetitions():Observable<CompetitionEntity[]>
 }

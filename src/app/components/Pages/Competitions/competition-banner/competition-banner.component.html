@@ -1,0 +1,8 @@
+<div class="competition__banner">
+    <img src={{competition.logo}} class="slide-in-left">
+    <h2>{{competition.name}}</h2>
+    <div *ngIf="competition.currentSeason" class="competition__season">
+    <pre>start date: {{competition.currentSeason.startDate}}</pre>
+    <pre>end date: {{competition.currentSeason.endDate}}</pre>
+    </div>
+</div>

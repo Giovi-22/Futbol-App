@@ -8,16 +8,16 @@ import { TeamComponent } from './components/Pages/Team/team/team.component'
 
 const routes: Routes = [
 	{
-		path: 'team/:tid',
+		path: 'team',
 		component:TeamComponent,
+	},
+	{
+		path: 'competitions',
+		component:CompetitionsComponent,
 	},
 	{
 		path: '',
 		component:HomeComponent,
-	},
-	{
-		path: 'competitions/:cid',
-		component:CompetitionsComponent,
 	},
 	{
 		path: 'sign-in',

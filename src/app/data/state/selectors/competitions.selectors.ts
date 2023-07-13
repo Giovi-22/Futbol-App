@@ -19,3 +19,8 @@ export const selectCurrentCompetition = createSelector(
   selectCompetitionsFeature,
 (state: CompetitionsState) => state.current
 );
+
+export const selectCompetition = createSelector(
+  selectCompetitionsFeature,
+(state: CompetitionsState) => state.competition
+);

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { competitionStrategy, teamStrategy } from '../models/interfaces/strategiesInterfaces';
 import { CompetitionDto, TeamDto } from '../models/interfaces/dtoInterfaces';
 import { TeamEntity } from '../models/entities/TeamEntity';
+import { CompetitionEntity } from '../models/entities/CompetitionEntity';
 
 
 @Injectable({
@@ -24,18 +25,36 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
    }
 
   getCompetitions(){
-   return new Observable<Competition[]>((observer)=>{
+   return new Observable<CompetitionEntity[]>((observer)=>{
     this.http.get<Competitions>(this.#urlCompetition,this.#options).subscribe(
       (result)=>{
-        observer.next(result.competitions)}
+        const newCompetition = result.competitions.map(competition=>new CompetitionEntity({
+        id:competition.id,                     
+        area:competition.area,                  
+        name:competition.name,                    
+        code:competition.code,                                     
+        logo:competition.emblem,                                  
+        currentSeason:competition.currentSeason,   
+        }))
+        observer.next(newCompetition)}
     )
   });
   }
 
   getCompetition(competitionCode:string){
-    return new Observable<Competition>((observer)=>{
+    return new Observable<CompetitionEntity>((observer)=>{
      this.http.get<Competition>(`${this.#urlCompetition}/${competitionCode}`,this.#options).subscribe(
-       (result)=>observer.next(result)
+       (result)=>{
+        const competition = new CompetitionEntity({
+          id:result.id,                     
+          area:result.area,                  
+          name:result.name,                    
+          code:result.code,                                     
+          logo:result.emblem,                                  
+          currentSeason:result.currentSeason,
+        })
+        observer.next(competition)
+      }
      )
    });
    }
@@ -54,7 +73,7 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
           coach: team.coach,
           squad: team.squad,
         }));
-        
+
         observer.next(teams)
       },
       (error)=>{throw new Error(`No se pudieron obtener los datos: ${error}`)})

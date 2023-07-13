@@ -4,6 +4,7 @@ import { TeamEntity } from './entities/TeamEntity';
 export interface CompetitionsState{
     loading:boolean,
     current:string,
+    competition:CompetitionEntity | null,
     competitions:CompetitionEntity[]
 }
 
