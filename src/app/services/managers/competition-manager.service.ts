@@ -4,8 +4,7 @@ import { competitions } from 'src/app/data/competitions';
 import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories/competition-repository-ngrx-store.service';
 import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
 import { FetchDataService } from '../fetch-data.service';
-import { Observable, map, firstValueFrom } from 'rxjs';
-import { CompetitionDto } from 'src/app/models/interfaces/dtoInterfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -37,38 +36,36 @@ export class CompetitionManagerService {
     return this.storage.getCurrent();
   }
 
-
-    getCompetitions(){
-      console.log("dentro de get competition manager")
-      return new Observable<CompetitionEntity[]>((observer)=>{
-      this.storage.getCompetitions().subscribe(
-        (result)=>{
-          console.log("dentro de la subscripcion")
-          if(!result.length){
-            console.log("no hay competiciones guardadas")
-            this.http.getCompetitions().subscribe(
-              (result)=>{
-                this.storage.saveCompetitions(result);
-            })
-          }else{
-            this.storage.getCompetitions().subscribe(
-              (result)=>observer.next(result));
-          }
-        })
-      })
-    }
-
-/*
   getCompetitions(){
-    return this.storage.getCompetitions();
+    return new Observable<CompetitionEntity[]>((observer)=>{
+    this.storage.getCompetitions().subscribe(
+      (result)=>{
+        if(!result.length){
+          this.http.getCompetitions().subscribe(
+            (result)=>{
+              this.storage.saveCompetitions(result);
+          })
+        }else{
+          this.storage.getCompetitions().subscribe(
+            (result)=>observer.next(result));
+        }
+      })
+    })
   }
-*/
+
+  addMatches(competitionCode:string){
+    this.http.getCompetitionMatches(competitionCode).subscribe(
+      (result)=>{
+        this.storage.addMatches(result);
+      }
+    )
+  }
+
   getCompetition(){
     return new Observable<CompetitionEntity>((observer)=>{
     this.storage.getCompetition().subscribe(
       (competition)=>{
         if(!competition){
-          console.log("la competicion no existe, yendo a buscar")
           this.getCurrentCompetition().subscribe(
             (current)=>{
               const competition = this.getApiCompetition(current);
@@ -76,7 +73,6 @@ export class CompetitionManagerService {
           )
         }
         else{
-          console.log("la competicion existe: ",competition)
           observer.next(competition);
         }
       }
@@ -91,4 +87,9 @@ export class CompetitionManagerService {
       }
     )
   }
+
+  getMatches(){
+    return this.storage.getMatches();
+  }
+
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Team } from 'src/app/models/interfaces/competitionInterfaces';
+import { Team } from 'src/app/models/interfaces/competitioniterfaces';
 import { Router } from '@angular/router';
 import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';

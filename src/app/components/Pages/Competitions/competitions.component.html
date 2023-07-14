@@ -1,1 +1,16 @@
-<app-team-card *ngFor="let team of teams " [teamData]="team"></app-team-card>
+<app-competition-banner (screen)="selectedScreen($event)"></app-competition-banner>
+<span [ngSwitch]="screen"> 
+
+<div *ngSwitchCase="'teams'" class="competition__teams">
+    <app-team-card *ngFor="let team of teams " [teamData]="team"></app-team-card>
+</div>
+
+<div *ngSwitchCase="'matches'" class="competition__matches">
+    <p>matches</p>
+</div>
+
+<p *ngSwitchDefault>
+
+</p>
+</span>
+

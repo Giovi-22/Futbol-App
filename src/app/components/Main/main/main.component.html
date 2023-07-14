@@ -1,12 +1,3 @@
-<div class="main__banner" ngSwitch={{page}}>
-    <div *ngSwitchCase="'home'" class="main__banner__home">
-        <h4>¡Welcome to Futbol App!, The right place to keep up with your favorites leagues and teams</h4>
-    </div>
-    <app-competition-banner *ngSwitchCase="'competitions'"></app-competition-banner>
-    <app-team-banner *ngSwitchCase="'team'"></app-team-banner>
-    <div *ngSwitchCase="'notfound'"></div>
-</div>
-
 <div class="main__content">
         <router-outlet></router-outlet>
 </div>

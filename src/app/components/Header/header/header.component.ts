@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { DropdownMenuComponent } from '../dropdown-menu/dropdown-menu.component';
 
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -12,12 +11,14 @@ import { DropdownMenuComponent } from '../dropdown-menu/dropdown-menu.component'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  showMenu:boolean=false;
+  showMenu:boolean;
 
-  constructor() { }
+  constructor() { 
+    this.showMenu=false
+  }
 
-  setMenu(value:boolean){
-    this.showMenu = value;
+  setMenu(showMenu:boolean){
+    this.showMenu = showMenu;
   }
 
   ngOnInit(): void {

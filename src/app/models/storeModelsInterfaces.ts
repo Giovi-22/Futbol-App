@@ -1,11 +1,13 @@
 import { CompetitionEntity } from './entities/CompetitionEntity';
+import { MatchEntity } from './entities/MatchEntity';
 import { TeamEntity } from './entities/TeamEntity';
 
 export interface CompetitionsState{
     loading:boolean,
     current:string,
     competition:CompetitionEntity | null,
-    competitions:CompetitionEntity[]
+    competitions:CompetitionEntity[],
+    matches:MatchEntity[]
 }
 
 export interface TeamsState{

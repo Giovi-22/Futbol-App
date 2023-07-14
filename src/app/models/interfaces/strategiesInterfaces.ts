@@ -1,5 +1,5 @@
 import { Observable } from "rxjs"
-import { Competition, Team } from "./competitionInterfaces"
+import { Competition, Team } from "./competitioniterfaces"
 import { TeamDto } from "./dtoInterfaces"
 import { TeamEntity } from "../entities/TeamEntity"
 import { CompetitionEntity } from "../entities/CompetitionEntity"

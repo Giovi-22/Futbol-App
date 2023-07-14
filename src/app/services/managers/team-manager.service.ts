@@ -3,7 +3,7 @@ import { Observable, map, observable } from 'rxjs';
 
 import StrategyFactory from '../factory/strategyFactory';
 import { teamStrategy } from 'src/app/models/interfaces/strategiesInterfaces';
-import { Team } from 'src/app/models/interfaces/competitionInterfaces';
+import { Team } from 'src/app/models/interfaces/competitioniterfaces';
 import { FetchDataService } from '../fetch-data.service';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';
 import { popularTeams } from 'src/app/data/popularTeams';

@@ -1,10 +1,16 @@
 <div class="competition__banner">
     <ng-container *ngIf="competition; else elseTemplate">
-        <img src={{competition.logo}} class="slide-in-left">
-        <h2>{{competition.name}}</h2>
-        <div *ngIf="competition.currentSeason" class="competition__season">
-        <pre>start date: {{competition.currentSeason.startDate}}</pre>
-        <pre>end date: {{competition.currentSeason.endDate}}</pre>
+        <div class="competition__banner__top">
+            <img src={{competition.logo}} class="slide-in-left">
+            <h2>{{competition.name}}</h2>
+            <div *ngIf="competition.currentSeason" class="competition__season">
+            <pre>start date: {{competition.currentSeason.startDate}}</pre>
+            <pre>end date: {{competition.currentSeason.endDate}}</pre>
+            </div>
+        </div>
+        <div class="competition__banner__bottom-bar">
+            <button class="btn btn-outline-primary" (click)="selectCompetitionScreen('teams')">Teams</button>
+            <button class="btn btn-outline-primary" (click)="selectCompetitionScreen('matches')">Matches</button>
         </div>
     </ng-container>
     <ng-template #elseTemplate>

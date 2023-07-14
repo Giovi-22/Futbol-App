@@ -3,6 +3,8 @@ export interface DropdownItem{
     name:string
 }
 
+
+
 export interface TeamDto{
         area?:                AreaDto;
         id?:                  number;
@@ -12,6 +14,16 @@ export interface TeamDto{
         logo?:               string;
         coach?:               CoachDto;
         squad?:               Squad[];
+}
+
+export interface MatchDto{
+        area:        AreaDto,
+        season:      SeasonDto,
+        id:          number,
+        utcDate:     Date,
+        matchday:    number,
+        homeTeam:    TeamDto,
+        awayTeam:    TeamDto,
 }
 
 //-------------------------------------------
@@ -62,7 +74,6 @@ export interface SeasonDto {
     currentMatchday: number;
     winner:          null;
 }
-
 
 export interface CoachDto{
     id:          number | null;

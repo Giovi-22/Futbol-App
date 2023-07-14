@@ -24,3 +24,8 @@ export const selectCompetition = createSelector(
   selectCompetitionsFeature,
 (state: CompetitionsState) => state.competition
 );
+
+export const matchesList = createSelector(
+  selectCompetitionsFeature,
+(state: CompetitionsState) => state.matches
+);

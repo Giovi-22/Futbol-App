@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Competition, Competitions, Team } from '../models/interfaces/competitionInterfaces';
+import { Competition, Competitions, Team } from '../models/interfaces/competitioniterfaces';
 import { Observable } from 'rxjs';
 import { competitionStrategy, teamStrategy } from '../models/interfaces/strategiesInterfaces';
-import { CompetitionDto, TeamDto } from '../models/interfaces/dtoInterfaces';
+import { CompetitionDto, MatchDto, TeamDto } from '../models/interfaces/dtoInterfaces';
 import { TeamEntity } from '../models/entities/TeamEntity';
 import { CompetitionEntity } from '../models/entities/CompetitionEntity';
 import { competitions } from '../data/competitions';
 import { Router } from '@angular/router';
+import { APIMatches } from '../models/interfaces/matchesInterfaces';
+import { MatchEntity } from '../models/entities/MatchEntity';
 
 
 @Injectable({
@@ -52,6 +54,25 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
   });
   }
   */
+  getCompetitionMatches(competitionCode:string){
+    return new Observable<MatchEntity[]>((observer)=>{
+      this.http.get<APIMatches>(`${this.#urlCompetition}/${competitionCode}/matches`).subscribe(
+        (result)=>{
+          const matches:MatchEntity[] = result.matches.map(match=> new MatchEntity({
+            area: match.area,
+            season: match.season,
+            id: match.id,
+            utcDate: match.utcDate,
+            matchday: match.matchday,
+            homeTeam: match.homeTeam,
+            awayTeam: match.awayTeam,
+          }));
+          observer.next(matches)
+        },
+        (error)=>this.router.navigate(['notfound',error.error])
+      )
+    })
+  }
 
   getCompetition(competitionCode:string){
     return new Observable<CompetitionEntity>((observer)=>{

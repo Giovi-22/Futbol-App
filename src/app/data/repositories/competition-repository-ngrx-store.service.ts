@@ -3,9 +3,10 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { AppState } from '../state/app.state';
-import { currentCompetition, loadedCompetitions, saveCompetition } from '../state/actions/competitions.actions';
-import { selectCompetition, selectCompetitionsList, selectCurrentCompetition } from '../state/selectors/competitions.selectors';
+import { currentCompetition, loadMatches, loadedCompetitions, saveCompetition } from '../state/actions/competitions.actions';
+import { matchesList, selectCompetition, selectCompetitionsList, selectCurrentCompetition } from '../state/selectors/competitions.selectors';
 import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
+import { MatchEntity } from 'src/app/models/entities/MatchEntity';
 
 
 @Injectable({
@@ -29,6 +30,9 @@ export class CompetitionRepositoryNgrxStoreService {
   setCurrent(competitionCode:string){
       this.store.dispatch(currentCompetition({current:competitionCode}))
   }
+  addMatches(matches:MatchEntity[]){
+    this.store.dispatch(loadMatches({matches}))
+  }
 
   getCurrent(){
     return this.store.select(selectCurrentCompetition);
@@ -42,7 +46,9 @@ export class CompetitionRepositoryNgrxStoreService {
   getCompetition(){
     return this.store.select(selectCompetition)
   }
-  getTeam(teamCode:number){
-    return new Observable();
+
+  getMatches(){
+    return this.store.select(matchesList);
   }
+
 }

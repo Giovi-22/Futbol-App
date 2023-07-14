@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Team } from 'src/app/models/interfaces/competitionInterfaces';
+import { Team } from 'src/app/models/interfaces/competitioniterfaces';
 import { loadPopular, loadTeam, loadedTeams } from '../state/actions/teams.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../state/app.state';

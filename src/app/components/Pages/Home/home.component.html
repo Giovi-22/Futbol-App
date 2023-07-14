@@ -1,3 +1,7 @@
+
+<div class="home__banner">
+    <h4>¡Welcome to Futbol App!, The right place to keep up with your favorites leagues and teams</h4>
+</div>
 <h5>Popular competitions</h5>
     <section class="home_competitions"> 
         <app-competition-card *ngFor="let item of (competitions$ |async | slice:0:4)" [cardData]="item"></app-competition-card>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -19,7 +19,7 @@ export class DropdownMenuComponent implements OnInit {
   loading$:Observable<boolean> = new Observable();
   competitions$:Observable<any> = new Observable();
   selectedCode:string; 
-  
+
   constructor(
     private router: Router,
     private competitionM: CompetitionManagerService
@@ -28,11 +28,9 @@ export class DropdownMenuComponent implements OnInit {
     
   }
 
-
-
   navigateTo(competitionCode:string){
     this.selectedCode = competitionCode;
-    this.router.navigate([`competitions`]);
+    this.router.navigate(['competitions']);
     this.competitionM.setCurrentCompetition(competitionCode);
   }
 

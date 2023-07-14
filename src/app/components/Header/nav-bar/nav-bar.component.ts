@@ -10,14 +10,15 @@ import { RouterModule } from '@angular/router';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
+
 export class NavBarComponent implements OnInit {
   showMenu:boolean=false;
   @Output() openMenu= new EventEmitter<boolean>();
 
   constructor() { }
 
-  setMenu(value:boolean){
-    this.openMenu.emit(value);
+  setMenu(showMenu:boolean){
+    this.openMenu.emit(showMenu);
   }
 
   ngOnInit(): void {

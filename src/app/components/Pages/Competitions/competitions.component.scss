@@ -1,5 +1,12 @@
 :host{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.competition__teams{
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
