@@ -6,7 +6,6 @@ import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
 import { CompetitionManagerService } from 'src/app/services/managers/competition-manager.service';
 import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';
 
@@ -29,7 +28,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     console.log("home component")
     this.competitions$ = this.competitionM.getCompetitions();
-    this.teams$ = this.teamM.getTeams();
+    this.teamM.setPopularTeams();
+    this.teams$ = this.teamM.getPopularTeams()
   }
 }
 

@@ -11,7 +11,8 @@ export interface CompetitionsState{
 export interface TeamsState{
     loading:boolean,
     current:TeamEntity,
-    teams:Array<TeamEntity>
+    teams:Array<TeamEntity>,
+    popularTeams: TeamEntity[]
 }
 //------------------------------------------
 

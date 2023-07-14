@@ -6,6 +6,11 @@ export const loadTeams = createAction(
     '[Team List] Load Teams'
 );
 
+export const loadPopular = createAction(
+    '[Team popular] Load popular teams',
+    props<{teams: TeamEntity[]}>()
+);
+
 export const loadedTeams = createAction(
     '[Team List] Uploaded successfully',
     props<{teams: TeamEntity[]}>()

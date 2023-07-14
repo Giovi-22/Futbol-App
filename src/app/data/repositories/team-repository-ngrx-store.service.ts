@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Team } from 'src/app/models/interfaces/competitionInterfaces';
-import { loadTeam, loadedTeams } from '../state/actions/teams.actions';
+import { loadPopular, loadTeam, loadedTeams } from '../state/actions/teams.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../state/app.state';
-import { selectTeamsList, selectedTeam } from '../state/selectors/teams.selectors';
+import { selectTeamsList, selectedTeam, popularTeams } from '../state/selectors/teams.selectors';
 import { Observable } from 'rxjs';
 import { FetchDataService } from 'src/app/services/fetch-data.service';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';
@@ -33,24 +33,14 @@ export class TeamRepositoryNgrxStoreService {
      )
    })
   }
-/*
-  getCurrent(){
-    return new Observable<TeamEntity>(
-      (observer)=>{
-        this.store.select(selectedTeam).subscribe(
-          (team)=>{
-            const currentTeam = new TeamEntity({...team});
-            observer.next(currentTeam)
-          }
-        )
-    })
+  setPopularTeams(teams:TeamEntity[]){
+    this.store.dispatch(loadPopular({teams}));
   }
-*/
- 
+  getPopularTeams(){
+    return this.store.select(popularTeams);
+  }
   getCurrent(){
     return this.store.select(selectedTeam)
-      
-
   }
 
 }

@@ -4,12 +4,11 @@ import { Observable, map, observable } from 'rxjs';
 import StrategyFactory from '../factory/strategyFactory';
 import { teamStrategy } from 'src/app/models/interfaces/strategiesInterfaces';
 import { Team } from 'src/app/models/interfaces/competitionInterfaces';
-import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team-repository-ngrx-store.service';
-import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories/competition-repository-ngrx-store.service';
 import { FetchDataService } from '../fetch-data.service';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';
+import { popularTeams } from 'src/app/data/popularTeams';
+import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team-repository-ngrx-store.service';
 
-type Strategies = TeamRepositoryNgrxStoreService | CompetitionRepositoryNgrxStoreService | FetchDataService;
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,7 @@ export class TeamManagerService implements teamStrategy {
 
   constructor(
     private http:FetchDataService,
-    private store: TeamRepositoryNgrxStoreService
+    private storeRepository: TeamRepositoryNgrxStoreService
   ) 
   { 
     
@@ -29,24 +28,15 @@ export class TeamManagerService implements teamStrategy {
   getApiTeam(teamCode:number=86){
     this.http.getTeam(teamCode).subscribe(
       (team)=>{
-        this.store.setTeam(team);
+        this.storeRepository.setTeam(team);
       }
     )
-    /*
-    this.apiHttp.fetchData(`${this.#urlCompetition}${competitionCode}/teams`).subscribe({
-      next:((result) =>
-      {
-        this.teamRepository.saveTeams(result.teams||[]);
-      })
-      })
-      */
   }
-
 
   getApiTeams(competitionCode:string ="PL"){
     this.http.getTeams(competitionCode).subscribe(
       (result)=>{
-        this.store.saveTeams(result)
+        this.storeRepository.saveTeams(result)
       },
       (error)=>{
         throw new Error(`No se pudieron obtener los equipos, error: ${error}`)
@@ -54,7 +44,6 @@ export class TeamManagerService implements teamStrategy {
 
     )
   }
-
 
   getTeam(teamCode:number){
     return new Observable<TeamEntity>((observer)=>{
@@ -64,13 +53,13 @@ export class TeamManagerService implements teamStrategy {
   }
 
   getCurrent(){
-    return this.store.getCurrent();
+    return this.storeRepository.getCurrent();
   }
 
 
   getTeams(){
    return new Observable<TeamEntity[]>((observer)=>{
-    this.store.getTeams().subscribe(
+    this.storeRepository.getTeams().subscribe(
       (teams)=>{
         observer.next(teams)
       },
@@ -78,9 +67,15 @@ export class TeamManagerService implements teamStrategy {
     )
    });
   }
-  
+
+setPopularTeams(){
+  this.storeRepository.setPopularTeams(popularTeams);
 }
 
+getPopularTeams(){
+  return this.storeRepository.getPopularTeams();
+}
+}
 /*
 newTeam = new TeamEntity({
             area:undefined,     
