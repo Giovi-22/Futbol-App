@@ -56,7 +56,7 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
   */
   getCompetitionMatches(competitionCode:string){
     return new Observable<MatchEntity[]>((observer)=>{
-      this.http.get<APIMatches>(`${this.#urlCompetition}/${competitionCode}/matches`).subscribe(
+      this.http.get<APIMatches>(`${this.#urlCompetition}/${competitionCode}/matches`,this.#options).subscribe(
         (result)=>{
           const matches:MatchEntity[] = result.matches.map(match=> new MatchEntity({
             area: match.area,
@@ -64,12 +64,27 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
             id: match.id,
             utcDate: match.utcDate,
             matchday: match.matchday,
-            homeTeam: match.homeTeam,
-            awayTeam: match.awayTeam,
+            homeTeam: {   
+                id:match.homeTeam.id,   
+                name:match.homeTeam.name,   
+                shortName:match.homeTeam.shortName,
+                tla:match.homeTeam.tla,    
+                logo:match.homeTeam.crest,
+            },
+            awayTeam: {   
+              id:match.awayTeam.id,   
+              name:match.awayTeam.name,   
+              shortName:match.awayTeam.shortName,
+              tla:match.awayTeam.tla,    
+              logo:match.awayTeam.crest,
+          },
           }));
           observer.next(matches)
         },
-        (error)=>this.router.navigate(['notfound',error.error])
+        (error)=>{
+          console.log("El error es: ",error)
+        this.router.navigate(['notfound',error.error])
+      }
       )
     })
   }

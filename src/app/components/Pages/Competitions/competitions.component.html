@@ -6,7 +6,7 @@
 </div>
 
 <div *ngSwitchCase="'matches'" class="competition__matches">
-    <p>matches</p>
+    <app-match-card *ngFor="let match of matchs " [match]="match"></app-match-card>
 </div>
 
 <p *ngSwitchDefault>

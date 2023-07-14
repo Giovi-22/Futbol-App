@@ -1,8 +1,5 @@
 <p>matches works!</p>
 
 <div *ngFor="let match of (matches$ |async)" class="matche">
-    <div>
-        <pre>{{match.homeTeam.name}} vs {{match.awayTeam.name}}</pre>
-    </div>
-    <pre>Dia {{match.utcDate}}</pre>
+    <app-match-card [match]="match"></app-match-card>
 </div>

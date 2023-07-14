@@ -1,0 +1,46 @@
+.match__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+    height: 80px;
+    border-radius: 10px;
+    gap:5px;
+    overflow: hidden;
+    background: rgb(9,9,121);
+    background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(2,0,36,1) 50%, rgba(9,9,121,1) 100%);
+    p{
+        color:white;
+    }
+    .match__card__teams{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+
+
+        .match__home{
+            align-self: flex-start;
+            width: auto;
+            height: auto;
+            max-width: 40px;
+            max-height: 40px;
+            margin-top:5px;
+        }
+        span{
+            color:white;
+            font-weight: 600;
+            font-size: 24px;
+        }
+        .match__away{
+            align-self: flex-end;
+            width: auto;
+            height: auto;
+            max-width: 40px;
+            max-height: 40px;
+            margin-top:5px;
+        }
+
+    }
+}

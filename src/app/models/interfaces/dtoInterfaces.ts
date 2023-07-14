@@ -1,3 +1,5 @@
+import { Team } from "./competitioniterfaces";
+
 export interface DropdownItem{
     image:string,
     name:string
@@ -11,19 +13,19 @@ export interface TeamDto{
         name?:                string;
         shortName?:           string;
         tla?:                 string;
-        logo?:               string;
+        logo?:                string;
         coach?:               CoachDto;
         squad?:               Squad[];
 }
 
 export interface MatchDto{
-        area:        AreaDto,
-        season:      SeasonDto,
-        id:          number,
-        utcDate:     Date,
-        matchday:    number,
-        homeTeam:    TeamDto,
-        awayTeam:    TeamDto,
+        area?:        AreaDto,
+        season?:      SeasonDto,
+        id?:          number,
+        utcDate?:     Date,
+        matchday?:    number,
+        homeTeam?:    TeamDto,
+        awayTeam?:    TeamDto,
 }
 
 //-------------------------------------------

@@ -5,11 +5,12 @@
     align-items: center;
     width: 100%;
 }
-.competition__teams{
+.competition__teams, .competition__matches{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-top: 10px;
     gap: 15px;
 }
