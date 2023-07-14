@@ -6,6 +6,7 @@ import { CompetitionsComponent } from './components/Pages/Competitions/competiti
 import { SignInComponent } from './components/sign-in/sign-in.component'
 import { TeamComponent } from './components/Pages/Team/team/team.component'
 import { ErrorPageComponent } from './components/Pages/error-page/error-page.component'
+import { MatchesComponent } from './components/Pages/matches/matches.component'
 
 const routes: Routes = [
 	{
@@ -17,8 +18,8 @@ const routes: Routes = [
 		component:CompetitionsComponent,
 	},
 	{
-		path: '',
-		component:HomeComponent,
+		path:'matches',
+		component:MatchesComponent
 	},
 	{
 		path:'notfound',
@@ -28,6 +29,10 @@ const routes: Routes = [
 		path: 'sign-in',
 		component: SignInComponent
 	}, 
+	{
+		path: '',
+		component:HomeComponent,
+	},
 	{
 		path: '**',
 		redirectTo:'/',
