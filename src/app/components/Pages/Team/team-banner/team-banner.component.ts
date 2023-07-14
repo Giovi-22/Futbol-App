@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
-import { CompetitionManagerService } from 'src/app/services/managers/competition-manager.service';
-import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
-import { CompetitionCardComponent } from 'src/app/components/Cards/competitionCard/competitionCard.component';
 
 @Component({
   selector: 'app-team-banner',

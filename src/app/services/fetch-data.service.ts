@@ -7,6 +7,7 @@ import { CompetitionDto, TeamDto } from '../models/interfaces/dtoInterfaces';
 import { TeamEntity } from '../models/entities/TeamEntity';
 import { CompetitionEntity } from '../models/entities/CompetitionEntity';
 import { competitions } from '../data/competitions';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -22,7 +23,10 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
       'X-Auth-Token': '860f9df0ee73439a9cc24ca71319e092'
   }
 }
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router: Router
+    ) {
    }
 
    getCompetitions(): Observable<CompetitionEntity[]> {
@@ -62,6 +66,9 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
           currentSeason:result.currentSeason,
         })
         observer.next(competition)
+      },
+      (error)=>{
+        this.router.navigate(['notfound',error.error]);
       }
      )
    });
@@ -84,7 +91,10 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
 
         observer.next(teams)
       },
-      (error)=>{throw new Error(`No se pudieron obtener los datos: ${error}`)})
+      (error)=>{
+        this.router.navigate(['notfound',error.error]);
+        //throw new Error(`No se pudieron obtener los datos: ${error}`)
+      })
    })
   }
 
@@ -104,7 +114,10 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
           };
           observer.next(new TeamEntity(team))
         },
-        (error)=>{throw new Error(`No se pudieron obtener los datos: ${error}`)}
+        (error)=>{
+          this.router.navigate(['notfound',error.error]);
+          //throw new Error(`No se pudieron obtener los datos: ${error}`)
+        }
       )
     });
     }

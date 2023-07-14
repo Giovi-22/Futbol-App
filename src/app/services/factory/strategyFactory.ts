@@ -17,6 +17,7 @@ class StrategyFactory{
     constructor(
         private http: HttpClient, 
         private store: Store<AppState>, 
+        
         )
         {
         console.log("Constructor de la strategy factory")
@@ -25,7 +26,7 @@ class StrategyFactory{
 
      create(strategy:string){
         switch(strategy){
-            case 'api': return new FetchDataService(this.http);
+            //case 'api': return new FetchDataService(this.http);
             case 'teamStorage': return new TeamRepositoryNgrxStoreService(this.store);
             case 'competitionStorage': return new CompetitionRepositoryNgrxStoreService(this.store);
             default: throw new Error("La estrategia seleccionada no existe");

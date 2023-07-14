@@ -5,6 +5,7 @@ import { HomeComponent } from './components/Pages/Home/home.component'
 import { CompetitionsComponent } from './components/Pages/Competitions/competitions.component'
 import { SignInComponent } from './components/sign-in/sign-in.component'
 import { TeamComponent } from './components/Pages/Team/team/team.component'
+import { ErrorPageComponent } from './components/Pages/error-page/error-page.component'
 
 const routes: Routes = [
 	{
@@ -18,6 +19,10 @@ const routes: Routes = [
 	{
 		path: '',
 		component:HomeComponent,
+	},
+	{
+		path:'notfound',
+		component: ErrorPageComponent
 	},
 	{
 		path: 'sign-in',
