@@ -5,6 +5,10 @@ import { CompetitionCardComponent } from '../../Cards/competitionCard/competitio
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
 import { CompetitionManagerService } from 'src/app/services/managers/competition-manager.service';
 import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
+import { TeamEntity } from 'src/app/models/entities/TeamEntity';
 
 @Component({
   selector: 'app-home',
@@ -15,17 +19,17 @@ import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
 })
 export class HomeComponent implements OnInit {
 
-  competitions:CompetitionEntity[] = [];
-
-  constructor(private competitionM: CompetitionManagerService) { }
+  competitions$ = new Observable<CompetitionEntity[]>();
+  teams$ = new Observable<TeamEntity[]>();
+  constructor(
+    private competitionM: CompetitionManagerService,
+    private teamM: TeamManagerService
+    ) { }
 
   ngOnInit(): void {
-    this.competitionM.saveCompetitions();
-    this.competitionM.getCompetitions().subscribe(
-      (result)=>{
-        this.competitions = result;
-      }
-    );
+    console.log("home component")
+    this.competitions$ = this.competitionM.getCompetitions();
+    this.teams$ = this.teamM.getTeams();
   }
-
 }
+

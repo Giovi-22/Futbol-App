@@ -4,7 +4,8 @@ import { competitions } from 'src/app/data/competitions';
 import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories/competition-repository-ngrx-store.service';
 import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
 import { FetchDataService } from '../fetch-data.service';
-import { Observable } from 'rxjs';
+import { Observable, map, firstValueFrom } from 'rxjs';
+import { CompetitionDto } from 'src/app/models/interfaces/dtoInterfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -36,10 +37,32 @@ export class CompetitionManagerService {
     return this.storage.getCurrent();
   }
 
+
+    getCompetitions(){
+      console.log("dentro de get competition manager")
+      return new Observable<CompetitionEntity[]>((observer)=>{
+      this.storage.getCompetitions().subscribe(
+        (result)=>{
+          console.log("dentro de la subscripcion")
+          if(!result.length){
+            console.log("no hay competiciones guardadas")
+            this.http.getCompetitions().subscribe(
+              (result)=>{
+                this.storage.saveCompetitions(result);
+            })
+          }else{
+            this.storage.getCompetitions().subscribe(
+              (result)=>observer.next(result));
+          }
+        })
+      })
+    }
+
+/*
   getCompetitions(){
     return this.storage.getCompetitions();
   }
-
+*/
   getCompetition(){
     return new Observable<CompetitionEntity>((observer)=>{
     this.storage.getCompetition().subscribe(
