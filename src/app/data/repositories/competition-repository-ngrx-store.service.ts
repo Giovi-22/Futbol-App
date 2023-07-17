@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
-import { AppState } from '../state/app.state';
-import { currentCompetition, loadMatches, loadedCompetitions, saveCompetition } from '../state/actions/competitions.actions';
-import { matchesList, selectCompetition, selectCompetitionsList, selectCurrentCompetition } from '../state/selectors/competitions.selectors';
+import { AppState } from '@store/app.state';
+import { currentCompetition, loadMatches, loadedCompetitions, saveCompetition } from '../../store/actions/competitions.actions';
+import { matchesList, selectCompetition, selectCompetitionsList, selectCurrentCompetition } from '../../store/selectors/competitions.selectors';
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 

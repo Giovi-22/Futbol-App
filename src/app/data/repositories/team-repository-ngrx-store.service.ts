@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Team } from 'src/app/models/interfaces/competitioniterfaces';
-import { loadPopular, loadTeam, loadedTeams } from '../state/actions/teams.actions';
+import { loadPopular, loadTeam, loadedTeams } from '../../store/actions/teams.actions';
 import { Store } from '@ngrx/store';
-import { AppState } from '../state/app.state';
-import { selectTeamsList, selectedTeam, popularTeams } from '../state/selectors/teams.selectors';
+import { AppState } from '@store/app.state';
+import { selectTeamsList, selectedTeam, popularTeams } from '../../store/selectors/teams.selectors';
 import { Observable } from 'rxjs';
 import { FetchDataService } from 'src/app/services/fetch-data.service';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';

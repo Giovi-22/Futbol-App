@@ -6,7 +6,7 @@ import { competitionStrategy, teamStrategy } from '../models/interfaces/strategi
 import { CompetitionDto, MatchDto, TeamDto } from '../models/interfaces/dtoInterfaces';
 import { TeamEntity } from '../domain/entities/TeamEntity';
 import { CompetitionEntity } from '../domain/entities/CompetitionEntity';
-import { competitions } from '../data/competitions';
+import { competitions } from '../store/competitions';
 import { Router } from '@angular/router';
 import { APIMatches } from '../models/interfaces/matchesInterfaces';
 import { MatchEntity } from '../domain/entities/MatchEntity';
