@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CompetitionCardComponent } from '../../Cards/competitionCard/competitionCard.component';
-import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
-import { CompetitionManagerService } from 'src/app/services/managers/competition-manager.service';
 import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
 import { Observable } from 'rxjs';
-import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';
+import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
+import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
+import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
 
 @Component({
   selector: 'app-home',

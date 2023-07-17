@@ -1,9 +1,10 @@
 <div class="dropdown">
     <p *ngIf="(loading$ |async)">Cargando....</p>
     <app-dropdown-item 
-    *ngFor="let value of competitions$ | async" 
-    [item]="{name:value.name,image:value.logo}"
-    (click)="navigateTo(value.code)"
+    *ngFor="let league of competitions$ | async" 
+    [item]="{name:league.name,image:league.logo}"
+    (click)="navigateTo(league.code)"
     >
     </app-dropdown-item>
+    
 </div>

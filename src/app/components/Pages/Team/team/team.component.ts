@@ -4,13 +4,14 @@ import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { TeamCardComponent } from 'src/app/components/Cards/team-card/team-card.component';
-import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';
+import { TeamBannerComponent } from '../team-banner/team-banner.component';
+import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [CommonModule,RouterModule,TeamCardComponent],
+  imports: [CommonModule,RouterModule,TeamCardComponent,TeamBannerComponent],
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })

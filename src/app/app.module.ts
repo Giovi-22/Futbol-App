@@ -12,9 +12,7 @@ import { MainComponent } from './components/Main/main/main.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from './data/state/app.state'
-import StrategyFactory from './services/factory/strategyFactory'
-import { TeamManagerService } from './services/managers/team-manager.service'
-
+import StrategyFactory from './domain/factory/strategyFactory'
 
 
 @NgModule({

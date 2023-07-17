@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CompetitionManagerService } from 'src/app/services/managers/competition-manager.service';
 import { Observable } from 'rxjs';
 import { MatchEntity } from 'src/app/models/entities/MatchEntity';
 import { MatchCardComponent } from '../../Cards/matchCard/match-card/match-card.component';
+import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
 
 @Component({
   selector: 'app-matches',

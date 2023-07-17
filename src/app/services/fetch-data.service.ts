@@ -32,6 +32,7 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
    }
 
    getCompetitions(): Observable<CompetitionEntity[]> {
+    console.log("buscando datos de la api")
      return new Observable((observer)=>{
         observer.next(competitions);
      })
@@ -111,6 +112,7 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
    }
 
   getTeams(competitionCode:string="PL"){
+    console.log("buscando equipos en la api")
    return new Observable<TeamEntity[]>((observer)=>{
     this.http.get<Competitions>(`${this.#urlCompetition}/${competitionCode}/teams`,this.#options).subscribe(
       (result)=>{

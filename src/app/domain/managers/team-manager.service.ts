@@ -1,12 +1,12 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, map, observable } from 'rxjs';
+import { Observable, catchError, map, observable, of, switchMap } from 'rxjs';
 
 import StrategyFactory from '../factory/strategyFactory';
 import { teamStrategy } from 'src/app/models/interfaces/strategiesInterfaces';
 import { Team } from 'src/app/models/interfaces/competitioniterfaces';
-import { FetchDataService } from '../fetch-data.service';
+import { FetchDataService } from '../../services/fetch-data.service';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';
-import { popularTeams } from 'src/app/data/popularTeams';
+import { popularTeams } from '../../store/popularTeams';
 import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team-repository-ngrx-store.service';
 
 
@@ -75,15 +75,5 @@ setPopularTeams(){
 getPopularTeams(){
   return this.storeRepository.getPopularTeams();
 }
+
 }
-/*
-newTeam = new TeamEntity({
-            area:undefined,     
-            id:0,    
-            name:"",    
-            shortName:"",
-            tla:"",    
-            logo:"",
-            coach:undefined,
-            squad:[]
-            */

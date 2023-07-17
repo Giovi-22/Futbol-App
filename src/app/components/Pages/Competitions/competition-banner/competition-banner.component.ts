@@ -1,8 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CompetitionManagerService } from 'src/app/services/managers/competition-manager.service';
-import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
+import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
 
 
 @Component({

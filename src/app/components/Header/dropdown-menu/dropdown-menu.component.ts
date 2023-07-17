@@ -4,7 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { DropdownItemComponent } from './dropdown-item/dropdown-item.component';
-import { CompetitionManagerService } from 'src/app/services/managers/competition-manager.service';
+import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
 
 //---------------------------------------------------------
 @Component({

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { competitions } from 'src/app/data/competitions';
+import { competitions } from '../../store/competitions';
 import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories/competition-repository-ngrx-store.service';
 import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
-import { FetchDataService } from '../fetch-data.service';
+import { FetchDataService } from '../../services/fetch-data.service';
 import { Observable } from 'rxjs';
 
 @Injectable({

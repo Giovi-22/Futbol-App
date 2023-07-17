@@ -1,15 +1,13 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
-import { CompetitionManagerService } from 'src/app/services/managers/competition-manager.service';
-import { TeamManagerService } from 'src/app/services/managers/team-manager.service';
-import { Team } from 'src/app/models/interfaces/competitioniterfaces';
 import { Subscription } from 'rxjs';
 import { TeamEntity } from 'src/app/models/entities/TeamEntity';
-import { CompetitionBannerComponent } from './competition-banner/competition-banner.component';
 import { MatchCardComponent } from '../../Cards/matchCard/match-card/match-card.component';
 import { MatchEntity } from 'src/app/models/entities/MatchEntity';
-import { currentCompetition } from '../../../data/state/actions/competitions.actions';
+import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
+import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
+import { CompetitionBannerComponent } from './competition-banner/competition-banner.component';
 
 
 @Component({

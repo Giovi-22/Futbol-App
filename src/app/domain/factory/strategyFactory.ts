@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Store } from "@ngrx/store";
 
 import { TeamRepositoryNgrxStoreService } from "src/app/data/repositories/team-repository-ngrx-store.service";
-import { FetchDataService } from "../fetch-data.service";
+import { FetchDataService } from "../../services/fetch-data.service";
 import { CompetitionRepositoryNgrxStoreService } from "src/app/data/repositories/competition-repository-ngrx-store.service";
 import { AppState } from "src/app/data/state/app.state";
 
