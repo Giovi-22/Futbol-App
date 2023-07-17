@@ -7,7 +7,7 @@ import { Team } from 'src/app/models/interfaces/competitioniterfaces';
 import { FetchDataService } from '../../services/fetch-data.service';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { popularTeams } from '../../store/popularTeams';
-import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team-repository-ngrx-store.service';
+import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team/team-repository-ngrx-store.service';
 
 
 @Injectable({
@@ -36,7 +36,7 @@ export class TeamManagerService implements teamStrategy {
   getApiTeams(competitionCode:string ="PL"){
     this.http.getTeams(competitionCode).subscribe(
       (result)=>{
-        this.storeRepository.saveTeams(result)
+        this.storeRepository.setTeams(result)
       },
       (error)=>{
         throw new Error(`No se pudieron obtener los equipos, error: ${error}`)

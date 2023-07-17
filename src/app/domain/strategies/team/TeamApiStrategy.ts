@@ -1,7 +1,7 @@
 import { FetchDataService } from "src/app/services/fetch-data.service";
 import { TeamSearchStrategy } from "./teamStrategy";
 import { Observable } from 'rxjs';
-import { TeamEntity } from "../entities/TeamEntity";
+import { TeamEntity } from "../../entities/TeamEntity";
 
 export class TeamFootballDataApiStrategy implements TeamSearchStrategy{
 

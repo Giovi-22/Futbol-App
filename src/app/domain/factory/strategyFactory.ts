@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Store } from "@ngrx/store";
 
-import { TeamRepositoryNgrxStoreService } from "src/app/data/repositories/team-repository-ngrx-store.service";
+import { TeamRepositoryNgrxStoreService } from "src/app/data/repositories/team/team-repository-ngrx-store.service";
 import { FetchDataService } from "../../services/fetch-data.service";
 import { CompetitionRepositoryNgrxStoreService } from "src/app/data/repositories/competition-repository-ngrx-store.service";
 import { AppState } from '@store/app.state';
