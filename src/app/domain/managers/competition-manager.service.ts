@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { competitions } from '../../store/competitions';
 import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories/competition-repository-ngrx-store.service';
-import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
+import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { FetchDataService } from '../../services/fetch-data.service';
 import { Observable } from 'rxjs';
 

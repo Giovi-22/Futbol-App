@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
-import { MatchEntity } from 'src/app/models/entities/MatchEntity';
+import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 import { MatchCardComponent } from '../../Cards/matchCard/match-card/match-card.component';
 import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
 

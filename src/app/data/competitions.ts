@@ -1,4 +1,4 @@
-import { CompetitionEntity } from "../models/entities/CompetitionEntity";
+import { CompetitionEntity } from "../domain/entities/CompetitionEntity";
 
 export const competitions:CompetitionEntity[] = [
     {

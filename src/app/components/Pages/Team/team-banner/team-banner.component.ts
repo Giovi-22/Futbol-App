@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TeamEntity } from 'src/app/models/entities/TeamEntity';
+import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 

@@ -6,7 +6,7 @@ import { AppState } from '../state/app.state';
 import { selectTeamsList, selectedTeam, popularTeams } from '../state/selectors/teams.selectors';
 import { Observable } from 'rxjs';
 import { FetchDataService } from 'src/app/services/fetch-data.service';
-import { TeamEntity } from 'src/app/models/entities/TeamEntity';
+import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 
 @Injectable({
   providedIn: 'root'

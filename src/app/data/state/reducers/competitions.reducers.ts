@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { currentCompetition, loadCompetitions, loadMatches, loadedCompetitions, saveCompetition } from "../actions/competitions.actions";
 import { CompetitionsState } from "src/app/models/storeModelsInterfaces";
-import { CompetitionEntity } from "src/app/models/entities/CompetitionEntity";
+import { CompetitionEntity } from "src/app/domain/entities/CompetitionEntity";
 
 export const initialState:CompetitionsState = {
     loading:false,

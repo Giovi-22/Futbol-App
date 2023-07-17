@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { AppState } from '../state/app.state';
 import { currentCompetition, loadMatches, loadedCompetitions, saveCompetition } from '../state/actions/competitions.actions';
 import { matchesList, selectCompetition, selectCompetitionsList, selectCurrentCompetition } from '../state/selectors/competitions.selectors';
-import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
-import { MatchEntity } from 'src/app/models/entities/MatchEntity';
+import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
+import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 
 
 @Injectable({

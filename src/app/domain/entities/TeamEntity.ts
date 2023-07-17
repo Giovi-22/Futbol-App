@@ -1,4 +1,4 @@
-import { TeamDto } from "../interfaces/dtoInterfaces";
+import { TeamDto } from "../../models/interfaces/dtoInterfaces";
 
 export class TeamEntity{
     

@@ -1,4 +1,4 @@
-import { CompetitionDto } from "../interfaces/dtoInterfaces";
+import { CompetitionDto } from "../../models/interfaces/dtoInterfaces";
 
 export class CompetitionEntity{
     

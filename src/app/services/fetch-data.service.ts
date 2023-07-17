@@ -4,12 +4,12 @@ import { Competition, Competitions, Team } from '../models/interfaces/competitio
 import { Observable } from 'rxjs';
 import { competitionStrategy, teamStrategy } from '../models/interfaces/strategiesInterfaces';
 import { CompetitionDto, MatchDto, TeamDto } from '../models/interfaces/dtoInterfaces';
-import { TeamEntity } from '../models/entities/TeamEntity';
-import { CompetitionEntity } from '../models/entities/CompetitionEntity';
+import { TeamEntity } from '../domain/entities/TeamEntity';
+import { CompetitionEntity } from '../domain/entities/CompetitionEntity';
 import { competitions } from '../data/competitions';
 import { Router } from '@angular/router';
 import { APIMatches } from '../models/interfaces/matchesInterfaces';
-import { MatchEntity } from '../models/entities/MatchEntity';
+import { MatchEntity } from '../domain/entities/MatchEntity';
 
 
 @Injectable({

@@ -1,6 +1,6 @@
-import { CompetitionEntity } from './entities/CompetitionEntity';
-import { MatchEntity } from './entities/MatchEntity';
-import { TeamEntity } from './entities/TeamEntity';
+import { CompetitionEntity } from '../domain/entities/CompetitionEntity';
+import { MatchEntity } from '../domain/entities/MatchEntity';
+import { TeamEntity } from '../domain/entities/TeamEntity';
 
 export interface CompetitionsState{
     loading:boolean,

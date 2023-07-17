@@ -5,7 +5,7 @@ import StrategyFactory from '../factory/strategyFactory';
 import { teamStrategy } from 'src/app/models/interfaces/strategiesInterfaces';
 import { Team } from 'src/app/models/interfaces/competitioniterfaces';
 import { FetchDataService } from '../../services/fetch-data.service';
-import { TeamEntity } from 'src/app/models/entities/TeamEntity';
+import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { popularTeams } from '../../store/popularTeams';
 import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team-repository-ngrx-store.service';
 

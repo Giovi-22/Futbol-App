@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { TeamCardComponent } from 'src/app/components/Cards/team-card/team-card.component';
-import { TeamEntity } from 'src/app/models/entities/TeamEntity';
+import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { TeamBannerComponent } from '../team-banner/team-banner.component';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 

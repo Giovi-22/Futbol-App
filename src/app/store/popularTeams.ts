@@ -1,4 +1,4 @@
-import { TeamEntity } from "../models/entities/TeamEntity";
+import { TeamEntity } from "../domain/entities/TeamEntity";
 
 export const popularTeams:TeamEntity[] = [
     {

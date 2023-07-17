@@ -1,4 +1,4 @@
-import { MatchDto } from "../interfaces/dtoInterfaces";
+import { MatchDto } from "../../models/interfaces/dtoInterfaces";
 
 export class MatchEntity{
 

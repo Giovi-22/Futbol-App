@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatchEntity } from 'src/app/models/entities/MatchEntity';
+import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 
 @Component({
   selector: 'app-match-card',

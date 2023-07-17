@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { CompetitionEntity } from 'src/app/models/entities/CompetitionEntity';
-import { MatchEntity } from 'src/app/models/entities/MatchEntity';
+import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
+import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 
 export const loadCompetitions = createAction(
     '[Competition List] Load competitions'
