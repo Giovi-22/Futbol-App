@@ -1,0 +1,30 @@
+:host{
+    height: 100%;
+}
+.primary{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100px;
+    text-decoration: none;
+    color:#6b6b6e;
+} 
+
+.secondary{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100px;
+    text-decoration: none;
+    color:#6b6b6e;
+} 
+
+.primary:hover{
+    border-bottom: 1px solid brown;
+}
+.primary:focus{
+    border-bottom: 1px solid brown;
+    background-color:  #f8f9fa;
+}

@@ -1,0 +1,19 @@
+<span [ngSwitch]="type">
+<a 
+*ngSwitchCase="'primary'"
+ class="primary"
+ routerLink="{{navigateTo}}"
+ >
+{{title}}
+</a>
+<button 
+*ngSwitchCase="'secondary'"
+ class="btn btn-outline-secondary"
+ >
+ <ng-content ></ng-content>
+ 
+</button>
+<p *ngSwitchDefault>
+
+</p>
+</span>
