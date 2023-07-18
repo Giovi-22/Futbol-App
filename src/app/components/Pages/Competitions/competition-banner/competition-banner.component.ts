@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
 import { ButtonLinkComponent } from 'src/app/components/shared/button-link/button-link.component';
+import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 
 
 @Component({
@@ -18,21 +19,33 @@ import { ButtonLinkComponent } from 'src/app/components/shared/button-link/butto
 })
 export class CompetitionBannerComponent implements OnInit {
 
-  competition:any = null;
+  competition:CompetitionEntity;
   @Output() screen = new EventEmitter();
   constructor(
     private competitionM:CompetitionManagerService
     ) 
-    {}
+    {
+      this.competition = new CompetitionEntity({
+        code:"",
+        id:0,
+        logo:"",
+        name:""
+      });
+    }
 
     selectCompetitionScreen(screen:string){
       this.screen.emit(screen);
     }
 
   ngOnInit(): void {
-    this.competitionM.getCompetition().subscribe(
+    this.competitionM.getCurrent().subscribe(
       (competition)=>{
-        this.competition = competition;
+        this.competitionM.findCompetition(competition);
+      }
+    )
+    this.competitionM.getCompetition().subscribe(
+      (result)=>{
+        this.competition = result;
       }
     )
   }

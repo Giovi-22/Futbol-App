@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("home component")
+    this.competitionM.findCompetitions();
     this.competitions$ = this.competitionM.getCompetitions();
     //this.teamM.setPopularTeams();
     //this.teams$ = this.teamM.getPopularTeams()

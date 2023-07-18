@@ -31,7 +31,7 @@ export class DropdownMenuComponent implements OnInit {
   navigateTo(competitionCode:string){
     this.selectedCode = competitionCode;
     this.router.navigate(['competitions']);
-    this.competitionM.setCurrentCompetition(competitionCode);
+    this.competitionM.setCurrent(competitionCode);
   }
 
   ngOnInit(): void {

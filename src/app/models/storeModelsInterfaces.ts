@@ -6,10 +6,10 @@ import { Standing } from './interfaces/competitioniterfaces';
 export interface CompetitionsState{
     loading:boolean,
     current:string,
-    competition:CompetitionEntity | null,
+    competition:CompetitionEntity,
     competitions:CompetitionEntity[],
     matches:MatchEntity[],
-    Standing: Standing[],
+    standings: Standing[],
 }
 
 export interface TeamsState{

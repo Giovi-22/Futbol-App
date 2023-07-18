@@ -21,9 +21,9 @@ export class MatchesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  this.competitionM.getCurrentCompetition().subscribe(
+  this.competitionM.getCurrent().subscribe(
     (result)=>{
-      this.competitionM.addMatches(result);
+      this.competitionM.findMatches(result);
     }
   );
   this.matches$ = this.competitionM.getMatches();

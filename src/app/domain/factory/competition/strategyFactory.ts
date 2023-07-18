@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 
 
 import { FetchDataService } from 'src/app/services/fetch-data.service';
-import { CompetitionApiStrategy } from '../../strategies/competition/competitionStrategy';
+import { CompetitionApiStrategy } from '../../strategies/competition/competitionStrategy.interface';
 import { CompetitionFootballDataApiStrategy } from '../../strategies/competition/CompetitionApiStrategy';
 
 
 @Injectable({
     providedIn: 'root'
   })
-class ApiStrategyFactory{
+class CompetitionApiStrategyFactory{
 
     #httpClient:FetchDataService;
 
@@ -30,4 +30,4 @@ class ApiStrategyFactory{
     
 }
 
-export default ApiStrategyFactory;
+export default CompetitionApiStrategyFactory;

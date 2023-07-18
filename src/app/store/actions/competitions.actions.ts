@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
+import { Standing } from 'src/app/models/interfaces/competitioniterfaces';
 
 export const loadCompetitions = createAction(
     '[Competition List] Load competitions'
@@ -24,6 +25,11 @@ export const loadedCompetitions = createAction(
 export const loadMatches = createAction(
     '[Competition Matches] save all matches',
     props<{matches:MatchEntity[]}>()
+);
+
+export const loadStandings =  createAction(
+    '[Competition Standings] save standings',
+    props<{standings:Standing[]}>()
 )
 
  

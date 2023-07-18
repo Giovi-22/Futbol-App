@@ -8,6 +8,7 @@ import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 import { CompetitionBannerComponent } from './competition-banner/competition-banner.component';
+import { Standing } from 'src/app/models/interfaces/competitioniterfaces';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
   competitionSubscription:Subscription = new Subscription();
   screen:string ="teams";
   currentCompetition:string;
+  standings:Standing[];
 
   constructor(
     private competitionM: CompetitionManagerService,
@@ -38,6 +40,7 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
     ) {
     this.teams = [];
     this.matchs = [];
+    this.standings = [];
     this.currentCompetition = "";
   }
 
@@ -45,20 +48,30 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
     this.screen = screen;
     switch(screen){
       case "teams": break;
+      case "standings":
+        this.competitionM.getStandings().subscribe(
+          (result)=>{
+            this.standings = result;
+            console.log("Las posiciones son: ",result)
+          });
+          break;
       case "matches":
-      this.competitionM.addMatches(this.currentCompetition)
-      this.competitionM.getMatches().subscribe(
-        (result)=> this.matchs = result
-      )
+        this.competitionM.getMatches().subscribe(
+          (result)=> this.matchs = result
+        )
+        break;
+      default: throw new Error("Se ha seleccionado una pantalla incorrecta");
     }
   }
 
   ngOnInit(): void {
-    this.competitionM.getCurrentCompetition().subscribe(
+    this.screen="teams"
+    this.competitionM.getCurrent().subscribe(
       (competition)=>{
         this.currentCompetition = competition;
-        this.teamM.findApiTeams(competition)
-        this.screen="teams"
+        this.teamM.findApiTeams(competition);
+        this.competitionM.findStandings(competition);
+        this.competitionM.findMatches(this.currentCompetition);
       }
     );
     this.teamSubscription = this.teamM.getStoreTeams().subscribe(

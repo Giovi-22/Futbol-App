@@ -4,6 +4,7 @@ import { FetchDataService } from "src/app/services/fetch-data.service";
 import { competitionStrategy } from "src/app/models/interfaces/strategiesInterfaces";
 import { CompetitionEntity } from "../../entities/CompetitionEntity";
 import { Standing } from 'src/app/models/interfaces/competitioniterfaces';
+import { MatchEntity } from '../../entities/MatchEntity';
 
 export class CompetitionFootballDataApiStrategy implements competitionStrategy{
 
@@ -23,5 +24,9 @@ export class CompetitionFootballDataApiStrategy implements competitionStrategy{
 
     getStandings(competitionCode:string):Observable<Standing[]>{
         return this.#apiClient.getStandings(competitionCode);
+    }
+
+    getMatches(competitionCode:string):Observable<MatchEntity[]>{
+        return this.#apiClient.getCompetitionMatches(competitionCode);
     }
 }
