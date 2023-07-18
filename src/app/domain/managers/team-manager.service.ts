@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { popularTeams } from '../../store/popularTeams';
 import { TeamApiStrategy } from '../strategies/team/teamStrategies';
-import ApiStrategyFactory from '../factory/strategyFactory';
-import StoreRepositoryFactory from '../factory/storeFactory';
+import ApiStrategyFactory from '../factory/team/strategyFactory';
+import StoreRepositoryFactory from '../factory/team/storeFactory';
 import { TeamRepository } from 'src/app/data/repositories/team/teamRepository';
 
 

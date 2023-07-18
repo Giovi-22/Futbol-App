@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
-import { CompetitionEntity } from '../entities/CompetitionEntity';
+import { CompetitionEntity } from '../../entities/CompetitionEntity';
 
 
-export interface CompetitionSearchStrategy{
+export interface CompetitionApiStrategy{
     getCompetition(competitionCode:string):Observable<CompetitionEntity>,
     getCompetitions():Observable<CompetitionEntity[]>
 }

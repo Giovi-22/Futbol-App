@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { FetchDataService } from "../../services/fetch-data.service";
-import { TeamFootballDataApiStrategy } from '../strategies/team/TeamApiStrategy';
-import { TeamApiStrategy } from '../strategies/team/teamStrategies';
+import { FetchDataService } from "../../../services/fetch-data.service";
+import { TeamFootballDataApiStrategy } from '../../strategies/team/TeamApiStrategy';
+import { TeamApiStrategy } from '../../strategies/team/teamStrategies';
 
 
 @Injectable({
