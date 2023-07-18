@@ -23,7 +23,7 @@ export class TeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.team$ = this.teamM.getCurrent()
+    this.team$ = this.teamM.getStoreCurrent();
   }
 
 }

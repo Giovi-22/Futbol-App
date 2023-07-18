@@ -57,11 +57,11 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
     this.competitionM.getCurrentCompetition().subscribe(
       (competition)=>{
         this.currentCompetition = competition;
-        this.teamM.getApiTeams(competition)
+        this.teamM.findApiTeams(competition)
         this.screen="teams"
       }
     );
-    this.teamSubscription = this.teamM.getTeams().subscribe(
+    this.teamSubscription = this.teamM.getStoreTeams().subscribe(
       (teams)=>{
         this.teams = teams;
       },

@@ -23,7 +23,7 @@ export class TeamCardComponent implements OnInit {
   }
 
   navigateTo(tid:number){
-    this.teamM.getApiTeam(tid);
+    this.teamM.findApiTeam(tid);
     this.router.navigate([`/team`]);
     console.log("va a buscar los datos")
   }

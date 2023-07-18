@@ -10,3 +10,5 @@
     <section class="home_teams">
         <app-team-card *ngFor="let item of (teams$ | async | slice:0.4)" [teamData]="item"></app-team-card>
     </section>
+
+    <button class="btn btn-outline-secondary" (click)="getApiTeam()">getStrategy</button>

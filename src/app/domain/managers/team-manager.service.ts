@@ -1,79 +1,74 @@
-import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, map, observable, of, switchMap } from 'rxjs';
+import { Injectable } from '@angular/core';
 
-import StrategyFactory from '../factory/strategyFactory';
-import { teamStrategy } from 'src/app/models/interfaces/strategiesInterfaces';
-import { Team } from 'src/app/models/interfaces/competitioniterfaces';
-import { FetchDataService } from '../../services/fetch-data.service';
-import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { popularTeams } from '../../store/popularTeams';
-import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team/team-repository-ngrx-store.service';
+import { TeamApiStrategy } from '../strategies/team/teamStrategies';
+import ApiStrategyFactory from '../factory/strategyFactory';
+import StoreRepositoryFactory from '../factory/storeFactory';
+import { TeamRepository } from 'src/app/data/repositories/team/teamRepository';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeamManagerService implements teamStrategy {
+export class TeamManagerService  {
   
-
+  apiStrategy: TeamApiStrategy ;
+  storeStrategy: TeamRepository;
+    ; 
   constructor(
-    private http:FetchDataService,
-    private storeRepository: TeamRepositoryNgrxStoreService
+    private storeStrategyFactory: StoreRepositoryFactory,
+    private apiStrategyFactory: ApiStrategyFactory
   ) 
   { 
-    
+    this.apiStrategy = this.apiStrategyFactory.create('TeamfootballApi');
+    this.storeStrategy = this.storeStrategyFactory.create('NgrxStore');
   }
 
+  setApiStrategy(strategy:string){
+    this.apiStrategy = this.apiStrategyFactory.create(strategy);
+  }
 
-  getApiTeam(teamCode:number=86){
-    this.http.getTeam(teamCode).subscribe(
+  setStoreStrategy(strategy:string){
+    this.storeStrategy = this.storeStrategyFactory.create(strategy);
+  }
+  
+
+  findApiTeam(teamCode:number=86){
+    this.apiStrategy.getTeam(teamCode).subscribe(
       (team)=>{
-        this.storeRepository.setTeam(team);
+        this.storeStrategy.setTeam(team);
+        console.log("EL equipo es: ",team)
       }
     )
   }
 
-  getApiTeams(competitionCode:string ="PL"){
-    this.http.getTeams(competitionCode).subscribe(
+  findApiTeams(competitionCode:string ="PL"){
+    this.apiStrategy.getTeams(competitionCode).subscribe(
       (result)=>{
-        this.storeRepository.setTeams(result)
-      },
-      (error)=>{
-        throw new Error(`No se pudieron obtener los equipos, error: ${error}`)
+        this.storeStrategy.setTeams(result)
       }
-
     )
   }
 
-  getTeam(teamCode:number){
-    return new Observable<TeamEntity>((observer)=>{
-    
-    });
-    
+  getStoreTeam(teamCode:number){
+    return this.storeStrategy.getCurrent() 
   }
 
-  getCurrent(){
-    return this.storeRepository.getCurrent();
+  getStoreCurrent(){
+    return this.storeStrategy.getCurrent();
   }
 
 
-  getTeams(){
-   return new Observable<TeamEntity[]>((observer)=>{
-    this.storeRepository.getTeams().subscribe(
-      (teams)=>{
-        observer.next(teams)
-      },
-      (error)=>{throw new Error(`No hay equipos disponibles, error: ${error}`)}
-    )
-   });
+  getStoreTeams(){
+    return this.storeStrategy.getTeams();
   }
 
-setPopularTeams(){
-  this.storeRepository.setPopularTeams(popularTeams);
-}
+  setStorePopularTeams(){
+  this.storeStrategy.setPopularTeams(popularTeams);
+  }
 
-getPopularTeams(){
-  return this.storeRepository.getPopularTeams();
-}
+  getStorePopularTeams(){
+  return this.storeStrategy.getPopularTeams();
+  }
 
 }

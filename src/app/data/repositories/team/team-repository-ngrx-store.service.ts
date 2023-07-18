@@ -18,7 +18,7 @@ export class TeamRepositoryNgrxStoreService implements TeamRepository {
   ) { }
 
   setTeams(teams:TeamEntity[]){
-    console.log("guardando los equipos en el store")
+
     this.store.dispatch(loadedTeams({teams}))
   }
 

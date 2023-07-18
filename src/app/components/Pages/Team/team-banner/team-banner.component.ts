@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
@@ -23,7 +23,7 @@ export class TeamBannerComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.teamM.getCurrent().subscribe(
+    this.teamM.getStoreCurrent().subscribe(
       (team)=>{
         console.log("el equipo: ",team)
         this.team = team;

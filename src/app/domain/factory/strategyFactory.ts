@@ -1,37 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Store } from "@ngrx/store";
 
-import { TeamRepositoryNgrxStoreService } from "src/app/data/repositories/team/team-repository-ngrx-store.service";
 import { FetchDataService } from "../../services/fetch-data.service";
-import { CompetitionRepositoryNgrxStoreService } from "src/app/data/repositories/competition-repository-ngrx-store.service";
-import { AppState } from '@store/app.state';
+import { TeamFootballDataApiStrategy } from '../strategies/team/TeamApiStrategy';
+import { TeamApiStrategy } from '../strategies/team/teamStrategies';
 
 
 @Injectable({
     providedIn: 'root'
   })
-class StrategyFactory{
+class ApiStrategyFactory{
+
+    #httpClient:FetchDataService;
 
     constructor(
-        private http: HttpClient, 
-        private store: Store<AppState>, 
+        private httpClient: FetchDataService, 
         
         )
         {
-        console.log("Constructor de la strategy factory")
+        this.#httpClient = this.httpClient;    
+        }
         
-        }
-
-     create(strategy:string){
-        switch(strategy){
-            //case 'api': return new FetchDataService(this.http);
-            case 'teamStorage': return new TeamRepositoryNgrxStoreService(this.store);
-            case 'competitionStorage': return new CompetitionRepositoryNgrxStoreService(this.store);
-            default: throw new Error("La estrategia seleccionada no existe");
-        }
-
+        create(strategy:string): TeamApiStrategy {
+            switch(strategy){
+                case 'TeamfootballApi': return new TeamFootballDataApiStrategy(this.#httpClient);
+                default: throw new Error("La Estrategia seleccionada no existe");
+            }
     }
+    
 }
 
-export default StrategyFactory;
+export default ApiStrategyFactory;

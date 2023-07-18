@@ -1,9 +1,9 @@
-import { TeamSearchStrategy } from "./teamStrategy";
+import { TeamStoreStrategy } from "./teamStrategies";
 import { Observable } from 'rxjs';
 import { TeamEntity } from "../../entities/TeamEntity";
 import { TeamRepositoryNgrxStoreService } from "src/app/data/repositories/team/team-repository-ngrx-store.service";
 
-export class TeamLocalDataStrategy implements TeamSearchStrategy{
+export class TeamLocalDataStrategy implements TeamStoreStrategy{
 
     #dataRepository: TeamRepositoryNgrxStoreService;
     
