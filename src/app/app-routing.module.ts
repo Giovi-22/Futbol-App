@@ -22,13 +22,17 @@ const routes: Routes = [
 		component:MatchesComponent
 	},
 	{
+		path: 'sign-in',
+		component: SignInComponent
+	},
+	{
+		path:'about-us',
+		component: ErrorPageComponent
+	}, 
+	{
 		path:'notfound',
 		component: ErrorPageComponent
 	},
-	{
-		path: 'sign-in',
-		component: SignInComponent
-	}, 
 	{
 		path: '',
 		component:HomeComponent,

@@ -9,6 +9,9 @@
     <app-match-card *ngFor="let match of matchs " [match]="match"></app-match-card>
 </div>
 
+<div *ngSwitchCase="'standings'" class="competition__matches">
+    <p>POSICIONES DE LOS EQUIPOS</p>
+</div>
 <p *ngSwitchDefault>
 
 </p>

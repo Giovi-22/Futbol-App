@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Competition, Competitions, Team } from '../models/interfaces/competitioniterfaces';
+import { Competition, Competitions, Standing, Team } from '../models/interfaces/competitioniterfaces';
 import { Observable } from 'rxjs';
 import { competitionStrategy, teamStrategy } from '../models/interfaces/strategiesInterfaces';
 import { CompetitionDto, MatchDto, TeamDto } from '../models/interfaces/dtoInterfaces';
@@ -35,6 +35,20 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
     console.log("buscando datos de la api")
      return new Observable((observer)=>{
         observer.next(competitions);
+     })
+   }
+
+   getStandings(competitionCode:string): Observable<Standing[]> {
+    return new Observable<Standing[]>((observer)=>{
+    this.http.get<Competitions>(`${this.#urlCompetition}/${competitionCode}/standings`,this.#options).subscribe(
+      (result)=>{
+        observer.next(result.standings);
+      },
+      (error)=>{
+        throw new Error(`No se pudieron obtener los datos,${error}`);
+      }
+    )
+     
      })
    }
 /*

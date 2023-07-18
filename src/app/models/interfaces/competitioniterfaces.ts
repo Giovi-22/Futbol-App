@@ -4,6 +4,7 @@ export interface Competitions {
     competitions: Competition[];
     season?:      Season;
     teams?:       Team[];
+    standings?:   Standing[];
 }
 
 export interface Competition {
@@ -91,6 +92,27 @@ export interface Squad {
     position:    Position;
     dateOfBirth: Date;
     nationality: string;
+}
+
+export interface Standing {
+    stage: string;
+    type:  string;
+    group: null;
+    table: Table[];
+}
+
+export interface Table {
+    position:       number;
+    team:           Team;
+    playedGames:    number;
+    form:           string;
+    won:            number;
+    draw:           number;
+    lost:           number;
+    points:         number;
+    goalsFor:       number;
+    goalsAgainst:   number;
+    goalDifference: number;
 }
 
 export enum Position {

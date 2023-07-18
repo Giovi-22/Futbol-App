@@ -12,6 +12,7 @@ import { DropdownItem } from 'src/app/models/interfaces/dtoInterfaces';
 export class DropdownItemComponent implements OnInit {
 
   @Input() item:DropdownItem;
+  
   constructor() {
     this.item = {
       image:"",

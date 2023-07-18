@@ -37,7 +37,6 @@ export class TeamManagerService  {
     this.apiStrategy.getTeam(teamCode).subscribe(
       (team)=>{
         this.storeStrategy.setTeam(team);
-        console.log("EL equipo es: ",team)
       }
     )
   }

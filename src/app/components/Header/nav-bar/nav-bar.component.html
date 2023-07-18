@@ -1,8 +1,8 @@
 <nav class="navbar">
     <div class="navbar__links ">
-            <a routerLink="/">Home</a>
-            <a (click)="setMenu(true)">Leagues</a>
-            <a routerLink="/about-us">About Us</a>
+            <app-button-link title="Home"  navigateTo="/" type="primary"></app-button-link>
+            <app-button-link title="Leagues" (click)="setMenu(true)" type="primary"></app-button-link>
+            <app-button-link title="About Us" navigateTo="/about-us" type="primary"></app-button-link>
     </div>
     <div class="navbar__search">
         <input type="text" class="form-control" placeholder="Search a competition...">

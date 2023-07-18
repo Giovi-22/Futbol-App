@@ -9,8 +9,10 @@
             </div>
         </div>
         <div class="competition__banner__bottom-bar">
-            <button class="btn btn-outline-primary" (click)="selectCompetitionScreen('teams')">Teams</button>
-            <button class="btn btn-outline-primary" (click)="selectCompetitionScreen('matches')">Matches</button>
+            <app-button-link type="secondary" (click)="selectCompetitionScreen('teams')">Teams</app-button-link>
+            <app-button-link type="secondary" (click)="selectCompetitionScreen('standings')">Standings</app-button-link>
+            <app-button-link type="secondary" (click)="selectCompetitionScreen('matches')">Matches</app-button-link>
+            
         </div>
     </ng-container>
     <ng-template #elseTemplate>
