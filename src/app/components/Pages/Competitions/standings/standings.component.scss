@@ -1,0 +1,19 @@
+:host{
+    width: 100%;
+    display:flex;   
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+table{
+    width: 70%;
+
+    .table__team{
+        width: 40%;
+        text-align: left;
+    }
+    .table__data{
+        width:2%;
+        text-align:left;
+    }
+}

@@ -1,14 +1,15 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { MatchCardComponent } from '../../Cards/matchCard/match-card/match-card.component';
 import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 import { CompetitionBannerComponent } from './competition-banner/competition-banner.component';
-import { Standing } from 'src/app/models/interfaces/competitioniterfaces';
+import { Standing, Table } from 'src/app/models/interfaces/competitioniterfaces';
+import { StandingsComponent } from './standings/standings.component';
 
 
 @Component({
@@ -18,7 +19,8 @@ import { Standing } from 'src/app/models/interfaces/competitioniterfaces';
     CommonModule,
     TeamCardComponent,
     CompetitionBannerComponent,
-    MatchCardComponent
+    MatchCardComponent,
+    StandingsComponent
   ],
   templateUrl: './competitions.component.html',
   styleUrls: ['./competitions.component.scss']
@@ -32,7 +34,7 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
   competitionSubscription:Subscription = new Subscription();
   screen:string ="teams";
   currentCompetition:string;
-  standings:Standing[];
+  standings: Table[];
 
   constructor(
     private competitionM: CompetitionManagerService,
@@ -40,8 +42,8 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
     ) {
     this.teams = [];
     this.matchs = [];
-    this.standings = [];
     this.currentCompetition = "";
+    this.standings = [];
   }
 
   selectedScreen(screen:string){
@@ -51,9 +53,9 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
       case "standings":
         this.competitionM.getStandings().subscribe(
           (result)=>{
-            this.standings = result;
-            console.log("Las posiciones son: ",result)
-          });
+            this.standings = result[0].table;
+          }
+        );         
           break;
       case "matches":
         this.competitionM.getMatches().subscribe(

@@ -1,0 +1,19 @@
+<table>
+    <tr>
+        <th class="table__team">Team</th>
+        <th class="table__data">PJ</th>
+        <th class="table__data">W</th>
+        <th class="table__data">D</th>
+        <th class="table__data">L</th>
+        <th class="table__data">Points</th>       
+    </tr>
+    <tr *ngFor="let team of standing">
+        <td>{{team.team.name}}</td>
+        <td>{{team.playedGames}}</td>
+        <td>{{team.won}}</td>
+        <td>{{team.draw}}</td>
+        <td>{{team.lost}}</td>
+        <td>{{team.points}}</td> 
+    </tr>
+
+</table>

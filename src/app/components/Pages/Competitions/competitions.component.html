@@ -1,5 +1,5 @@
 <app-competition-banner (screen)="selectedScreen($event)"></app-competition-banner>
-<span [ngSwitch]="screen"> 
+<span [ngSwitch]="screen" class="competition__screen"> 
 
 <div *ngSwitchCase="'teams'" class="competition__teams">
     <app-team-card *ngFor="let team of teams " [teamData]="team"></app-team-card>
@@ -9,9 +9,11 @@
     <app-match-card *ngFor="let match of matchs " [match]="match"></app-match-card>
 </div>
 
-<div *ngSwitchCase="'standings'" class="competition__matches">
-    <p>POSICIONES DE LOS EQUIPOS</p>
+<div *ngSwitchCase="'standings'" class="competition__standings" >
+    <app-standings [standing]="standings"></app-standings>
 </div>
+
+
 <p *ngSwitchDefault>
 
 </p>

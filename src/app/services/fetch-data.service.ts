@@ -42,6 +42,9 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
     return new Observable<Standing[]>((observer)=>{
     this.http.get<Competitions>(`${this.#urlCompetition}/${competitionCode}/standings`,this.#options).subscribe(
       (result)=>{
+        const dto ={
+          
+        }
         observer.next(result.standings);
       },
       (error)=>{
