@@ -12,8 +12,11 @@
             <app-button-link type="secondary" (click)="selectCompetitionScreen('teams')">Teams</app-button-link>
             <app-button-link type="secondary" (click)="selectCompetitionScreen('standings')">Standings</app-button-link>
             <app-button-link type="secondary" (click)="selectCompetitionScreen('matches')">Matches</app-button-link>
-            <h5>Season</h5>
-            <p>{{competition.currentSeason?.startDate}}</p>
+        <div class="competition__banner__season">
+            <p>Season</p>
+            <app-dropdown [menuItems]="seasons"></app-dropdown>
+        </div>
+            
             
         </div>
     </ng-container>

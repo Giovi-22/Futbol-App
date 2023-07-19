@@ -22,11 +22,19 @@ import { DropdownComponent } from 'src/app/components/shared/dropdown/dropdown.c
 export class CompetitionBannerComponent implements OnInit {
 
   competition:CompetitionEntity;
+  seasons:string[];
+
   @Output() screen = new EventEmitter();
   constructor(
     private competitionM:CompetitionManagerService
     ) 
     {
+      this.seasons = [
+        "2022",
+        "2021",
+        "2020",
+        "2019"
+      ];
       this.competition = new CompetitionEntity({
         code:"",
         id:0,

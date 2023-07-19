@@ -31,15 +31,12 @@ export class HomeComponent implements OnInit {
     private teamM: TeamManagerService
     ) { }
 
-    getApiTeam(){
-      this.teamM.findApiTeam(86);
-    }
 
   ngOnInit(): void {
     console.log("home component")
     this.competitionM.findCompetitions();
     this.competitions$ = this.competitionM.getCompetitions();
-    //this.teamM.setPopularTeams();
+    //this.teamM.findApiTeams();
     //this.teams$ = this.teamM.getPopularTeams()
   }
 }
