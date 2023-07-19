@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
     private teamM: TeamManagerService
     ) { }
 
-
   ngOnInit(): void {
     console.log("home component")
     this.competitionM.findCompetitions();

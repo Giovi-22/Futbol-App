@@ -47,6 +47,11 @@ export class CompetitionBannerComponent implements OnInit {
       this.screen.emit(screen);
     }
 
+    getCompetition(season:string){
+      console.log("la temporada seleccionada: ",season)
+      this.competitionM.findStandings("PL",{season:season})
+    }
+
   ngOnInit(): void {
     this.competitionM.getCurrent().subscribe(
       (competition)=>{

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Competition, Competitions, Standing, Team } from '../models/interfaces/competitioniterfaces';
 import { Observable } from 'rxjs';
 import { competitionStrategy, teamStrategy } from '../models/interfaces/strategiesInterfaces';
-import { CompetitionDto, MatchDto, TeamDto } from '../models/interfaces/dtoInterfaces';
+import { ApiFootballDataFilters, CompetitionDto, MatchDto, TeamDto } from '../models/interfaces/dtoInterfaces';
 import { TeamEntity } from '../domain/entities/TeamEntity';
 import { CompetitionEntity } from '../domain/entities/CompetitionEntity';
 import { competitions } from '../store/competitions';
@@ -38,9 +38,18 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
      })
    }
 
-   getStandings(competitionCode:string): Observable<Standing[]> {
+   getStandings(competitionCode:string,filter?:ApiFootballDataFilters): Observable<Standing[]> {
+    
+    let url = `${this.#urlCompetition}/${competitionCode}/standings`;
+    const queryParams = Object.entries(filter?filter:{});
+    if( queryParams.length){
+        queryParams.forEach(param=>{
+          url = `${url}?${param[0]}=${param[1]}`;
+        })
+    }
+    
     return new Observable<Standing[]>((observer)=>{
-    this.http.get<Competitions>(`${this.#urlCompetition}/${competitionCode}/standings`,this.#options).subscribe(
+    this.http.get<Competitions>(url,this.#options).subscribe(
       (result)=>{
         const dto ={
           
@@ -107,9 +116,17 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
     })
   }
 
-  getCompetition(competitionCode:string){
+  getCompetition(competitionCode:string,filter?:ApiFootballDataFilters){
+    
+    let url = `${this.#urlCompetition}/${competitionCode}`;
+    const queryParams = Object.entries(filter?filter:{});
+    if( queryParams.length){
+        queryParams.forEach(param=>{
+          url = `${url}?${param[0]}=${param[1]}`;
+        })
+    }
     return new Observable<CompetitionEntity>((observer)=>{
-     this.http.get<Competition>(`${this.#urlCompetition}/${competitionCode}`,this.#options).subscribe(
+     this.http.get<Competition>(url,this.#options).subscribe(
        (result)=>{
         const competition = new CompetitionEntity({
           id:result.id,                     
@@ -126,6 +143,7 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
       }
      )
    });
+
    }
 
   getTeams(competitionCode:string="PL"){

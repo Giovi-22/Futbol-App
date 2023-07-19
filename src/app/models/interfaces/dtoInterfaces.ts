@@ -28,6 +28,10 @@ export interface MatchDto{
         awayTeam?:    TeamDto,
 }
 
+export interface ApiFootballDataFilters{
+   season?:string | null,
+   matchDay?:number | null
+}
 //-------------------------------------------
 export interface Competitions {
     count:        number;

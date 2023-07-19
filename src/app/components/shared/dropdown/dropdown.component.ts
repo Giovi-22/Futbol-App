@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,6 +12,7 @@ export class DropdownComponent implements OnInit {
   
   @Input() title:string = "";
   @Input() menuItems:string[] = [];
+  @Output() item = new EventEmitter<string>();
   selectedItem:string="";
   constructor() { }
 
@@ -24,6 +25,7 @@ export class DropdownComponent implements OnInit {
   selectItem(item:string){
     console.log(item);
     this.selectedItem=item;
+    this.item.emit(item)
   }
 
 }

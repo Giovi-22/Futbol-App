@@ -14,7 +14,7 @@
             <app-button-link type="secondary" (click)="selectCompetitionScreen('matches')">Matches</app-button-link>
         <div class="competition__banner__season">
             <p>Season</p>
-            <app-dropdown [menuItems]="seasons"></app-dropdown>
+            <app-dropdown [menuItems]="seasons" (item)="getCompetition($event)"></app-dropdown>
         </div>
             
             

@@ -5,6 +5,7 @@ import { competitionStrategy } from "src/app/models/interfaces/strategiesInterfa
 import { CompetitionEntity } from "../../entities/CompetitionEntity";
 import { Standing } from 'src/app/models/interfaces/competitioniterfaces';
 import { MatchEntity } from '../../entities/MatchEntity';
+import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 
 export class CompetitionFootballDataApiStrategy implements competitionStrategy{
 
@@ -14,16 +15,16 @@ export class CompetitionFootballDataApiStrategy implements competitionStrategy{
         this.#apiClient = this.apiClient;
     }
 
-    getCompetition(competitionCode:string):Observable<CompetitionEntity>{
-        return this.#apiClient.getCompetition(competitionCode);
+    getCompetition(competitionCode:string,filter?:ApiFootballDataFilters):Observable<CompetitionEntity>{
+        return this.#apiClient.getCompetition(competitionCode,filter);
     }
 
     getCompetitions(): Observable<CompetitionEntity[]> {
         return this.#apiClient.getCompetitions();
     }
 
-    getStandings(competitionCode:string):Observable<Standing[]>{
-        return this.#apiClient.getStandings(competitionCode);
+    getStandings(competitionCode:string,filter?:ApiFootballDataFilters):Observable<Standing[]>{
+        return this.#apiClient.getStandings(competitionCode,filter);
     }
 
     getMatches(competitionCode:string):Observable<MatchEntity[]>{

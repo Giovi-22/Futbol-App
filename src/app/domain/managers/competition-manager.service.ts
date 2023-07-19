@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories/competition-repository-ngrx-store.service';
 import { CompetitionApiStrategy } from '../strategies/competition/competitionStrategy.interface';
 import CompetitionApiStrategyFactory from '../factory/competition/strategyFactory';
+import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,8 @@ export class CompetitionManagerService {
       })
   }
 
-  findCompetition(competitionCode:string){
-    this.strategy.getCompetition(competitionCode).subscribe(
+  findCompetition(competitionCode:string,filter?:ApiFootballDataFilters){
+    this.strategy.getCompetition(competitionCode,filter).subscribe(
       (result)=>{
         this.storage.saveCompetition(result)
       }
@@ -43,8 +44,8 @@ export class CompetitionManagerService {
     )
   }
 
-  findStandings(competitionCode:string){
-    this.strategy.getStandings(competitionCode).subscribe(
+  findStandings(competitionCode:string,filter?:ApiFootballDataFilters){
+    this.strategy.getStandings(competitionCode,filter).subscribe(
       (result)=>{
         this.storage.addStandings(result);
       }
