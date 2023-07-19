@@ -12,6 +12,8 @@
             <app-button-link type="secondary" (click)="selectCompetitionScreen('teams')">Teams</app-button-link>
             <app-button-link type="secondary" (click)="selectCompetitionScreen('standings')">Standings</app-button-link>
             <app-button-link type="secondary" (click)="selectCompetitionScreen('matches')">Matches</app-button-link>
+            <h5>Season</h5>
+            <p>{{competition.currentSeason?.startDate}}</p>
             
         </div>
     </ng-container>

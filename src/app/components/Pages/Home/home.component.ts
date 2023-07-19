@@ -8,11 +8,17 @@ import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
+import { DropdownComponent } from '../../shared/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,CompetitionCardComponent,TeamCardComponent],
+  imports: [
+    CommonModule,
+    CompetitionCardComponent,
+    TeamCardComponent,
+    DropdownComponent
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

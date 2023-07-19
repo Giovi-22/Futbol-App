@@ -4,6 +4,7 @@ import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
 import { ButtonLinkComponent } from 'src/app/components/shared/button-link/button-link.component';
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
+import { DropdownComponent } from 'src/app/components/shared/dropdown/dropdown.component';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
   imports: [
     CommonModule,
     SpinnerComponent,
-    ButtonLinkComponent
+    ButtonLinkComponent,
+    DropdownComponent
   ],
   templateUrl: './competition-banner.component.html',
   styleUrls: ['./competition-banner.component.scss']
