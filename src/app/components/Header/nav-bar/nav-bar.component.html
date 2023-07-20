@@ -1,8 +1,8 @@
 <nav class="navbar">
     <div class="navbar__links ">
-            <app-button-link title="Home"  navigateTo="/" type="primary"></app-button-link>
+            <app-button-link title="Home" type="primary" routerLink="/"></app-button-link>
             <app-button-link title="Leagues" (click)="setMenu(true)" type="primary"></app-button-link>
-            <app-button-link title="About Us" navigateTo="/about-us" type="primary"></app-button-link>
+            <app-button-link title="About Us" routerLink="/about-us" type="primary"></app-button-link>
     </div>
     <div class="navbar__search">
         <input type="text" class="form-control" placeholder="Search a competition...">

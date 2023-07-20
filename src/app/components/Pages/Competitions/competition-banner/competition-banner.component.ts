@@ -32,8 +32,7 @@ export class CompetitionBannerComponent implements OnInit {
       this.seasons = [
         "2022",
         "2021",
-        "2020",
-        "2019"
+        "2020"
       ];
       this.competition = new CompetitionEntity({
         code:"",
@@ -49,10 +48,13 @@ export class CompetitionBannerComponent implements OnInit {
 
     getCompetition(season:string){
       console.log("la temporada seleccionada: ",season)
-      this.competitionM.findStandings("PL",{season:season})
+      this.competitionM.findStandings(this.competition.code,{season:season});
     }
 
   ngOnInit(): void {
+    console.log("dentro de on init, competition banner")
+    const currentYear = new Date().getFullYear().toString();
+    this.seasons.unshift(currentYear);
     this.competitionM.getCurrent().subscribe(
       (competition)=>{
         this.competitionM.findCompetition(competition);
