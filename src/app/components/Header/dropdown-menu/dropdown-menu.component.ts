@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { DropdownItemComponent } from './dropdown-item/dropdown-item.component';
 import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
+import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 
 //---------------------------------------------------------
 @Component({
@@ -22,7 +23,8 @@ export class DropdownMenuComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private competitionM: CompetitionManagerService
+    private competitionM: CompetitionManagerService,
+    private teamM: TeamManagerService
     ) {
     this.selectedCode = "PL";
     
@@ -30,8 +32,12 @@ export class DropdownMenuComponent implements OnInit {
 
   navigateTo(competitionCode:string){
     this.selectedCode = competitionCode;
-    this.router.navigate(['competitions']);
     this.competitionM.setCurrent(competitionCode);
+    this.competitionM.findCompetition(competitionCode);
+    this.competitionM.findStandings(competitionCode);
+    this.competitionM.findMatches(competitionCode);
+    this.teamM.findApiTeams(competitionCode);
+    this.router.navigate(['competitions']);
   }
 
   ngOnInit(): void {

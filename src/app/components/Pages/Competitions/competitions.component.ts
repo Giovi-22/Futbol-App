@@ -10,6 +10,7 @@ import { TeamManagerService } from 'src/app/domain/managers/team-manager.service
 import { CompetitionBannerComponent } from './competition-banner/competition-banner.component';
 import { Standing, Table } from 'src/app/models/interfaces/competitioniterfaces';
 import { StandingsComponent } from './standings/standings.component';
+import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 
 
 @Component({
@@ -35,11 +36,19 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
   screen:string ="teams";
   currentCompetition:string;
   standings: Table[];
+  competition:CompetitionEntity;
 
   constructor(
     private competitionM: CompetitionManagerService,
     private teamM: TeamManagerService
-    ) {
+    ) 
+    {
+    this.competition = new CompetitionEntity({
+        code:"",
+        id:0,
+        logo:"",
+        name:""
+      });
     this.teams = [];
     this.matchs = [];
     this.currentCompetition = "";
@@ -71,11 +80,13 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
     this.competitionM.getCurrent().subscribe(
       (competition)=>{
         this.currentCompetition = competition;
-        this.teamM.findApiTeams(competition);
-        this.competitionM.findStandings(competition);
-        this.competitionM.findMatches(this.currentCompetition);
       }
     );
+    this.competitionM.getCompetition().subscribe(
+      (result)=>{
+        this.competition = result;
+      }
+    )
     this.teamSubscription = this.teamM.getStoreTeams().subscribe(
       (teams)=>{
         this.teams = teams;

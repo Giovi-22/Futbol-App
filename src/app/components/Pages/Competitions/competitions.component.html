@@ -1,4 +1,4 @@
-<app-competition-banner (screen)="selectedScreen($event)"></app-competition-banner>
+<app-competition-banner (screen)="selectedScreen($event)" [competition]="competition"></app-competition-banner>
 <span [ngSwitch]="screen" class="competition__screen"> 
 
 <div *ngSwitchCase="'teams'" class="competition__teams">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
@@ -21,7 +21,7 @@ import { DropdownComponent } from 'src/app/components/shared/dropdown/dropdown.c
 })
 export class CompetitionBannerComponent implements OnInit {
 
-  competition:CompetitionEntity;
+  @Input() competition:CompetitionEntity;
   seasons:string[];
 
   @Output() screen = new EventEmitter();
@@ -52,19 +52,17 @@ export class CompetitionBannerComponent implements OnInit {
     }
 
   ngOnInit(): void {
+  
     console.log("dentro de on init, competition banner")
     const currentYear = new Date().getFullYear().toString();
     this.seasons.unshift(currentYear);
-    this.competitionM.getCurrent().subscribe(
-      (competition)=>{
-        this.competitionM.findCompetition(competition);
-      }
-    )
+    /*
     this.competitionM.getCompetition().subscribe(
       (result)=>{
         this.competition = result;
       }
     )
+    */
   }
 
 }
