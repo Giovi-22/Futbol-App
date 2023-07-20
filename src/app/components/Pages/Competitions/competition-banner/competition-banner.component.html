@@ -8,16 +8,14 @@
             <pre>end date: {{competition.currentSeason.endDate}}</pre>
             </div>
         </div>
-        <div class="competition__banner__bottom-bar">
+        <div class="competition__banner__bottom-navbar">
             <app-button-link type="secondary" (click)="selectCompetitionScreen('teams')">Teams</app-button-link>
             <app-button-link type="secondary" (click)="selectCompetitionScreen('standings')">Standings</app-button-link>
             <app-button-link type="secondary" (click)="selectCompetitionScreen('matches')">Matches</app-button-link>
-        <div class="competition__banner__season">
-            <p>Season</p>
-            <app-dropdown [menuItems]="seasons" (item)="getCompetition($event)"></app-dropdown>
-        </div>
-            
-            
+            <div class="competition__banner__season">
+                <p>Season</p>
+                <app-dropdown [menuItems]="seasons" (item)="getCompetition($event)"></app-dropdown>
+            </div>    
         </div>
     </ng-container>
     <ng-template #elseTemplate>

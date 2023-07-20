@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from '@store/app.state' 
 import StrategyFactory from './domain/factory/team/strategyFactory'
+import { ReactiveFormsModule } from '@angular/forms'
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import StrategyFactory from './domain/factory/team/strategyFactory'
 		HeaderComponent,
 		MainComponent,
 		FooterComponent,
+		ReactiveFormsModule,
 		StoreModule.forRoot(ROOT_REDUCERS),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
 	],
