@@ -221,7 +221,7 @@
     "uuid" "8.3.2"
     "yargs" "17.5.1"
 
-"@angular/common@^14.0.0 || ^15.0.0", "@angular/common@14.2.8":
+"@angular/common@^14.0.0", "@angular/common@^14.0.0 || ^15.0.0", "@angular/common@14.2.8":
   "integrity" "sha512-JSPN2h1EcyWjHWtOzRQmoX48ZacTjLAYwW9ZRmBpYs6Ptw5xZ39ARTJfQNcNnJleqYju2E6BNkGnLpbtWQjNDA=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-14.2.8.tgz"
   "version" "14.2.8"
@@ -5367,6 +5367,13 @@
   "integrity" "sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw=="
   "resolved" "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   "version" "2.6.2"
+
+"ngx-cookie-service@^14.0.1":
+  "integrity" "sha512-PHjpA/bpp1ZgvQ2AWdXA6oxPQgE9k0WljQ7tvUH/u0Acl6p6akzF8kWlQiWxkgR3hBs7xB3paIsTk6GKdtakMg=="
+  "resolved" "https://registry.npmjs.org/ngx-cookie-service/-/ngx-cookie-service-14.0.1.tgz"
+  "version" "14.0.1"
+  dependencies:
+    "tslib" "^2.0.0"
 
 "node-forge@^1":
   "integrity" "sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA=="
