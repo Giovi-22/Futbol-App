@@ -5,6 +5,7 @@ import { TeamApiStrategy } from '../strategies/team/teamStrategies';
 import ApiStrategyFactory from '../factory/team/strategyFactory';
 import StoreRepositoryFactory from '../factory/team/storeFactory';
 import { TeamRepository } from 'src/app/data/repositories/team/teamRepository';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -17,7 +18,8 @@ export class TeamManagerService  {
     ; 
   constructor(
     private storeStrategyFactory: StoreRepositoryFactory,
-    private apiStrategyFactory: ApiStrategyFactory
+    private apiStrategyFactory: ApiStrategyFactory,
+    private router: Router
   ) 
   { 
     this.apiStrategy = this.apiStrategyFactory.create('TeamfootballApi');
@@ -37,6 +39,9 @@ export class TeamManagerService  {
     this.apiStrategy.getTeam(teamCode).subscribe(
       (team)=>{
         this.storeStrategy.setTeam(team);
+      },
+      (error)=>{
+        this.router.navigate(['not-found',error])
       }
     )
   }
@@ -45,6 +50,9 @@ export class TeamManagerService  {
     this.apiStrategy.getTeams(competitionCode).subscribe(
       (result)=>{
         this.storeStrategy.setTeams(result)
+      },
+      (error)=>{
+        this.router.navigate(['not-found',error])
       }
     )
   }

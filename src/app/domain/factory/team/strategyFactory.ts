@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { FetchDataService } from "../../../services/fetch-data.service";
 import { TeamFootballDataApiStrategy } from '../../strategies/team/TeamApiStrategy';
 import { TeamApiStrategy } from '../../strategies/team/teamStrategies';
+
 
 
 @Injectable({
@@ -10,19 +11,16 @@ import { TeamApiStrategy } from '../../strategies/team/teamStrategies';
   })
 class ApiStrategyFactory{
 
-    #httpClient:FetchDataService;
-
     constructor(
-        private httpClient: FetchDataService, 
+        private httpClient: HttpClient, 
         
         )
         {
-        this.#httpClient = this.httpClient;    
         }
         
         create(strategy:string): TeamApiStrategy {
             switch(strategy){
-                case 'TeamfootballApi': return new TeamFootballDataApiStrategy(this.#httpClient);
+                case 'TeamfootballApi': return new TeamFootballDataApiStrategy(this.httpClient);
                 default: throw new Error("La Estrategia seleccionada no existe");
             }
     }

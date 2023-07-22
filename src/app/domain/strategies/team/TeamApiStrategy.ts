@@ -1,21 +1,69 @@
-import { FetchDataService } from "src/app/services/fetch-data.service";
-import { TeamApiStrategy } from "./teamStrategies";
 import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { TeamEntity } from "../../entities/TeamEntity";
+import { Competitions, Team } from "src/app/models/interfaces/competitioniterfaces";
+import { TeamApiStrategy } from "./teamStrategies";
+
 
 export class TeamFootballDataApiStrategy implements TeamApiStrategy{
 
-    #apiClient: FetchDataService;
+    #urlCompetition:string='https://api.football-data.org/v4/competitions';
+    #urlTeams:string='https://api.football-data.org/v4/teams'
     
-    constructor(private apiClient: FetchDataService){
-        this.#apiClient = this.apiClient;
+    headers:HttpHeaders = new HttpHeaders({
+        'Content-Type':'application/json',
+        'X-Auth-Token': '860f9df0ee73439a9cc24ca71319e092'
+    })
+    
+    constructor(private http: HttpClient){}
+
+    getTeam(teamCode:number=86){
+        const url = `${this.#urlTeams}/${teamCode}`;
+        return new Observable<TeamEntity>((observer)=>{
+            this.http.get<Team>(url,{headers:this.headers}).subscribe(
+              (result)=>{
+                  const team = new TeamEntity({
+                      area: result.area,     
+                      id: result.id,    
+                      name: result.name,    
+                      shortName: result.shortName,
+                      tla: result.tla,    
+                      logo: result.crest,
+                      coach: result.coach,
+                      squad: result.squad,
+                  });
+                observer.next(team);
+              },
+              (error)=>{
+                throw new Error(`No se pudieron obtener los datos: ${error}`)
+              }
+            )
+        });
     }
 
-    getTeam(teamId:number):Observable<TeamEntity>{
-        return this.#apiClient.getTeam(teamId);
-    }
+    getTeams(competitionCode:string="PL"){
 
-    getTeams(competitionCode: string): Observable<TeamEntity[]> {
-        return this.#apiClient.getTeams(competitionCode);
+        const url = `${this.#urlCompetition}/${competitionCode}/teams`;
+       
+        return new Observable<TeamEntity[]>((observer)=>{
+            this.http.get<Competitions>(url,{headers:this.headers}).subscribe(
+              (result)=>{
+                const teams = result.teams?.map(team=>new TeamEntity({
+                  area: team.area,     
+                  id: team.id,    
+                  name: team.name,    
+                  shortName: team.shortName,
+                  tla: team.tla,    
+                  logo: team.crest,
+                  coach: team.coach,
+                  squad: team.squad,
+                }));
+            
+                observer.next(teams);
+              },
+              (error)=>{
+                throw new Error(`No se pudieron obtener los datos: ${error}`);
+            })
+        })
     }
 }
