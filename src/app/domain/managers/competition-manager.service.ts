@@ -4,6 +4,7 @@ import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories
 import { CompetitionApiStrategy } from '../strategies/competition/competitionStrategy.interface';
 import CompetitionApiStrategyFactory from '../factory/competition/strategyFactory';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class CompetitionManagerService {
   strategy:CompetitionApiStrategy;
   constructor( 
     private storage:  CompetitionRepositoryNgrxStoreService,
-    private strategyFactory: CompetitionApiStrategyFactory
+    private strategyFactory: CompetitionApiStrategyFactory,
+    private router: Router
     ) {
       this.strategy = this.strategyFactory.create('CompetitionfootballApi');
     }
@@ -24,7 +26,7 @@ export class CompetitionManagerService {
           this.storage.saveCompetitions(list);
       },
       (error)=>{
-        throw new Error(`No se pudieron obtener las competiciones: ${error}`)
+        this.router.navigate(['not-found',error])
       })
   }
 
@@ -32,6 +34,9 @@ export class CompetitionManagerService {
     this.strategy.getCompetition(competitionCode,filter).subscribe(
       (result)=>{
         this.storage.saveCompetition(result)
+      },
+      (error)=>{
+        this.router.navigate(['not-found',error])
       }
     )
   }
@@ -40,6 +45,9 @@ export class CompetitionManagerService {
     this.strategy.getMatches(competitionCode).subscribe(
       (result)=>{
         this.storage.addMatches(result);
+      },
+      (error)=>{
+        this.router.navigate(['not-found',error])
       }
     )
   }
@@ -48,6 +56,9 @@ export class CompetitionManagerService {
     this.strategy.getStandings(competitionCode,filter).subscribe(
       (result)=>{
         this.storage.addStandings(result);
+      },
+      (error)=>{
+        this.router.navigate(['not-found',error])
       }
     )
   }

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { FetchDataService } from 'src/app/services/fetch-data.service';
 import { CompetitionApiStrategy } from '../../strategies/competition/competitionStrategy.interface';
 import { CompetitionFootballDataApiStrategy } from '../../strategies/competition/CompetitionApiStrategy';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -11,10 +12,10 @@ import { CompetitionFootballDataApiStrategy } from '../../strategies/competition
   })
 class CompetitionApiStrategyFactory{
 
-    #httpClient:FetchDataService;
+    #httpClient:HttpClient;
 
     constructor(
-        private httpClient: FetchDataService, 
+        private httpClient: HttpClient, 
         
         )
         {
