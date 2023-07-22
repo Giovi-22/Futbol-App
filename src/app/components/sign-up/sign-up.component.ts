@@ -27,4 +27,9 @@ export class SignUpComponent implements OnInit {
     })
   }
 
+  onSubmit(){
+    console.log("valores del form: ",this.signUpForm.value)
+  }
+
+
 }

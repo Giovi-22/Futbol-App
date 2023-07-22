@@ -1,1 +1,23 @@
-<p>sign-up works!</p>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input class="ng-valid ng-invalid form-control" type="text" id="firstName" formControlName="firstName">
+        <div *ngIf="!signUpForm.get('firstName')?.valid" class="form-text">The first name is required</div>
+    </div>
+    <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input class="ng-valid ng-invalid form-control" type="text" id="lastName" formControlName="lastName">
+        <div *ngIf="!signUpForm.get('lastName')?.valid" class="form-text">The last name is required</div>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input class="ng-valid ng-invalid form-control" type="email" id="email" formControlName="email">
+        <div *ngIf="!signUpForm.get('email')?.valid" id="emailHelp" class="form-text">The email must be alguien@email.com</div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input class="ng-valid ng-invalid form-control" type="password" id="password" formControlName="password">
+        <div *ngIf="!signUpForm.get('password')?.valid" id="passwordHelp" class="form-text">The password minimum length must be eight characters</div>
+    </div>
+    <button [disabled]="!signUpForm.valid" type="submit" class="btn btn-outline-primary" (click)="onSubmit()">Sign in</button>
+</form>
