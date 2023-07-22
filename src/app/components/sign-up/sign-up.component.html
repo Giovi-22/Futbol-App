@@ -19,5 +19,5 @@
         <input class="ng-valid ng-invalid form-control" type="password" id="password" formControlName="password">
         <div *ngIf="!signUpForm.get('password')?.valid" id="passwordHelp" class="form-text">The password minimum length must be eight characters</div>
     </div>
-    <button [disabled]="!signUpForm.valid" type="submit" class="btn btn-outline-primary" (click)="onSubmit()">Sign in</button>
+    <button [disabled]="!signUpForm.valid" type="submit" class="btn btn-outline-primary">Sign Up</button>
 </form>

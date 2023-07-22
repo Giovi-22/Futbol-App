@@ -7,6 +7,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component'
 import { TeamComponent } from './components/Pages/Team/team/team.component'
 import { ErrorPageComponent } from './components/Pages/error-page/error-page.component'
 import { MatchesComponent } from './components/Pages/matches/matches.component'
+import { SignUpComponent } from './components/sign-up/sign-up.component'
 
 const routes: Routes = [
 	{
@@ -22,13 +23,17 @@ const routes: Routes = [
 		component:MatchesComponent
 	},
 	{
+		path:'about-us',
+		component: ErrorPageComponent
+	}, 
+	{
 		path: 'sign-in',
 		component: SignInComponent
 	},
 	{
-		path:'about-us',
-		component: ErrorPageComponent
-	}, 
+		path: 'sign-up',
+		component: SignUpComponent
+	},
 	{
 		path:'notfound',
 		component: ErrorPageComponent
