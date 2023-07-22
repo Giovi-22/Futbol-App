@@ -10,6 +10,7 @@ import { competitions } from '../store/competitions';
 import { Router } from '@angular/router';
 import { APIMatches } from '../models/interfaces/matchesInterfaces';
 import { MatchEntity } from '../domain/entities/MatchEntity';
+import { Session } from '../models/interfaces/session.interfaces';
 
 
 @Injectable({
@@ -194,4 +195,16 @@ export class FetchDataService implements teamStrategy, competitionStrategy{
       )
     });
     }
+
+  logIn(data:Session){
+    console.log("haciendo un post con los siguientes datos: ",data)
+  this.http.post("http://localhost:8081/api/session/login/",{data}).subscribe(
+    (response)=>{
+      console.log("la respuesta es: ",response)
+    },
+    (error)=>{
+      console.log("Se ha producido un error: ",error)
+    }
+  )
+  }
 }

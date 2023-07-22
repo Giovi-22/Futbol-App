@@ -1,12 +1,14 @@
 <form [formGroup]="formSession" (ngSubmit)="onSubmit()">
     <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <input class="ng-valid ng-invalid form-control" type="email" id="email" formControlName="email">
+        <div *ngIf="!formSession.get('email')?.valid" id="emailHelp" class="form-text">The email must be alguien@email.com</div>
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+        <label for="password" class="form-label">Password</label>
+        <input class="ng-valid ng-invalid form-control" type="password" id="password" formControlName="password">
+        <div *ngIf="!formSession.get('password')?.valid" id="passwordHelp" class="form-text">The password minimum length must be eight characters</div>
     </div>
-    <button type="submit" class="btn btn-outline-primary">Sign in</button>
+    <button [disabled]="!formSession.valid" type="submit" class="btn btn-outline-primary" (click)="onSubmit()">Sign in</button>
 </form>
+
