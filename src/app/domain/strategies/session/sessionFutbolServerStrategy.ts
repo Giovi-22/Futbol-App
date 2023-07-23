@@ -36,16 +36,20 @@ export class SessionFutbolServerStrategy implements SessionStrategy {
         console.log("Log out!")
     }
 
-    signUp(User: UserEntity): void {
-        const url = `${this.#urlSession}/sign-up`; 
-        this.http.post(url,User,this.httpOptions).subscribe(
+    signUp(User: UserEntity):Observable<LoginResponseData>{
+        const url = `${this.#urlSession}/signup`; 
+        return new Observable((observer)=>{
+        this.http.post<LoginResponseData>(url,User,this.httpOptions).subscribe(
             (result)=>{
-                console.log("Se ha creado el usuario: ",result);
+                if(result.status){
+                    observer.next(result)
+                }
             },
             (error)=>{
-                throw new Error(`Se ha producido un error: ${error}`);
+                observer.error(`Se ha producido un error: ${error}`);
             }
         )
+        })
     }
 
 

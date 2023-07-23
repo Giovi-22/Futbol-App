@@ -4,6 +4,6 @@ import { Observable } from 'rxjs';
 
 export interface SessionStrategy{
     logIn(User:LogIn):Observable<LoginResponseData>,
-    signUp(User:UserEntity):void,
+    signUp(User:UserEntity):Observable<LoginResponseData>,
     logOut():void
 }
