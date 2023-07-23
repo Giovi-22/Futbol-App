@@ -10,5 +10,5 @@
         <div *ngIf="!formSession.get('password')?.valid" id="passwordHelp" class="form-text">The password minimum length must be eight characters</div>
     </div>
     <button [disabled]="!formSession.valid" type="submit" class="btn btn-outline-primary">Sign in</button>
-</form>
+    <div class="form-text">Don't have an account? Then <a routerLink="/signup">sign up</a></div>
 

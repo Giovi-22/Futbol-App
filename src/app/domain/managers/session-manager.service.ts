@@ -11,7 +11,9 @@ export class SessionManagerService {
 
   session:SessionFutbolServerStrategy;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    ) {
     this.session = new SessionFutbolServerStrategy(this.http);
    }
 

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder} from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { FetchDataService } from 'src/app/services/fetch-data.service';
-import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
-import { LogIn } from 'src/app/models/interfaces/session.interfaces';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+
+import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
+import { LogIn } from 'src/app/models/interfaces/session.interfaces';
+
 @Component({
   selector: 'app-sign-in',
   standalone: true,
@@ -41,9 +42,12 @@ export class SignInComponent implements OnInit {
     }
     this.sessionM.logIn(sessionDto).subscribe(
       (response)=>{
-        console.log("Los datos del usuario son: ",response)
         if(response.status){
-          this.router.navigate(["/"])
+          if(this.cookieService.check('user')){
+            this.router.navigate(["/"])
+            console.log("Usuario logueado")
+          }
+          
         }
       },
       (error)=>{
