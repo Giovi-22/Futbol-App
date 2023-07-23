@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY st0 "fill:none;stroke:#B3F2CD;stroke-width:2;stroke-miterlimit:10;">
+	<!ENTITY st1 "fill:#34A852;">
+]>
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="480px" height="360px" viewBox="0 0 480 360" style="enable-background:new 0 0 480 360;" xml:space="preserve">
+<rect x="1" style="&st1;" width="480" height="360"/>
+<rect x="173" style="&st0;" width="130" height="40"/>
+<rect x="91" style="&st0;" width="300" height="100"/>
+<path style="&st0;" d="M302.99,100c-0.33,9.77-29.3,17.67-64.99,17.67c-35.69,0-64.66-7.9-64.99-17.67H302.99z"/>
+<path style="&st0;" d="M173,100v-0.17c0,0.06,0,0.11,0.01,0.17H173z"/>
+<path style="&st0;" d="M302.99,100c0.01-0.06,0.01-0.11,0.01-0.17V100H302.99z"/>
+<path style="&st0;" d="M284,360H184v4.83c0-1.5,0-3.01,0-4.54V360c0-27.38,22.585-49.53,49.995-49.53
+	C261.415,310.47,283.84,332.62,284,360z"/>
+<circle class="arquero" style="&st0;" cx="234" cy="24" r="15"/>
+<circle style="&st0;" cx="55" cy="100" r="15"/>
+<circle style="&st0;" cx="161" cy="100" r="15"/>
+<circle style="&st0;" cx="314" cy="100" r="15"/>
+<circle style="&st0;" cx="426" cy="100" r="15"/>
+<circle style="&st0;" cx="141" cy="173" r="15"/>
+<circle style="&st0;" cx="341" cy="173" r="15"/>
+<circle style="&st0;" cx="55" cy="242" r="15"/>
+<circle style="&st0;" cx="234" cy="242" r="15"/>
+<circle style="&st0;" cx="426" cy="242" r="15"/>
+<circle style="&st0;" cx="234" cy="330" r="15"/>
+</svg>
