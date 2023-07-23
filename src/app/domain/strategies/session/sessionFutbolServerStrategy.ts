@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { SessionStrategy } from './sessionStrategy.interface';
 import UserEntity from '../../entities/UserEntity';
-import { LogIn } from 'src/app/models/interfaces/session.interfaces';
+import { LogIn, LoginResponseData } from 'src/app/models/interfaces/session.interfaces';
 
 export class SessionFutbolServerStrategy implements SessionStrategy {
 
@@ -15,18 +15,20 @@ export class SessionFutbolServerStrategy implements SessionStrategy {
     
     constructor(private http: HttpClient){}
 
-    logIn(User: LogIn): void {
+    logIn(User: LogIn):Observable<LoginResponseData> {
 
         const url = `${this.#urlSession}/login`;
-
-        this.http.post(url,User,{headers:this.headers}).subscribe(
+        return new Observable<LoginResponseData>((observer)=>{
+        this.http.post<LoginResponseData>(url,User,{headers:this.headers}).subscribe(
             (result)=>{
                 console.log(result);
+                observer.next(result)
             },
             (error)=>{
-                throw new Error(`Se ha producido un error: ${error}`);
+                observer.error(error)
             }
         )
+        })
     }
 
     logOut(): void {

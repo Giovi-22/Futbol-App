@@ -10,3 +10,9 @@ export interface User{
     password:string;
     email:string;
 }
+
+export interface LoginResponseData{
+    status:boolean,
+    message:string,
+    data:string;
+}

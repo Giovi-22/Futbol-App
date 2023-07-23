@@ -5,6 +5,8 @@ import { Validators } from '@angular/forms';
 import { FetchDataService } from 'src/app/services/fetch-data.service';
 import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
 import { LogIn } from 'src/app/models/interfaces/session.interfaces';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sign-in',
   standalone: true,
@@ -18,7 +20,12 @@ import { LogIn } from 'src/app/models/interfaces/session.interfaces';
 export class SignInComponent implements OnInit {
 
   formSession!:FormGroup;
-  constructor(private fb: FormBuilder, private sessionM: SessionManagerService) { }
+  constructor(
+    private fb: FormBuilder, 
+    private sessionM: SessionManagerService,
+    private cookieService: CookieService,
+    private router:Router
+    ) { }
 
   ngOnInit(): void {
     this.formSession = this.fb.group({
@@ -32,7 +39,18 @@ export class SignInComponent implements OnInit {
       email: this.formSession.get("email")?.value,
       password: this.formSession.get("password")?.value
     }
-    this.sessionM.logIn(sessionDto)
+    this.sessionM.logIn(sessionDto).subscribe(
+      (response)=>{
+        console.log("Los datos del usuario son: ",response)
+        if(response.status){
+          this.router.navigate(["/"])
+        }
+      },
+      (error)=>{
+        console.log("dentro de singin component")
+        this.router.navigate(['notfound',error])
+      }
+    )
     console.log("valores del form: ",this.formSession.value)
   }
 
