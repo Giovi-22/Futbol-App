@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { TeamEntity } from "../../entities/TeamEntity";
 import { Competitions, Team } from "src/app/models/interfaces/competitioniterfaces";
 import { TeamApiStrategy } from "./teamStrategies";
+import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
+import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
 
 
 export class TeamFootballDataApiStrategy implements TeamApiStrategy{
@@ -41,12 +43,12 @@ export class TeamFootballDataApiStrategy implements TeamApiStrategy{
         });
     }
 
-    getTeams(competitionCode:string="PL"){
+    getTeams(competitionCode:string="PL",filter?:ApiFootballDataFilters){
 
         const url = `${this.#urlCompetition}/${competitionCode}/teams`;
-       
+        const newUrl = getUrlWithParams(url,filter);
         return new Observable<TeamEntity[]>((observer)=>{
-            this.http.get<Competitions>(url,{headers:this.headers}).subscribe(
+            this.http.get<Competitions>(newUrl,{headers:this.headers}).subscribe(
               (result)=>{
                 const teams = result.teams?.map(team=>new TeamEntity({
                   area: team.area,     

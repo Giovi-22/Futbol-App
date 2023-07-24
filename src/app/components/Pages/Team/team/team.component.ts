@@ -8,6 +8,9 @@ import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { TeamBannerComponent } from '../team-banner/team-banner.component';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 import { FootballFieldComponent } from 'src/app/components/football-field/football-field.component';
+import { Squad } from 'src/app/models/interfaces/competitioniterfaces';
+import { Positions } from 'src/app/models/interfaces/dtoInterfaces';
+
 
 @Component({
   selector: 'app-team',
@@ -24,9 +27,25 @@ import { FootballFieldComponent } from 'src/app/components/football-field/footba
 })
 export class TeamComponent implements OnInit {
 
+  team:TeamEntity;
   team$ = new Observable<TeamEntity>();
-
+  positions:Positions={
+    Goalkeeper:[],
+    Defence:[],
+    Midfield:[],
+    Offence:[]
+  }
   constructor(private teamM: TeamManagerService) { 
+    this.team = new TeamEntity({
+      area:{code:"",flag:"",id:0,name:""},
+      coach:{contract:{start:"",until:null},dateOfBirth:null,firstName:"",id:null,lastName:"",name:"",nationality:null},
+      id:0,
+      logo:"",
+      name:"",
+      shortName:"",
+      squad:[],
+      tla:""
+    })
   }
 
   ngOnInit(): void {

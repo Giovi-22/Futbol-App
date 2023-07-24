@@ -18,5 +18,5 @@ export const loadedTeams = createAction(
 
 export const loadTeam = createAction(
     '[Team Team] Uploaded team successfully',
-    props<{team:TeamEntity}>()
+    props<{current:TeamEntity}>()
 )

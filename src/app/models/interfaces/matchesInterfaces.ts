@@ -34,7 +34,7 @@ export interface Match {
     competition: Competition;
     season:      Season;
     id:          number;
-    utcDate:     Date;
+    utcDate:     string;
     status:      Status;
     matchday:    number;
     stage:       Stage;
@@ -97,8 +97,8 @@ export interface Time {
 
 export interface Season {
     id:              number;
-    startDate:       Date;
-    endDate:         Date;
+    startDate:       string;
+    endDate:         string;
     currentMatchday: number;
     winner:          null;
 }

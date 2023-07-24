@@ -4,8 +4,7 @@
             <img src={{competition.logo}} class="slide-in-left">
             <h2>{{competition.name}}</h2>
             <div *ngIf="competition.currentSeason" class="competition__season">
-            <pre>start date: {{competition.currentSeason.startDate}}</pre>
-            <pre>end date: {{competition.currentSeason.endDate}}</pre>
+            <pre>SEASON {{currentSeason}}</pre>
             </div>
         </div>
         <div class="competition__banner__bottom-navbar">

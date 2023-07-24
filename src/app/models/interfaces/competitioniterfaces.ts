@@ -29,8 +29,8 @@ export interface Area {
 
 export interface CurrentSeason {
     id:              number;
-    startDate:       Date;
-    endDate:         Date;
+    startDate:       string;
+    endDate:         string;
     currentMatchday: number;
     winner:          Winner | null;
 }

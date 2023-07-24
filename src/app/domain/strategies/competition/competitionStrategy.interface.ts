@@ -9,5 +9,5 @@ export interface CompetitionApiStrategy{
     getCompetition(competitionCode:string,filter?:ApiFootballDataFilters):Observable<CompetitionEntity>;
     getCompetitions():Observable<CompetitionEntity[]>;
     getStandings(competitionCode:string,filter?:ApiFootballDataFilters):Observable<Standing[]>;
-    getMatches(competitionCode:string):Observable<MatchEntity[]>;
+    getMatches(competitionCode:string,filter?:ApiFootballDataFilters):Observable<MatchEntity[]>;
 }

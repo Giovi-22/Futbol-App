@@ -6,6 +6,8 @@ import { CompetitionManagerService } from 'src/app/domain/managers/competition-m
 import { ButtonLinkComponent } from 'src/app/components/shared/button-link/button-link.component';
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { DropdownComponent } from 'src/app/components/shared/dropdown/dropdown.component';
+import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
+
 
 
 @Component({
@@ -20,14 +22,16 @@ import { DropdownComponent } from 'src/app/components/shared/dropdown/dropdown.c
   templateUrl: './competition-banner.component.html',
   styleUrls: ['./competition-banner.component.scss']
 })
-export class CompetitionBannerComponent implements OnInit {
+export class CompetitionBannerComponent implements OnInit{
 
-  @Input() competition:CompetitionEntity;
+  competition:CompetitionEntity;
   seasons:string[];
+  currentSeason:string="";
 
   @Output() screen = new EventEmitter();
   constructor(
-    private competitionM:CompetitionManagerService
+    private competitionM:CompetitionManagerService,
+    private teamM:TeamManagerService
     ) 
     {
       this.seasons = [
@@ -50,11 +54,22 @@ export class CompetitionBannerComponent implements OnInit {
     getCompetition(season:string){
       console.log("la temporada seleccionada: ",season)
       this.competitionM.findStandings(this.competition.code,{season:season});
+      this.competitionM.findMatches(this.competition.code,{season:season});
+      this.teamM.findApiTeams(this.competition.code,{season:season})
+      this.currentSeason = season;
     }
 
   ngOnInit(): void {
     const currentYear = new Date().getFullYear().toString();
     this.seasons.unshift(currentYear);
+    this.competitionM.getCompetition().subscribe(
+      (competition)=>{
+        this.competition = competition;
+        this.currentSeason = competition.currentSeason?.startDate.split('-')[0]||"";
+      }
+    )
   }
+
+
 
 }

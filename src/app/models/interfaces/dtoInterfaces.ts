@@ -22,7 +22,7 @@ export interface MatchDto{
         area?:        AreaDto,
         season?:      SeasonDto,
         id?:          number,
-        utcDate?:     Date,
+        utcDate?:     string,
         matchday?:    number,
         homeTeam?:    TeamDto,
         awayTeam?:    TeamDto,
@@ -32,6 +32,10 @@ export interface ApiFootballDataFilters{
    season?:string | null,
    matchDay?:number | null
 }
+
+export interface Positions{
+    [Defence:string]:Squad[],
+  }
 //-------------------------------------------
 export interface Competitions {
     count:        number;
@@ -59,8 +63,8 @@ export interface AreaDto {
 
 export interface CurrentSeason {
     id:              number;
-    startDate:       Date;
-    endDate:         Date;
+    startDate:       string;
+    endDate:         string;
     currentMatchday: number;
     winner:          WinnerDto | null;
 }
@@ -75,8 +79,8 @@ export interface WinnerDto {
 
 export interface SeasonDto {
     id:              number;
-    startDate:       Date;
-    endDate:         Date;
+    startDate:       string;
+    endDate:         string;
     currentMatchday: number;
     winner:          null;
 }

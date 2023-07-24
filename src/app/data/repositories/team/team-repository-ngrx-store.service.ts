@@ -21,8 +21,8 @@ export class TeamRepositoryNgrxStoreService implements TeamRepository {
     this.store.dispatch(loadedTeams({teams}))
   }
 
-  setTeam(team: TeamEntity){
-    this.store.dispatch(loadTeam({team}));
+  setTeam(current: TeamEntity){
+    this.store.dispatch(loadTeam({current}));
   }
 
   setPopularTeams(teams:TeamEntity[]){

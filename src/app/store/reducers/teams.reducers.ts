@@ -21,11 +21,11 @@ export const teamReducer = createReducer(
             teams
         };
     }),
-    on(loadTeam,(state,{team})=>{
+    on(loadTeam,(state,{current})=>{
         return{
             ...state,
             loading:false,
-            current:{...team}
+            current
         }
     }),
     on(loadPopular,(state,{teams})=>{

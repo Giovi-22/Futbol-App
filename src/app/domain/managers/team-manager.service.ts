@@ -6,6 +6,7 @@ import ApiStrategyFactory from '../factory/team/strategyFactory';
 import StoreRepositoryFactory from '../factory/team/storeFactory';
 import { TeamRepository } from 'src/app/data/repositories/team/teamRepository';
 import { Router } from '@angular/router';
+import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 
 
 @Injectable({
@@ -46,8 +47,8 @@ export class TeamManagerService  {
     )
   }
 
-  findApiTeams(competitionCode:string ="PL"){
-    this.apiStrategy.getTeams(competitionCode).subscribe(
+  findApiTeams(competitionCode:string ="PL",filter?:ApiFootballDataFilters){
+    this.apiStrategy.getTeams(competitionCode,filter).subscribe(
       (result)=>{
         this.storeStrategy.setTeams(result)
       },

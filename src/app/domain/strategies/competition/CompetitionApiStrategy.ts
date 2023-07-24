@@ -71,12 +71,13 @@ export class CompetitionFootballDataApiStrategy implements competitionStrategy{
         })
     }
 
-    getMatches(competitionCode:string):Observable<MatchEntity[]>{
+    getMatches(competitionCode:string,filter?:ApiFootballDataFilters):Observable<MatchEntity[]>{
 
         const url = `${this.#urlCompetition}/${competitionCode}/matches`;
+        const newUrl = getUrlWithParams(url,filter);
 
         return new Observable<MatchEntity[]>((observer)=>{
-            this.http.get<APIMatches>(url,{headers:this.headers}).subscribe(
+            this.http.get<APIMatches>(newUrl,{headers:this.headers}).subscribe(
                 (result)=>{
                     const matches:MatchEntity[] = result.matches.map(match=> 
                         new MatchEntity({

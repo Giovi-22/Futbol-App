@@ -41,8 +41,8 @@ export class CompetitionManagerService {
     )
   }
 
-  findMatches(competitionCode:string){
-    this.strategy.getMatches(competitionCode).subscribe(
+  findMatches(competitionCode:string,filter?:ApiFootballDataFilters){
+    this.strategy.getMatches(competitionCode,filter).subscribe(
       (result)=>{
         this.storage.addMatches(result);
       },

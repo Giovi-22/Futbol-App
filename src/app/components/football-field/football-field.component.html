@@ -1,26 +1,24 @@
-<div>
-    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-         width="480px" height="360px" viewBox="0 0 480 360" xml:space="preserve">
-            <rect  x="1"  width="480" height="360"/>
-            <rect  x="173"  width="130" height="40"/>
-            <rect  x="91"  width="300" height="100"/>
-            <path d="M302.99,100c-0.33,9.77-29.3,17.67-64.99,17.67c-35.69,0-64.66-7.9-64.99-17.67H302.99z"/>
-            <path d="M173,100v-0.17c0,0.06,0,0.11,0.01,0.17H173z"/>
-            <path d="M302.99,100c0.01-0.06,0.01-0.11,0.01-0.17V100H302.99z"/>
-            <path d="M284,360H184v4.83c0-1.5,0-3.01,0-4.54V360c0-27.38,22.585-49.53,49.995-49.53
-                C261.415,310.47,283.84,332.62,284,360z"/>
-            <a xlink:title="arquero">
-            <circle class="pos__1" cx="234" cy="24" r="15"/>
-            </a>
-            <circle class="pos__5" cx="55" cy="100" r="15"/>
-            <circle class="pos__3" cx="161" cy="100" r="15"/>
-            <circle class="pos__2" cx="314" cy="100" r="15"/>
-            <circle class="pos__4" cx="426" cy="100" r="15"/>
-            <circle class="pos__8" cx="141" cy="173" r="15"/>
-            <circle class="pos__10" cx="341" cy="173" r="15"/>
-            <circle class="pos__6" cx="55" cy="242" r="15"/>
-            <circle class="pos__7" cx="234" cy="242" r="15"/>
-            <circle class="pos___11" cx="426" cy="242" r="15"/>
-            <circle class="pos__9" cx="234" cy="330" r="15"/>
-        </svg>
+
+<div *ngIf="posiciones['Goalkeeper'].length" class="cancha">
+    <span class="area__chica"></span>
+    <div class="arquero">
+        <div class="jugador pos__1">{{posiciones['Goalkeeper'][0].name}}</div>
+    </div>
+    
+    <div class="defensores">
+        <div class="jugador pos__2">{{posiciones['Defence'][0].name}}</div>
+        <div class="jugador pos__3">{{posiciones['Defence'][1].name}}</div>
+        <div class="jugador pos__4">{{posiciones['Defence'][2].name}}</div>
+        <div class="jugador pos__5">{{posiciones['Defence'][3].name}}</div>
+    </div>
+    <div class="mediocampo">
+        <div class="jugador pos__6">{{posiciones['Midfield'][0].name}}</div>
+        <div class="jugador pos__7">{{posiciones['Midfield'][1].name}}</div>
+        <div class="jugador pos__8">{{posiciones['Midfield'][2].name}}</div>
+        <div class="jugador pos__10">{{posiciones['Midfield'][3].name}}</div>
+    </div>
+    <div class="delanteros">
+        <div class="jugador pos__9">{{posiciones['Offence'][0].name}}</div>
+        <div class="jugador pos__11">{{posiciones['Offence'][1].name}}</div>
+    </div>
 </div>

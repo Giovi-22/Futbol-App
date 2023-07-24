@@ -9,6 +9,7 @@ import { CompetitionManagerService } from 'src/app/domain/managers/competition-m
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
 import { DropdownComponent } from '../../shared/dropdown/dropdown.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -28,15 +29,24 @@ export class HomeComponent implements OnInit {
   teams$ = new Observable<TeamEntity[]>();
   constructor(
     private competitionM: CompetitionManagerService,
-    private teamM: TeamManagerService
+    private teamM: TeamManagerService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
     console.log("home component")
     this.competitionM.findCompetitions();
     this.competitions$ = this.competitionM.getCompetitions();
-    //this.teamM.findApiTeams();
-    //this.teams$ = this.teamM.getPopularTeams()
+    this.teamM.setStorePopularTeams();
+    this.teams$ = this.teamM.getStorePopularTeams();
+  }
+
+  navigateTo(competitionCode:string){
+    this.competitionM.findCompetition(competitionCode);
+    this.competitionM.findStandings(competitionCode);
+    this.competitionM.findMatches(competitionCode);
+    this.teamM.findApiTeams(competitionCode);
+    this.router.navigate(['competitions']);
   }
 }
 
