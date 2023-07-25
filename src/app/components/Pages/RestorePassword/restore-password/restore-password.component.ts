@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
+import { RestorePassword } from 'src/app/models/interfaces/session.interfaces';
 
 @Component({
   selector: 'app-restore-password',
@@ -21,7 +23,8 @@ export class RestorePasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private router:Router,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private sessionM: SessionManagerService
     ) { }
 
   ngOnInit(): void {
@@ -42,7 +45,11 @@ export class RestorePasswordComponent implements OnInit {
   }
 
   onSubmit(){
-
+    const datos:RestorePassword={
+      password: this.restorePasswordForm.get('password')?.value,
+      confirm: this.restorePasswordForm.get('confirm')?.value
+    }
+    this.sessionM.restorePassword(datos);
   }
 
 }

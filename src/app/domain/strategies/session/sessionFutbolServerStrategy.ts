@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParamsOptions } from "@angular/common/http";
 import { SessionStrategy } from './sessionStrategy.interface';
 import UserEntity from '../../entities/UserEntity';
-import { LogIn, LoginResponseData } from 'src/app/models/interfaces/session.interfaces';
+import { LogIn, LoginResponseData, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
 
 export class SessionFutbolServerStrategy implements SessionStrategy {
 
@@ -49,6 +49,20 @@ export class SessionFutbolServerStrategy implements SessionStrategy {
                 observer.error(`Se ha producido un error: ${error}`);
             }
         )
+        })
+    }
+
+    restorePassword(data:RestorePassword):Observable<LoginResponseData>{
+        const url = `${this.#urlSession}/forgotpassword`;
+        return new Observable((observer)=>{
+            this.http.post<LoginResponseData>(url,data,this.httpOptions).subscribe(
+                (response)=>{
+                    observer.next(response);
+                },
+                (error)=>{
+                    observer.error(`Se ha producido un error: ${error}`);
+                }
+            )
         })
     }
 

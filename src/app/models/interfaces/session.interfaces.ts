@@ -16,3 +16,8 @@ export interface LoginResponseData{
     message:string,
     data:string;
 }
+
+export interface RestorePassword{
+    password:string,
+    confirm:string
+}
