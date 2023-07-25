@@ -18,7 +18,7 @@ import { RestorePassword } from 'src/app/models/interfaces/session.interfaces';
 export class RestorePasswordComponent implements OnInit {
 
   restorePasswordForm!:FormGroup;
-  jwt:string|null = null;
+  jwt:string|null= "";
 
   constructor(
     private fb: FormBuilder, 
@@ -47,7 +47,8 @@ export class RestorePasswordComponent implements OnInit {
   onSubmit(){
     const datos:RestorePassword={
       password: this.restorePasswordForm.get('password')?.value,
-      confirm: this.restorePasswordForm.get('confirm')?.value
+      confirm: this.restorePasswordForm.get('confirm')?.value,
+      token: this.jwt || ""
     }
     this.sessionM.restorePassword(datos);
   }

@@ -53,9 +53,9 @@ export class SessionFutbolServerStrategy implements SessionStrategy {
     }
 
     restorePassword(data:RestorePassword):Observable<LoginResponseData>{
-        const url = `${this.#urlSession}/forgotpassword`;
+        const url = `${this.#urlSession}/changepassword`;
         return new Observable((observer)=>{
-            this.http.post<LoginResponseData>(url,data,this.httpOptions).subscribe(
+            this.http.put<LoginResponseData>(url,data,this.httpOptions).subscribe(
                 (response)=>{
                     observer.next(response);
                 },

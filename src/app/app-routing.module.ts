@@ -9,6 +9,7 @@ import { ErrorPageComponent } from './components/Pages/error-page/error-page.com
 import { MatchesComponent } from './components/Pages/matches/matches.component'
 import { SignUpComponent } from './components/sign-up/sign-up.component'
 import { RestorePasswordComponent } from './components/Pages/RestorePassword/restore-password/restore-password.component'
+import { ChangePasswordComponent } from './components/Pages/ChangePassword/change-password/change-password.component'
 
 const routes: Routes = [
 	{
@@ -36,7 +37,11 @@ const routes: Routes = [
 		component: SignUpComponent
 	},
 	{
-		path: 'change-password/:jwt',
+		path: 'change-password',
+		component: ChangePasswordComponent
+	},
+	{
+		path: 'restore-password/:jwt',
 		component: RestorePasswordComponent
 	},
 	{
