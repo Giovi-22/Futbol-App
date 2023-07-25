@@ -8,6 +8,7 @@ import { TeamComponent } from './components/Pages/Team/team/team.component'
 import { ErrorPageComponent } from './components/Pages/error-page/error-page.component'
 import { MatchesComponent } from './components/Pages/matches/matches.component'
 import { SignUpComponent } from './components/sign-up/sign-up.component'
+import { RestorePasswordComponent } from './components/Pages/RestorePassword/restore-password/restore-password.component'
 
 const routes: Routes = [
 	{
@@ -33,6 +34,10 @@ const routes: Routes = [
 	{
 		path: 'sign-up',
 		component: SignUpComponent
+	},
+	{
+		path: 'change-password/:jwt',
+		component: RestorePasswordComponent
 	},
 	{
 		path:'notfound',
