@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
 import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
 import UserEntity from 'src/app/domain/entities/UserEntity';
-import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -22,7 +25,8 @@ export class SignUpComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private sessionM: SessionManagerService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
     ) { }
 
   ngOnInit(): void {
@@ -45,10 +49,16 @@ export class SignUpComponent implements OnInit {
     this.sessionM.singUp(newUser).subscribe(
       (result)=>{
         if(result.status){
+          this.toastr.success(result.message,"Sign Up",{closeButton:true,easing:"ease-in"});
+          setTimeout(()=>this.router.navigate(["/"]),2000);
+          console.log("Usuario logueado")   
           console.log("Usuario creado con exito, recibira un email con los datos")
           this.router.navigate(['sign-in'])
         }
-      }
+      },
+      (error)=>{
+        this.toastr.error(error.error.message,"Signup failed!",{closeButton:true,easing:"ease-in"});
+      },
     )
   }
 

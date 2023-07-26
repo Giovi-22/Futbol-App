@@ -30,19 +30,7 @@ export class SessionManagerService {
    }
 
    restorePassword(data:RestorePassword){
-      this.#session.restorePassword(data).subscribe({
-         next:(result)=>{
-            console.log("El resultado es: ",result)
-         },
-         error:(error:HttpErrorResponse)=>{
-            console.log("El error es: ",error.error.message);
-            const data:ErrorData={
-               status:error.status.toString(),
-               message:error.message
-            }
-            this.router.navigate(['notfound',error.status.toString(),error.message])
-         }
-      })
+      return this.#session.restorePassword(data);
    }
 
    changePassword(email:string){

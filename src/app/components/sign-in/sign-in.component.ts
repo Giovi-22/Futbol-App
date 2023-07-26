@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder} from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
 import { Router, RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
 import { LogIn } from 'src/app/models/interfaces/session.interfaces';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -20,12 +21,13 @@ import { LogIn } from 'src/app/models/interfaces/session.interfaces';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-
+  isLogged:string="desactivated";
+  toastMessage:string = "";
   formSession!:FormGroup;
   constructor(
     private fb: FormBuilder, 
     private sessionM: SessionManagerService,
-    private cookieService: CookieService,
+    private toastr: ToastrService,
     private router:Router
     ) { }
 
@@ -41,20 +43,20 @@ export class SignInComponent implements OnInit {
       email: this.formSession.get("email")?.value,
       password: this.formSession.get("password")?.value
     }
-    this.sessionM.logIn(sessionDto).subscribe(
-      (response)=>{
+    this.sessionM.logIn(sessionDto).subscribe({
+      next:(response)=>{
         if(response.status){
-          if(this.cookieService.check('user')){
-            this.router.navigate(["/"])
-            console.log("Usuario logueado")
-          }
-          
+          this.toastr.success(response.message,"Login",{closeButton:true,easing:"ease-in"});
+          setTimeout(()=>this.router.navigate(["/"]),2000);
+          console.log("Usuario logueado")        
         }
+      
       },
-      (error)=>{
+      error:(error)=>{
         console.log("dentro de singin component")
-        this.router.navigate(['notfound',error])
-      }
+        console.log("El error es: ",error)
+        this.toastr.error(error.error.message,"Login failed!",{closeButton:true,easing:"ease-in"});
+      }}
     )
     console.log("valores del form: ",this.formSession.value)
   }

@@ -10,6 +10,7 @@ import { TeamManagerService } from 'src/app/domain/managers/team-manager.service
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
 import { DropdownComponent } from '../../shared/dropdown/dropdown.component';
 import { Router } from '@angular/router';
+import { ToastrComponent } from '../../shared/toast/toastr.component';
 
 
 @Component({
@@ -19,7 +20,8 @@ import { Router } from '@angular/router';
     CommonModule,
     CompetitionCardComponent,
     TeamCardComponent,
-    DropdownComponent
+    DropdownComponent,
+    ToastrComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
@@ -51,8 +53,8 @@ export class HomeComponent implements OnInit {
   }
 
   toErrorPage(){
-    console.log("yendo a notfound")
-    this.router.navigate(['not-found',"error"])
+    //console.log("yendo a notfound")
+    //this.router.navigate(['not-found',"error"])
   }
 
 }

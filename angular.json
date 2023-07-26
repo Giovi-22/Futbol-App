@@ -47,7 +47,7 @@
 						"styles": [
 							"src/index.scss",
 							"./node_modules/bootstrap/dist/css/bootstrap-grid.min.css"
-						],
+							],
 						"stylePreprocessorOptions": {
 							"includePaths": ["./src/app/styles"]
 						},
