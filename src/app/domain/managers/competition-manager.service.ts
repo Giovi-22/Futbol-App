@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories/competition-repository-ngrx-store.service';
+import { CompetitionRepositoryNgrxStoreService } from 'src/app/data/repositories/competition/competition-repository-ngrx-store.service';
 import { CompetitionApiStrategy } from '../strategies/competition/competitionStrategy.interface';
 import CompetitionApiStrategyFactory from '../factory/competition/strategyFactory';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
