@@ -32,8 +32,9 @@ export class SessionFutbolServerStrategy implements SessionStrategy {
         })
     }
 
-    logOut(): void {
-        console.log("Log out!")
+    logOut():Observable<LoginResponseData> {
+        const url = `${this.#urlSession}/logout`; 
+        return this.http.post<LoginResponseData>(url,{},this.httpOptions);
     }
 
     signUp(User: UserEntity):Observable<LoginResponseData>{
