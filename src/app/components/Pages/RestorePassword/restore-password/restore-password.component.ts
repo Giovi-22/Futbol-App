@@ -47,7 +47,7 @@ export class RestorePasswordComponent implements OnInit {
   onSubmit(){
     const datos:RestorePassword={
       password: this.restorePasswordForm.get('password')?.value,
-      confirm: this.restorePasswordForm.get('confirm')?.value,
+      confirmedPassword: this.restorePasswordForm.get('confirm')?.value,
       token: this.jwt || ""
     }
     this.sessionM.restorePassword(datos);

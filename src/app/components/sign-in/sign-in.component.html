@@ -9,7 +9,7 @@
         <input class="ng-valid ng-invalid form-control" type="password" id="password" formControlName="password">
         <div *ngIf="!formSession.get('password')?.valid" id="passwordHelp" class="form-text">The password minimum length must be eight characters</div>
     </div>
-    <a routerLink="/changepassword">Forgot password?</a>
+    <a routerLink="/change-password">Forgot password?</a>
     <button [disabled]="!formSession.valid" type="submit" class="btn btn-outline-primary">Sign in</button>
-    <div class="form-text">Don't have an account? <a routerLink="/signup">Sign up</a></div>
-
+    <span> Don't have an account? <a routerLink="/sign-up">Sign up</a></span>
+</form>

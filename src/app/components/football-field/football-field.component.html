@@ -1,24 +1,53 @@
-
-<div *ngIf="posiciones['Goalkeeper'].length" class="cancha">
-    <span class="area__chica"></span>
+<div class="terreno">
+    <span class="cancha"></span>
+    <span class="area__chica local"></span>
+    <span class="area__grande local"></span>
+    <span class="cancha__medio"></span>
+    <span class="punto__medio"></span>
+    <span class="linea__central"></span>
+    <span class="area__chica visita"></span>
+    <span class="area__grande visita"></span>
     <div class="arquero">
-        <div class="jugador pos__1">{{posiciones['Goalkeeper'][0].name}}</div>
+        <div class="jugador pos__1" data-message="jugador 1">1
+            <span class="player__data">hola mundo</span>
+        </div>
     </div>
     
     <div class="defensores">
-        <div class="jugador pos__2">{{posiciones['Defence'][0].name}}</div>
-        <div class="jugador pos__3">{{posiciones['Defence'][1].name}}</div>
-        <div class="jugador pos__4">{{posiciones['Defence'][2].name}}</div>
-        <div class="jugador pos__5">{{posiciones['Defence'][3].name}}</div>
+        <div class="jugador pos__2" data-message="jugador 2">2
+            <span class="player__data">hola mundo</span>
+        </div>
+        <div class="jugador pos__3" data-message="jugador 3">3
+            <span class="player__data">hola mundo</span>
+        </div>
+        <div class="jugador pos__4" data-message="jugador 4">4
+            <span class="player__data">hola mundo</span>
+        </div>
+        <div class="jugador pos__5" data-message="jugador 5">5
+            <span class="player__data">hola mundo</span>
+        </div>
+        
     </div>
     <div class="mediocampo">
-        <div class="jugador pos__6">{{posiciones['Midfield'][0].name}}</div>
-        <div class="jugador pos__7">{{posiciones['Midfield'][1].name}}</div>
-        <div class="jugador pos__8">{{posiciones['Midfield'][2].name}}</div>
-        <div class="jugador pos__10">{{posiciones['Midfield'][3].name}}</div>
+        <div class="jugador pos__6" data-message="jugador 6">6
+            <span class="player__data">hola mundo</span>
+        </div>
+        <div class="jugador pos__7" data-message="jugador 7">7
+            <span class="player__data">hola mundo</span>
+        </div>
+        <div class="jugador pos__8" data-message="jugador 8">8
+            <span class="player__data">hola mundo</span>
+        </div>
     </div>
     <div class="delanteros">
-        <div class="jugador pos__9">{{posiciones['Offence'][0].name}}</div>
-        <div class="jugador pos__11">{{posiciones['Offence'][1].name}}</div>
+        <div class="jugador pos__10" data-message="jugador 10">10
+            <span class="player__data">hola mundo</span>
+        </div>
+        <div class="jugador pos__9" data-message="jugador 9">9
+            <span class="player__data">hola mundo</span>
+        </div>
+        <div class="jugador pos__11" data-message="jugador 11">11
+            <span class="player__data">hola mundo</span>
+        </div>
     </div>
 </div>

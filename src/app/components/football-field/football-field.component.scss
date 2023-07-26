@@ -1,13 +1,26 @@
 :host{
-    width: 60%;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.cancha{
-    width: 60%;
-    height: 400px;
+
+.terreno{
+    width: 350px;
+    height: 600px;
     background-color: #34a852;
     border: 2px solid  #71c287;
     position:relative;
+}
+.cancha{
+    width: 320px;
+    height: 570px;
+    border: 2px solid  #71c287;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
 }
 .area__chica{
     border: 2px solid  #71c287;
@@ -15,98 +28,180 @@
     height: 30px;
     display: block;
     position: absolute;
-    left: 40%;
-    top:-2px;
+    transform: translate(-50%,0);
 }
+.area__grande{
+    border: 2px solid  #71c287;
+    width: 140px;
+    height: 70px;
+    display: block;
+    position: absolute;
+    transform: translate(-50%,0);
+}
+.local{
+    left: 50%;
+    top: 13px;
+}
+.visita{
+    left:50%;
+    bottom: 13px;
+}
+.cancha__medio{
+    border: 2px solid  #71c287;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+.punto__medio{
+    background-color: #71c287;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+.linea__central{
+    background-color: #71c287;
+    width: 320px;
+    height: 2px;
+    display: block;
+    position: absolute;
+    left:15px;
+    top:50%;
+}
+
 .jugador{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color:transparent;
     border: 2px solid  #71c287;
     border-radius: 50%;
     text-align: center;
 }
 
+.jugador:hover .player__data{
+    display: block;
+}
+
+
 .arquero{
     position: absolute;
     width: 100%;
     height: 70px;
-    .pos__1 {
-        position: absolute;
-        left: 45%;
-        top:10px;
-    }
 }
-.defensores{
+
+.pos__1 {
     position: absolute;
-    top:60px;
+    left: 50%;
+    top:15px;
+    transform: translate(-50%);
+}
+
+
+.defensores{
+    position: relative;
+    top:100px;
     width: 100%;
     height: 130px;
-    
-    .pos__2 {
-        position: absolute;
-        right: 30%;
-        top:10px;
-    }
-    
-    .pos__3 {
-        position: absolute;
-        left: 30%;
-        top:10px;
-    }
-    .pos__4 {
-        position: absolute;
-        right: 10%;
-        top: 10px;
-    }
-    
-    .pos__5 {
-        position: absolute;
-        left: 10%;
-        top:10px;
-    }
 }
+
+.pos__2 {
+    position: absolute;
+    right: 30%;
+    top:10px;
+}
+
+.pos__3 {
+    position: absolute;
+    left: 30%;
+    top:10px;
+}
+.pos__4 {
+    position: absolute;
+    right: 10%;
+    top: 60px;
+}
+
+.pos__5 {
+    position: absolute;
+    left: 10%;
+    top: 60px;
+}
+
 .mediocampo{
     position: absolute;
-    top:190px;
     width: 100%;
+    top:50%;
+    left:50%;
     height: 100px;
-    .pos__6 {
-        position: absolute;
-        right: 60%;
-        top:30px;
-    }
+    transform: translate(-50%,-80%);
     
-    .pos__7{
-        position: absolute;
-        right: 35%;
-        //top:50px;
-    }
-    
-    .pos__8 {
-        position: absolute;
-        left: 35%;
-       // top:50px;
-    }
-    .pos__10 {
-        position: absolute;
-        left: 60%;
-        top:30px;
-    }
 }
+
+.pos__6 {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.pos__7{
+    position: absolute;
+    right: 10%;
+    top:70px;
+
+}
+
+.pos__8 {
+    position: absolute;
+    left: 10%;
+    top:70px;
+
+}
+
 .delanteros{
     position: absolute;
-    top:310px;
+    top:400px;
     width: 100%;
     height: 100px;
-    .pos__9 {
-        position: absolute;
-        right: 40%;
-       // top:20px;
-    }
-    
-    .pos__11 {
-        position: absolute;
-        left: 30%;
-    }
+   
 }
+.pos__9 {
+    position: absolute;
+    right: 20%;
+    top:50px;
+
+}
+
+.pos__10 {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.pos__11 {
+    position: absolute;
+    left: 20%;
+    top:50px;
+}
+
+.player__data {
+    display: none; 
+    background-color: rgb(86, 182, 7);
+    position: absolute;
+    bottom: -25px; /* Ajusta la distancia del mensaje con respecto al elemento */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  

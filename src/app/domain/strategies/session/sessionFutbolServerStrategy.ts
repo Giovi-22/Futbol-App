@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParamsOptions } from "@angular/common/http";
+import { Observable, map } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
 import { SessionStrategy } from './sessionStrategy.interface';
 import UserEntity from '../../entities/UserEntity';
 import { LogIn, LoginResponseData, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
@@ -51,19 +51,20 @@ export class SessionFutbolServerStrategy implements SessionStrategy {
         )
         })
     }
+    changePassword(email: string):Observable<LoginResponseData> {
+        const url = `${this.#urlSession}/forgotpassword`;
+        let result$ = new Observable<LoginResponseData>();
+        return result$ = this.http.post<LoginResponseData>(url,{email},this.httpOptions);
+    }
 
     restorePassword(data:RestorePassword):Observable<LoginResponseData>{
         const url = `${this.#urlSession}/changepassword`;
-        return new Observable((observer)=>{
-            this.http.put<LoginResponseData>(url,data,this.httpOptions).subscribe(
-                (response)=>{
-                    observer.next(response);
-                },
-                (error)=>{
-                    observer.error(`Se ha producido un error: ${error}`);
-                }
-            )
-        })
+        return this.http.put<LoginResponseData>(url,data,this.httpOptions).pipe(
+            map((result)=>{
+                console.log("el resultado es: ",result)
+                return result;
+            })
+        );
     }
 
 

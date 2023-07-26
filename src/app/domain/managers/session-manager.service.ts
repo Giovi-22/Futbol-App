@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { SessionFutbolServerStrategy } from '../strategies/session/sessionFutbolServerStrategy';
-import { HttpClient } from '@angular/common/http';
-import { LogIn, LoginResponseData, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ErrorData, LogIn, LoginResponseData, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
+import { Observable,map } from 'rxjs';
 import UserEntity from '../entities/UserEntity';
 import { SessionStrategy } from '../strategies/session/sessionStrategy.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class SessionManagerService {
 
   constructor(
     private http: HttpClient,
+    private router: Router
     ) {
     this.#session = new SessionFutbolServerStrategy(this.http);
    }
@@ -28,7 +30,28 @@ export class SessionManagerService {
    }
 
    restorePassword(data:RestorePassword){
-      this.#session.restorePassword(data);
+      this.#session.restorePassword(data).subscribe({
+         next:(result)=>{
+            console.log("El resultado es: ",result)
+         },
+         error:(error:HttpErrorResponse)=>{
+            console.log("El error es: ",error.error.message);
+            const data:ErrorData={
+               status:error.status.toString(),
+               message:error.message
+            }
+            this.router.navigate(['notfound',error.status.toString(),error.message])
+         }
+      })
+   }
+
+   changePassword(email:string){
+
+      return this.#session.changePassword(email).pipe(
+         map((result)=>{console.log("el resultado es en manager: ",result)
+         return result;})
+      );
+
    }
 
 }

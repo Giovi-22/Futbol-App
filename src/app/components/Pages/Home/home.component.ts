@@ -11,6 +11,7 @@ import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
 import { DropdownComponent } from '../../shared/dropdown/dropdown.component';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private competitionM: CompetitionManagerService,
     private teamM: TeamManagerService,
-    private router: Router
+    private router: Router,
     ) { }
 
   ngOnInit(): void {
@@ -48,5 +49,11 @@ export class HomeComponent implements OnInit {
     this.teamM.findApiTeams(competitionCode);
     this.router.navigate(['competitions']);
   }
+
+  toErrorPage(){
+    console.log("yendo a notfound")
+    this.router.navigate(['not-found',"error"])
+  }
+
 }
 

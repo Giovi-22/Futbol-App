@@ -6,5 +6,6 @@ export interface SessionStrategy{
     logIn(User:LogIn):Observable<LoginResponseData>,
     signUp(User:UserEntity):Observable<LoginResponseData>,
     logOut():void,
+    changePassword(email:string):Observable<LoginResponseData>,
     restorePassword(data:RestorePassword):Observable<LoginResponseData>
 }

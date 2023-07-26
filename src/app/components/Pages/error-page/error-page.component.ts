@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ErrorData } from 'src/app/models/interfaces/session.interfaces';
 
 @Component({
   selector: 'app-error-page',
@@ -11,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ErrorPageComponent implements OnInit {
 
-  @Input() message:string = "";
+  @Input() error!:ErrorData;
   constructor(
     private router: Router,
     private activateRoute: ActivatedRoute
@@ -21,8 +22,10 @@ export class ErrorPageComponent implements OnInit {
     this.activateRoute.paramMap.subscribe(
       (params)=>{
         const parametro:any = params.get('message')
-        console.log(parametro)
-        this.message = parametro;
+        console.log(params)
+        //this.error.message = params.get('message') || "";
+        //this.error.status = params.get('status') || "";
+        //console.log("Los parametros del error son: ",this.error);
       }
       )
   }

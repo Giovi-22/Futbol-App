@@ -19,6 +19,11 @@ export interface LoginResponseData{
 
 export interface RestorePassword{
     password:string,
-    confirm:string,
+    confirmedPassword:string,
     token:string
+}
+
+export interface ErrorData{
+    status:string,
+    message:string
 }
