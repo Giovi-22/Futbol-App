@@ -40,7 +40,7 @@ export class ChangePasswordComponent implements OnInit {
         },
         error:(error)=>{
           console.log("El error es: ",error);
-          this.toastr.error(error.message,"Change Password failed!",{closeButton:true,easing:"ease-in"});
+          this.toastr.error(error.error.message,"Change Password failed!",{closeButton:true,easing:"ease-in"});
         }
       }
     )

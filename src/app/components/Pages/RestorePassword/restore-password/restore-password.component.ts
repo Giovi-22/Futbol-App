@@ -35,11 +35,12 @@ export class RestorePasswordComponent implements OnInit {
       password:["",[Validators.required,,Validators.minLength(8)]],
       confirm:["",[Validators.required,Validators.minLength(8)]]
     });
+
     this.activateRoute.paramMap.subscribe(
       (result)=>{
         console.log("El resultado de paramMap es: ",result)
         if(!result.get('jwt')){
-          this.router.navigate(['notfound',"no se ha proporcionado un token para restablecer la contraseña"])
+          this.toastr.error("Error: Token to reset the password not found.","Restore password");
         }else{
           this.jwt = result.get('jwt');
         }
@@ -48,23 +49,24 @@ export class RestorePasswordComponent implements OnInit {
   }
 
   onSubmit(){
+    const password = this.restorePasswordForm.get('password')?.value;
+    const confirm = this.restorePasswordForm.get('confirm')?.value;
     const datos:RestorePassword={
-      password: this.restorePasswordForm.get('password')?.value,
-      confirmedPassword: this.restorePasswordForm.get('confirm')?.value,
+      password: password,
+      confirm: confirm,
       token: this.jwt || ""
     }
     this.sessionM.restorePassword(datos).subscribe({
       next:(result)=>{
-        
-        this.toastr.success(result.message,"Password changed",{closeButton:true,easing:"ease-in"});
-        
-        console.log("el resultado es: ",result)
+        //this.toastr.success(result.message,"Password updated successfully",{closeButton:true,easing:"ease-in"});
+        setTimeout(()=>this.router.navigate(["/"]),2000);
       },
       error:(error)=>{
-        console.log("El error es: ",error);
-        this.toastr.error(error.error.message,"Change Password failed!",{closeButton:true,easing:"ease-in"});
+        console.log("el error en el componente: ",error)
+        this.toastr.error(error.message,"Restore password failed!",{closeButton:true,easing:"ease-in"});
       }
     })
+    return;
   }
 
 }
