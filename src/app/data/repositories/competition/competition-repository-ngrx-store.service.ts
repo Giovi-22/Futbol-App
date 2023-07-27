@@ -7,12 +7,13 @@ import { matchesList, selectCompetition, selectCompetitionsList, selectCurrentCo
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 import { Standing } from 'src/app/models/interfaces/competitioniterfaces';
+import { CompetitionRepository } from 'src/app/models/interfaces/repositories/competitionRepository.interface';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class CompetitionRepositoryNgrxStoreService {
+export class CompetitionRepositoryNgrxStoreService implements CompetitionRepository{
 
   constructor(
     private store:Store<AppState>

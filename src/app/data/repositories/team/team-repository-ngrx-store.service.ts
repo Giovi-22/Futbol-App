@@ -6,7 +6,7 @@ import { loadPopular, loadTeam, loadedTeams } from '../../../store/actions/teams
 import { AppState } from '@store/app.state';
 import { selectTeamsList, selectedTeam, popularTeams } from '../../../store/selectors/teams.selectors';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
-import { TeamRepository } from './teamRepository';
+import { TeamRepository } from '../../../models/interfaces/repositories/teamRepository.interface';
 
 @Injectable({
   providedIn: 'root'

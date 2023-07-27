@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '@store/app.state';
 import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team/team-repository-ngrx-store.service';
-import { TeamRepository } from 'src/app/data/repositories/team/teamRepository';
+import { TeamRepository } from 'src/app/models/interfaces/repositories/teamRepository.interface';
 
 
 @Injectable({
