@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { SessionFutbolServerStrategy } from '../strategies/session/sessionFutbolServerStrategy';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ErrorData, LogIn, LoginResponseData, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
+import { ErrorData, LogIn, ResponseData, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
 import { Observable,catchError,map } from 'rxjs';
 import UserEntity from '../entities/UserEntity';
-import { SessionStrategy } from '../strategies/session/sessionStrategy.interface';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 @Injectable({
@@ -22,44 +21,75 @@ export class SessionManagerService {
     this.#session = new SessionFutbolServerStrategy(this.http);
    }
 
-   logIn(user:LogIn):Observable<LoginResponseData>{
-      return this.#session.logIn(user);
+   logIn(user:LogIn){
+      return this.#session.logIn(user).subscribe({
+         next:(response)=>{
+            if(response.status.includes('success')){
+               if(!(response.data instanceof UserEntity)){
+                  localStorage.setItem('user',response.data);
+               }
+               this.toastr.success(response.message,"Login",{closeButton:true,easing:"ease-in"});     
+             }
+         },
+         error:(error:HttpErrorResponse)=>{
+            this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Login failed!",{closeButton:true,easing:"ease-in"});
+         }
+      });
+   }
+
+   current(){
+      this.#session.current().subscribe({
+         next:(result)=>{
+            console.log("EL usuario logueado es: ",result)
+         },
+         error:(error)=>{
+            this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Current failed!",{closeButton:true,easing:"ease-in"});
+         }
+      })
    }
 
    singUp(user:UserEntity){
-    return this.#session.signUp(user);
+    this.#session.signUp(user).subscribe({
+      next:(result)=>{
+         if(result.status.includes('success')){
+         this.toastr.success(result.message,"Sign Up",{closeButton:true,easing:"ease-in"});
+         }
+      },
+      error:(error:HttpErrorResponse)=>{
+         this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Signup failed!",{closeButton:true,easing:"ease-in"});
+      }
+    })
    }
 
    restorePassword(data:RestorePassword){
       if(data.password !== data.confirm){
-         console.log("error desde manager")
-         return new Observable<LoginResponseData>((observer)=>observer.error({message:"The password and confirm password do not match."}));
+        return this.toastr.error("The password and confirm password do not match.","Restore password failed!",{closeButton:true,easing:"ease-in"});
        }
        if(!(data.token.split(" "))?.length){
-         return new Observable<LoginResponseData>((observer)=>observer.error({message:"Token to reset the password not found."}));
+         return this.toastr.error("Token to reset the password not found.","Restore password failed!",{closeButton:true,easing:"ease-in"});
        }
 
-      return this.#session.restorePassword(data).pipe(
-         map((result)=>{
-            return new Observable<LoginResponseData>(observer=> observer.next(result));
-         }),
-         catchError((error)=>{
-            const newError:LoginResponseData = {
-               data:"",
-               message:error.error.message,
-               status:false
+      return this.#session.restorePassword(data).subscribe({
+         next:(result)=>{
+            if(result.status.includes('success')){
+               this.toastr.success(result.message,"Password updated successfully",{closeButton:true,easing:"ease-in"});
+               return;
             }
-            return new Observable(observer=> observer.error(newError));
-         })
-      );
+         },
+         error:((error:HttpErrorResponse)=>{
+            return this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Restore password failed!",{closeButton:true,easing:"ease-in"});
+         })});
    }
 
    changePassword(email:string){
-
-      return this.#session.changePassword(email).pipe(
-         map((result)=>{console.log("el resultado es en manager: ",result)
-         return result;})
-      );
+      this.#session.changePassword(email).subscribe({
+         next:((result)=>{
+            this.toastr.success(result.message,"Change Password",{closeButton:true,easing:"ease-in"});
+         }),
+         error:(error:HttpErrorResponse)=>{
+            this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Change Password failed!",{closeButton:true,easing:"ease-in"});
+         }
+      });
 
    }
 

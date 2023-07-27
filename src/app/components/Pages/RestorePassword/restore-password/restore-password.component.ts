@@ -38,7 +38,6 @@ export class RestorePasswordComponent implements OnInit {
 
     this.activateRoute.paramMap.subscribe(
       (result)=>{
-        console.log("El resultado de paramMap es: ",result)
         if(!result.get('jwt')){
           this.toastr.error("Error: Token to reset the password not found.","Restore password");
         }else{
@@ -51,22 +50,12 @@ export class RestorePasswordComponent implements OnInit {
   onSubmit(){
     const password = this.restorePasswordForm.get('password')?.value;
     const confirm = this.restorePasswordForm.get('confirm')?.value;
-    const datos:RestorePassword={
+    const data:RestorePassword={
       password: password,
       confirm: confirm,
       token: this.jwt || ""
     }
-    this.sessionM.restorePassword(datos).subscribe({
-      next:(result)=>{
-        //this.toastr.success(result.message,"Password updated successfully",{closeButton:true,easing:"ease-in"});
-        setTimeout(()=>this.router.navigate(["/"]),2000);
-      },
-      error:(error)=>{
-        console.log("el error en el componente: ",error)
-        this.toastr.error(error.message,"Restore password failed!",{closeButton:true,easing:"ease-in"});
-      }
-    })
-    return;
+    this.sessionM.restorePassword(data);
   }
 
 }

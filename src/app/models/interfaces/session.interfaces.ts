@@ -1,3 +1,4 @@
+import UserEntity from "src/app/domain/entities/UserEntity";
 
 export interface LogIn{
     email:string,
@@ -11,10 +12,10 @@ export interface User{
     email:string;
 }
 
-export interface LoginResponseData{
-    status:boolean,
+export interface ResponseData{
+    status:string,
     message:string,
-    data:string;
+    data:string | UserEntity;
 }
 
 export interface RestorePassword{

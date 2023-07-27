@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder} from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
 import { LogIn } from 'src/app/models/interfaces/session.interfaces';
@@ -27,7 +26,6 @@ export class SignInComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private sessionM: SessionManagerService,
-    private toastr: ToastrService,
     private router:Router
     ) { }
 
@@ -39,26 +37,12 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit(){
-    const sessionDto:LogIn = {
+    const session:LogIn = {
       email: this.formSession.get("email")?.value,
       password: this.formSession.get("password")?.value
     }
-    this.sessionM.logIn(sessionDto).subscribe({
-      next:(response)=>{
-        if(response.status){
-          this.toastr.success(response.message,"Login",{closeButton:true,easing:"ease-in"});
-          setTimeout(()=>this.router.navigate(["/"]),2000);
-          console.log("Usuario logueado")        
-        }
-      
-      },
-      error:(error)=>{
-        console.log("dentro de singin component")
-        console.log("El error es: ",error)
-        this.toastr.error(error.error.message,"Login failed!",{closeButton:true,easing:"ease-in"});
-      }}
-    )
-    console.log("valores del form: ",this.formSession.value)
+    this.sessionM.logIn(session);
+    
   }
 
 }
