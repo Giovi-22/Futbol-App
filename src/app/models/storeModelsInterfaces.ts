@@ -1,6 +1,7 @@
 import { CompetitionEntity } from '../domain/entities/CompetitionEntity';
 import { MatchEntity } from '../domain/entities/MatchEntity';
 import { TeamEntity } from '../domain/entities/TeamEntity';
+import UserEntity from '../domain/entities/UserEntity';
 import { Standing } from './interfaces/competitioniterfaces';
 
 export interface CompetitionsState{
@@ -17,6 +18,14 @@ export interface TeamsState{
     current:TeamEntity,
     teams:Array<TeamEntity>,
     popularTeams: TeamEntity[]
+}
+
+export interface UserState{
+
+    user:UserEntity,
+    isLogged:boolean,
+    favoriteTeams:TeamEntity [],
+    favoritePlayers: TeamEntity[]
 }
 //------------------------------------------
 

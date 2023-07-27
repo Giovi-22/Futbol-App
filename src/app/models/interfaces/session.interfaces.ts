@@ -11,7 +11,11 @@ export interface User{
     password:string;
     email:string;
 }
-
+export interface LoginResponse{
+    message:string,
+    status:string,
+    data:{token:string,user:UserEntity}
+}
 export interface ResponseData{
     status:string,
     message:string,

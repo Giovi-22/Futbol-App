@@ -6,6 +6,8 @@ import { Observable,catchError,map } from 'rxjs';
 import UserEntity from '../entities/UserEntity';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UserRepositoryNgrxStoreService } from 'src/app/data/repositories/user/user-repository-ngrx-store.service';
+import { UserManagerService } from './user-manager.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +18,8 @@ export class SessionManagerService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userM: UserManagerService
     ) {
     this.#session = new SessionFutbolServerStrategy(this.http);
    }
@@ -25,27 +28,22 @@ export class SessionManagerService {
       return this.#session.logIn(user).subscribe({
          next:(response)=>{
             if(response.status.includes('success')){
-               if(!(response.data instanceof UserEntity)){
-                  localStorage.setItem('user',response.data);
+               if(!(response.data.user instanceof UserEntity)){
+                  localStorage.setItem('user',response.data.token);
+                  this.userM.setUser(response.data.user);
+                  this.userM.setUserLoggedIn(true);
                }
                this.toastr.success(response.message,"Login",{closeButton:true,easing:"ease-in"});     
-             }
+            }
          },
          error:(error:HttpErrorResponse)=>{
-            this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Login failed!",{closeButton:true,easing:"ease-in"});
+          this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Login failed!",{closeButton:true,easing:"ease-in"});
          }
       });
    }
 
    current(){
-      this.#session.current().subscribe({
-         next:(result)=>{
-            console.log("EL usuario logueado es: ",result)
-         },
-         error:(error)=>{
-            this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Current failed!",{closeButton:true,easing:"ease-in"});
-         }
-      })
+      return this.#session.current();
    }
 
    singUp(user:UserEntity){

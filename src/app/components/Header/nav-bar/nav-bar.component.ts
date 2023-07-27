@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { ButtonLinkComponent } from '../../shared/button-link/button-link.component';
+import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
+import { UserManagerService } from 'src/app/domain/managers/user-manager.service';
+import { Observable } from 'rxjs';
+import UserEntity from 'src/app/domain/entities/UserEntity';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -20,14 +25,19 @@ import { ButtonLinkComponent } from '../../shared/button-link/button-link.compon
 export class NavBarComponent implements OnInit {
   showMenu:boolean=false;
   @Output() openMenu= new EventEmitter<boolean>();
-
-  constructor() { }
+  isLogged$= new Observable<boolean>();
+  constructor(
+    private userM: UserManagerService,
+    private sessionM: SessionManagerService,
+    private toastr: ToastrService
+  ) { }
 
   setMenu(showMenu:boolean){
     this.openMenu.emit(showMenu);
   }
 
   ngOnInit(): void {
+    this.isLogged$ = this.userM.userIsLogged()
   }
 
 }

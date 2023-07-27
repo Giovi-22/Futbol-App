@@ -1,10 +1,11 @@
 import { Observable, map } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { SessionStrategy } from './sessionStrategy.interface';
 import UserEntity from '../../entities/UserEntity';
-import { LogIn, ResponseData, RestorePassword, User } from 'src/app/models/interfaces/session.interfaces';
+import { LogIn, LoginResponse, ResponseData, RestorePassword, User } from 'src/app/models/interfaces/session.interfaces';
+import { Status } from '../../../models/interfaces/matchesInterfaces';
 
-export class SessionFutbolServerStrategy implements SessionStrategy {
+export class SessionFutbolServerStrategy implements SessionStrategy  {
 
     #urlSession:string='http://localhost:8081/api/session'
     httpOptions= {
@@ -14,35 +15,23 @@ export class SessionFutbolServerStrategy implements SessionStrategy {
     withCredentials:true
     }
     
-    constructor(private http: HttpClient){}
+    constructor(
+        private http: HttpClient,
+        ){}
 
-    logIn(User: LogIn):Observable<ResponseData> {
+    
+
+    logIn(User: LogIn):Observable<LoginResponse> {
 
         const url = `${this.#urlSession}/login`;
-        return new Observable<ResponseData>((observer)=>{
-        this.http.post<ResponseData>(url,User,this.httpOptions).subscribe(
-            (result)=>{
-                console.log(result);
-                observer.next(result)
-            },
-            (error:HttpErrorResponse)=>{
-                observer.error(error)
-            }
-        )
-        })
+        return this.http.post<LoginResponse>(url,User,this.httpOptions);
+
     }
 
     current():Observable<ResponseData>{
-        const headers = new HttpHeaders({
-            "Authorization":`Bearer ${localStorage.getItem('user')}`,
-            "Contetn-Type":'application/json'
-        })
         const url = `${this.#urlSession}/current`;
         return new Observable<ResponseData>((observer)=>{
-        this.http.get<ResponseData>(url,{
-            headers:headers,
-            withCredentials:true
-            }).subscribe({
+        this.http.get<ResponseData>(url,this.httpOptions).subscribe({
             next:(result)=>{
                 if(result.data instanceof UserEntity){
                     const user:User ={

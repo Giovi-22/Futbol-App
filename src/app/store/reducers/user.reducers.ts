@@ -21,10 +21,10 @@ export const initialState:UserState = {
 
 export const userReducer = createReducer(
     initialState,
+    
     on(loadUser,(state,{user})=>{
         return {
             ...state,
-            isLogged:true,
             user
         }}),
     on(setUserLoggedIn,(state,{isLogged})=>{

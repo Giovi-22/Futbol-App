@@ -1,5 +1,5 @@
 // Angular Imports
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { environment } from '@environment'
@@ -18,6 +18,7 @@ import { FooterComponent } from './components/Footer/footer/footer.component'
 import { MainComponent } from './components/Main/main/main.component';
 
 import StrategyFactory from './domain/factory/team/strategyFactory'
+import { SessionRequestInterceptorService } from './services/session-request-interceptor.service'
 
 
 @NgModule({
@@ -37,7 +38,10 @@ import StrategyFactory from './domain/factory/team/strategyFactory'
 
 		
 	],
-	providers: [StrategyFactory],
+	providers: [
+		StrategyFactory,
+		{ provide: HTTP_INTERCEPTORS, useClass: SessionRequestInterceptorService, multi: true }
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
