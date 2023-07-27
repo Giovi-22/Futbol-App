@@ -11,7 +11,8 @@
     </div>
     <div class="navbar__auth">
         <div class="verticalLine"></div>
-        <button class="btn btn-outline-secondary"  routerLink="/sign-in">SIGN IN</button>
-        <button class="btn btn-primary" routerLink="/sign-up">SIGN UP</button>
+        <button *ngIf="!(isLogged$ | async)" class="btn btn-outline-secondary"  routerLink="/sign-in">SIGN IN</button>
+        <button *ngIf="!(isLogged$ | async)" class="btn btn-primary" routerLink="/sign-up">SIGN UP</button>
+        <button *ngIf="(isLogged$ | async)" class="btn btn-outline-secondary"  (click)="signOut()">SIGN OUT</button>
     </div>
 </nav>

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { SessionFutbolServerStrategy } from '../strategies/session/sessionFutbolServerStrategy';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ErrorData, LogIn, ResponseData, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
-import { Observable,catchError,map } from 'rxjs';
-import UserEntity from '../entities/UserEntity';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserRepositoryNgrxStoreService } from 'src/app/data/repositories/user/user-repository-ngrx-store.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+
+import { SessionFutbolServerStrategy } from '../strategies/session/sessionFutbolServerStrategy';
+import {LogIn, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
+import UserEntity from '../entities/UserEntity';
 import { UserManagerService } from './user-manager.service';
 @Injectable({
   providedIn: 'root'
@@ -89,6 +88,18 @@ export class SessionManagerService {
          }
       });
 
+   }
+
+   logOut(){
+      localStorage.removeItem('user');
+      this.#session.logOut().subscribe({
+         next:(response)=>{
+            this.toastr.success(response.message,"Log out",{closeButton:true,easing:"ease-in"});
+         },
+         error:(error:HttpErrorResponse)=>{
+            this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Log out failed!",{closeButton:true,easing:"ease-in"});
+         }
+      })
    }
 
 }

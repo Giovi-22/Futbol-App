@@ -40,4 +40,8 @@ export class NavBarComponent implements OnInit {
     this.isLogged$ = this.userM.userIsLogged()
   }
 
+  signOut(){
+    this.sessionM.logOut();
+  }
+
 }
