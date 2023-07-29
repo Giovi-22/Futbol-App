@@ -29,7 +29,6 @@ export class NavBarComponent implements OnInit {
   constructor(
     private userM: UserManagerService,
     private sessionM: SessionManagerService,
-    private toastr: ToastrService
   ) { }
 
   setMenu(showMenu:boolean){

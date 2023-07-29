@@ -4,6 +4,8 @@
     align-items: center;
     height: 50px;
     width: auto;
+    cursor:pointer;
+
     img{
         width: auto;
         height: auto;
@@ -11,6 +13,7 @@
         max-height: 70%;
     }
     p{
+        padding-left: 5px;
         margin:0;
     }
 }

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
+import { UserManagerService } from 'src/app/domain/managers/user-manager.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-team-card',
@@ -13,11 +15,14 @@ import { TeamManagerService } from 'src/app/domain/managers/team-manager.service
   
 })
 export class TeamCardComponent implements OnInit {
+
   @Input() teamData:TeamEntity = new TeamEntity({});
-  
+  isLogged$ = new Observable<boolean>();
+
   constructor(
     private router:Router,
-    private teamM: TeamManagerService
+    private teamM: TeamManagerService,
+    private userM: UserManagerService
     ) { 
     
   }
@@ -30,6 +35,7 @@ export class TeamCardComponent implements OnInit {
 
 
   ngOnInit(): void {
+   this.isLogged$ = this.userM.userIsLogged();
   }
 
 }

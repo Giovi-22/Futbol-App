@@ -1,1 +1,4 @@
-<p>favorites works!</p>
+<h4>Favorite Teams</h4>
+<div class="team__list">
+    <app-team-card *ngFor="let team of favoriteTeams" [teamData]="team"></app-team-card>
+</div>

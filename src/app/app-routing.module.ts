@@ -10,6 +10,7 @@ import { MatchesComponent } from './components/Pages/matches/matches.component'
 import { SignUpComponent } from './components/sign-up/sign-up.component'
 import { RestorePasswordComponent } from './components/Pages/RestorePassword/restore-password/restore-password.component'
 import { ChangePasswordComponent } from './components/Pages/ChangePassword/change-password/change-password.component'
+import { FavoritesComponent } from './components/Pages/favorites/favorites.component'
 
 const routes: Routes = [
 	{
@@ -43,6 +44,10 @@ const routes: Routes = [
 	{
 		path: 'restore-password/:jwt',
 		component: RestorePasswordComponent
+	},
+	{
+		path:'favorites',
+		component:FavoritesComponent
 	},
 	{
 		path:'notfound',

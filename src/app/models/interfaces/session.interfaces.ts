@@ -1,3 +1,4 @@
+import { TeamEntity } from "src/app/domain/entities/TeamEntity";
 import UserEntity from "src/app/domain/entities/UserEntity";
 
 export interface LogIn{
@@ -20,6 +21,12 @@ export interface ResponseData{
     status:string,
     message:string,
     data:string | UserEntity;
+}
+
+export interface ResponseUser{
+    status:string,
+    message:string,
+    data: TeamEntity[]
 }
 
 export interface RestorePassword{

@@ -19,6 +19,7 @@ import { MainComponent } from './components/Main/main/main.component';
 
 import StrategyFactory from './domain/factory/team/strategyFactory'
 import { SessionRequestInterceptorService } from './services/session-request-interceptor.service'
+import { UserApiStrategy } from './domain/strategies/user/userStrategies'
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { SessionRequestInterceptorService } from './services/session-request-int
 	],
 	providers: [
 		StrategyFactory,
-		{ provide: HTTP_INTERCEPTORS, useClass: SessionRequestInterceptorService, multi: true }
+		{ provide: HTTP_INTERCEPTORS, useClass: SessionRequestInterceptorService, multi: true, }
 	],
 	bootstrap: [AppComponent],
 })

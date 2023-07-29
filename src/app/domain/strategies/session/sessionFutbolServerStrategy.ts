@@ -1,9 +1,8 @@
 import { Observable, map } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { SessionStrategy } from './sessionStrategy.interface';
 import UserEntity from '../../entities/UserEntity';
 import { LogIn, LoginResponse, ResponseData, RestorePassword, User } from 'src/app/models/interfaces/session.interfaces';
-import { Status } from '../../../models/interfaces/matchesInterfaces';
 
 export class SessionFutbolServerStrategy implements SessionStrategy  {
 

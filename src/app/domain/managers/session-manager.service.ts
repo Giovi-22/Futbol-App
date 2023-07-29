@@ -95,6 +95,7 @@ export class SessionManagerService {
       this.#session.logOut().subscribe({
          next:(response)=>{
             this.toastr.success(response.message,"Log out",{closeButton:true,easing:"ease-in"});
+            this.userM.setUserLoggedIn(false);
          },
          error:(error:HttpErrorResponse)=>{
             this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Log out failed!",{closeButton:true,easing:"ease-in"});
