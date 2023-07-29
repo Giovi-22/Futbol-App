@@ -1,13 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 
 import { ButtonLinkComponent } from '../../shared/button-link/button-link.component';
 import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
 import { UserManagerService } from 'src/app/domain/managers/user-manager.service';
 import { Observable } from 'rxjs';
-import UserEntity from 'src/app/domain/entities/UserEntity';
-import { ToastrService } from 'ngx-toastr';
+import { AuthComponent } from '../../auth/auth.component';
 
 
 @Component({
@@ -16,19 +16,24 @@ import { ToastrService } from 'ngx-toastr';
   imports: [
     CommonModule,
     RouterModule,
-    ButtonLinkComponent
+    ButtonLinkComponent,
+    AuthComponent
   ],
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
 
 export class NavBarComponent implements OnInit {
+
   showMenu:boolean=false;
   @Output() openMenu= new EventEmitter<boolean>();
   isLogged$= new Observable<boolean>();
+  breakpointMedium:boolean = false;
+
   constructor(
     private userM: UserManagerService,
     private sessionM: SessionManagerService,
+    private breakointObserver: BreakpointObserver
   ) { }
 
   setMenu(showMenu:boolean){
@@ -36,7 +41,13 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLogged$ = this.userM.userIsLogged()
+    this.isLogged$ = this.userM.userIsLogged();
+    this.breakointObserver.observe("(min-width:1200px)").subscribe({
+      next:(result)=>{
+        console.log("El breakpoint es: ",result)
+        this.breakpointMedium=result.matches;
+      }
+    })
   }
 
   signOut(){

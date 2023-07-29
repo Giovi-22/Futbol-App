@@ -53,19 +53,9 @@ $backgroundColor: tools.colors("white");
     width: 400px;
 }
 
-.navbar__auth{
-    display:flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap:10px;
-    height: 100%;
-    margin-right: 20px;
-
-    .verticalLine{
-        margin-right: auto;
-        border: none;
-        border-left: 3px solid #e1e0e7;
-        height: 70%;
-        border-radius: 3px;
-    }
+.verticalLine{
+    border: none;
+    border-left: 3px solid #e1e0e7;
+    height: 70%;
+    border-radius: 3px;
 }
