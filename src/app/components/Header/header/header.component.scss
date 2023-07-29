@@ -3,6 +3,7 @@
 $backgroundColor: tools.colors("white");
 
 :host{
+    position: relative;
     width: 100%;
 }
 .header{
@@ -22,4 +23,17 @@ $backgroundColor: tools.colors("white");
     height: 100%;
     width:auto;
     margin: 0 10px;
+    cursor: pointer;
+    img{
+        min-width: auto;
+        min-height: auto;
+        width: 140px;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .header{
+        flex-direction: column;
+    }
 }

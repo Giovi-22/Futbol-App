@@ -1,4 +1,9 @@
-
+:host{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 .navbar__auth{
     display:flex;
     justify-content: space-evenly;
@@ -9,5 +14,7 @@
 }
 
 .dropdown{
-    margin-right: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }

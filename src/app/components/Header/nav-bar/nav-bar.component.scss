@@ -17,6 +17,10 @@ $backgroundColor: tools.colors("white");
     margin: 0;
 }
 
+.search-group{
+    width: auto;
+}
+
 .navbar__links{
     background-color: $backgroundColor;
     display:flex;
@@ -25,23 +29,6 @@ $backgroundColor: tools.colors("white");
     height: 100%;
     gap: 30px;
     margin-left: 20px;
-
-    a{
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        text-decoration: none;
-        color:#6b6b6e;
-    } 
-    a:hover{
-        border-bottom: 1px solid brown;
-    }
-    a:focus{
-        border-bottom: 1px solid brown;
-        background-color:  #f8f9fa;
-    }
-
 }
 
 .navbar__search{
@@ -58,4 +45,24 @@ $backgroundColor: tools.colors("white");
     border-left: 3px solid #e1e0e7;
     height: 70%;
     border-radius: 3px;
+}
+.dropdown-menu-items{
+    cursor: pointer;
+}
+
+.dropdown-menu-items:hover{
+    background-color: rgba(231, 225, 225, 0.336);
+}
+
+@media screen and (max-width: 850px) {
+    .navbar__search{
+        width:300px;
+    }
+    .navbar{
+        justify-content: space-evenly;
+    }
+}
+
+@media screen and (min-width:1200) {
+
 }

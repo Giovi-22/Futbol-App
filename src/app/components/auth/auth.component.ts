@@ -15,7 +15,7 @@ import { SessionManagerService } from 'src/app/domain/managers/session-manager.s
 export class AuthComponent implements OnInit {
 
   isLogged$= new Observable<boolean>();
-  breakpointMedium:boolean = false;
+  breakpoint:boolean = false;
 
   constructor(
     private breakointObserver: BreakpointObserver,
@@ -26,10 +26,10 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLogged$ = this.userM.userIsLogged();
-    this.breakointObserver.observe("(min-width:1200px)").subscribe({
+    this.breakointObserver.observe("(min-width:850px)").subscribe({
       next:(result)=>{
         console.log("El breakpoint es: ",result)
-        this.breakpointMedium=result.matches;
+        this.breakpoint=result.matches;
       }
     })
   }

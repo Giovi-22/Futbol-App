@@ -1,4 +1,4 @@
-<ng-container *ngIf="breakpointMedium; else elseTemplate">
+<ng-container *ngIf="breakpoint; else elseTemplate">
     <div class="navbar__auth">
         <button *ngIf="!(isLogged$ | async)" class="btn btn-outline-secondary"  routerLink="/sign-in">SIGN IN</button>
         <button *ngIf="!(isLogged$ | async)" class="btn btn-primary" routerLink="/sign-up">SIGN UP</button>
@@ -6,13 +6,14 @@
     </div>
 </ng-container>
 <ng-template #elseTemplate>
-    <div class="dropdown">
+    <div class="dropdown ">
         <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-fill"></i>
         </button>
-        <ul class="dropdown-menu">
-            <li><button *ngIf="!(isLogged$ | async)" class="btn btn-outline-secondary"  routerLink="/sign-in">SIGN IN</button></li>
-            <li><button *ngIf="!(isLogged$ | async)" class="btn btn-primary" routerLink="/sign-up">SIGN UP</button></li>
-            <li><button *ngIf="(isLogged$ | async)" class="btn btn-outline-secondary"  (click)="signOut()">SIGN OUT</button></li>
-
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li *ngIf="!(isLogged$ | async)"  routerLink="/sign-in"><span>Sign in</span></li>
+            <li *ngIf="!(isLogged$ | async)"  routerLink="/sign-up"><span>Sign up</span></li>
+            <li *ngIf="(isLogged$ | async)"  (click)="signOut()">SIGN OUT</li>
         </ul>
+    </div>
+</ng-template>

@@ -16,21 +16,19 @@ export class SessionRequestInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     const token= localStorage.getItem('user');
-    //const isOnBlackList = this.#blackList.find(item =>item.includes(req.url.toString())) 
-    //console.log("la blackList es: ",isOnBlackList)
-    if(!(req.url.includes("https://api.football-data.org"))){
-      console.log("no esta en la lista")
+    if(!this.#isOnBlackList(req.url)){
       if(token){
-        console.log("el usuario esta autenticado")
         const newHeaders = req.headers.append('Authorization',`Bearer ${token}`)
         const newReq = req.clone({headers:newHeaders})
         return next.handle(newReq)
-      }else{
-        console.log("el usuario no esta autenticado")
-        return next.handle(req)
       }
+      return next.handle(req)
     }
-    console.log("esta en la lista")
   return next.handle(req);
 }
+
+  #isOnBlackList(url:string){
+    const result = this.#blackList.some((item)=>url.includes(item));
+    return result;
+  }
 }

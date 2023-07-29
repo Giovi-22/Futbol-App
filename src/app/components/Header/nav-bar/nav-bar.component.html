@@ -1,14 +1,32 @@
 <nav class="navbar">
-    <div class="navbar__links ">
+    <ng-container *ngIf="breakpointMedium; else elseTemplate">
+        <div class="navbar__links ">
             <app-button-link title="Home" type="primary" routerLink="/"></app-button-link>
             <app-button-link title="Leagues" (click)="setMenu(true)" type="primary"></app-button-link>
             <app-button-link title="About Us" routerLink="/about-us" type="primary"></app-button-link>
             <app-button-link *ngIf="(isLogged$ |async)" title="favorites" routerLink="/favorites" type="primary"></app-button-link>
-    </div>
-    <div class="navbar__search">
-        <input type="text" class="form-control" placeholder="Search a competition...">
-        <button class="btn btn-outline-primary"><i class="bi bi-search"></i></button>
-    </div>
+        </div>
+        <div class="navbar__search">
+            <input type="text" class="form-control" placeholder="Search a competition...">
+            <button class="btn btn-outline-primary"><i class="bi bi-search"></i></button>
+        </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <div class="input-group search-group">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-list"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li class="dropdown-menu-items" routerLink="/"><span>Home</span></li>
+                <li class="dropdown-menu-items" (click)="setMenu(true)"><span>Leagues</span></li>
+                <li class="dropdown-menu-items" routerLink="/about-us"><span>About us</span></li>
+            </ul>
+            <div class="navbar__search">
+                <input type="text" class="form-control" placeholder="Search a competition...">
+                <button class="btn btn-outline-primary"><i class="bi bi-search"></i></button>
+            </div>
+        </div>
+    </ng-template>
     <div class="verticalLine"></div>
     <app-auth></app-auth>
     
