@@ -10,16 +10,16 @@ export class SessionRequestInterceptorService implements HttpInterceptor {
   #blackList:string[];
 
   constructor() {
-    this.#blackList = [];
-    this.#blackList.push("https://api.football-data.org");
+    this.#blackList = ["https://api.football-data.org"];
    }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     const token= localStorage.getItem('user');
-    const isOnBlackList = this.#blackList.find(item => item.includes(req.url)) 
-    
-    if(!isOnBlackList){
+    //const isOnBlackList = this.#blackList.find(item =>item.includes(req.url.toString())) 
+    //console.log("la blackList es: ",isOnBlackList)
+    if(!(req.url.includes("https://api.football-data.org"))){
+      console.log("no esta en la lista")
       if(token){
         console.log("el usuario esta autenticado")
         const newHeaders = req.headers.append('Authorization',`Bearer ${token}`)
@@ -30,6 +30,7 @@ export class SessionRequestInterceptorService implements HttpInterceptor {
         return next.handle(req)
       }
     }
+    console.log("esta en la lista")
   return next.handle(req);
 }
 }
