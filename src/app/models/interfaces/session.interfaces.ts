@@ -20,7 +20,7 @@ export interface LoginResponse{
 export interface ResponseData{
     status:string,
     message:string,
-    data:string | UserEntity;
+    data:UserEntity;
 }
 
 export interface ResponseUser{
