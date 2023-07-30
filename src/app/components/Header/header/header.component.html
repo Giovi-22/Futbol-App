@@ -1,7 +1,10 @@
 <div class="header">
-    <div class="header__logo">
-        <img src="../../../../assets/Futbol App-icon.svg">
-    </div>
-    <app-nav-bar (openMenu)="setMenu($event)"></app-nav-bar> 
+    <span [ngSwitch]="breakpoint" class="navbar-switch">
+        <app-nav-bar *ngSwitchCase="'large'" (openMenu)="setMenu($event)" [isLarge]="breakpointLarge"></app-nav-bar>
+        <app-navbar-small-size *ngSwitchCase="'small'" (openMenu)="setMenu($event)" [isSmall]="breakpointSmall"></app-navbar-small-size>
+    <p *ngSwitchDefault>
+    
+    </p>
+    </span> 
 </div>
 <app-dropdown-menu *ngIf="showMenu" (click)="setMenu(false)"></app-dropdown-menu>

@@ -1,0 +1,65 @@
+@use '../../../../styles/utils/tools' as tools;
+
+$backgroundColor: tools.colors("white");
+
+:host{
+    height: 100%;
+    width: 100%;
+}
+.navbar-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    
+}
+.dropdown-menu-items{
+    cursor: pointer;
+}
+
+.dropdown-menu-items:hover{
+    background-color: rgba(231, 225, 225, 0.336);
+}
+
+.header__logo{
+    background-color: $backgroundColor;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width:auto;
+    margin: 0 10px;
+    cursor: pointer;
+    img{
+        min-width: auto;
+        min-height: auto;
+        width: 140px;
+        height: 100%;
+    }
+}
+
+.navbar__search{
+    height: 30px;
+    width: 100%;
+    padding:0 10px;
+    margin-bottom: 10px;
+}
+
+.navbar-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:0 10px;
+}
+
+/*
+@media screen and (max-width:600px) {
+    .navbar{
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+*/
+
