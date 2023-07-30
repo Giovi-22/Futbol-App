@@ -27,22 +27,24 @@ export class SessionFutbolServerStrategy implements SessionStrategy  {
 
     }
 
-    current():Observable<ResponseData>{
+    current():Observable<UserEntity | String>{
         const url = `${this.#urlSession}/current`;
-        return new Observable<ResponseData>((observer)=>{
-        this.http.get<ResponseData>(url,this.httpOptions).subscribe({
+        return new Observable<UserEntity | String>((observer)=>{
+        return this.http.get<ResponseData>(url,this.httpOptions).subscribe({
             next:(result)=>{
                 if(result.data instanceof UserEntity){
-                    const user:User ={
+                    console.log("dentro del strategy, el usuario es instancia")
+                    const user = new UserEntity ({
                         email:result.data.email,
                         firstName:result.data.firstName,
                         lastName:result.data.lastName,
                         password:""
-                    }
-                    observer.next({...result,data:user});
-                }else{
-                    observer.next(result)
+                    })
+                    console.log("el user: ",user)
+                    return observer.next(user);
                 }
+                console.log("dentro del strategy, el usuario no es instancia")
+                return observer.next("")
             },
             error:(error:HttpErrorResponse)=>{
                 observer.error(error)

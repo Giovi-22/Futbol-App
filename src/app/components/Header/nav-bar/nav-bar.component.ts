@@ -1,7 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output,Input, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 
 import { ButtonLinkComponent } from '../../shared/button-link/button-link.component';
 import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
@@ -27,14 +26,15 @@ export class NavBarComponent implements OnInit {
 
   showMenu:boolean=false;
   @Output() openMenu= new EventEmitter<boolean>();
+  @Input() isLarge:boolean=true;
+  @Input() isSmall:boolean=true;
   isLogged$= new Observable<boolean>();
-  breakpointMedium:boolean = false;
 
   constructor(
     private userM: UserManagerService,
     private sessionM: SessionManagerService,
-    private breakointObserver: BreakpointObserver
-  ) { }
+  ) { 
+  }
 
   setMenu(showMenu:boolean){
     this.openMenu.emit(showMenu);
@@ -42,12 +42,6 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLogged$ = this.userM.userIsLogged();
-    this.breakointObserver.observe("(min-width:1200px)").subscribe({
-      next:(result)=>{
-        console.log("El breakpoint es: ",result)
-        this.breakpointMedium=result.matches;
-      }
-    })
   }
 
   signOut(){

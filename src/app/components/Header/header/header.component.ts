@@ -37,9 +37,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.breakointObserver.observe(["(min-width:1200px)","(max-width:600px)"]).subscribe({
+    this.breakointObserver.observe(["(min-width:1200px)","(max-width:660px)"]).subscribe({
       next:(result)=>{
-        this.breakpointSmall = result.breakpoints["(max-width:600px)"];
+        this.breakpointSmall = result.breakpoints["(max-width:660px)"];
         this.breakpointLarge = result.breakpoints["(min-width:1200px)"];
         if(this.breakpointSmall){
         return this.breakpoint = "small"

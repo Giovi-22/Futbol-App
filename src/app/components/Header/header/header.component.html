@@ -1,10 +1,4 @@
 <div class="header">
-    <span [ngSwitch]="breakpoint" class="navbar-switch">
-        <app-nav-bar *ngSwitchCase="'large'" (openMenu)="setMenu($event)" [isLarge]="breakpointLarge"></app-nav-bar>
-        <app-navbar-small-size *ngSwitchCase="'small'" (openMenu)="setMenu($event)" [isSmall]="breakpointSmall"></app-navbar-small-size>
-    <p *ngSwitchDefault>
-    
-    </p>
-    </span> 
+        <app-nav-bar (openMenu)="setMenu($event)" [isLarge]="breakpointLarge" [isSmall]="breakpointSmall"></app-nav-bar>
 </div>
 <app-dropdown-menu *ngIf="showMenu" (click)="setMenu(false)"></app-dropdown-menu>

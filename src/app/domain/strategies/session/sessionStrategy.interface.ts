@@ -8,5 +8,5 @@ export interface SessionStrategy{
     logOut():Observable<ResponseData>,
     changePassword(email:string):Observable<ResponseData>,
     restorePassword(data:RestorePassword):Observable<ResponseData>,
-    current():Observable<ResponseData>
+    current():Observable<UserEntity | String>
 }

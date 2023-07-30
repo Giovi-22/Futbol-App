@@ -4,11 +4,15 @@ import { Observable } from 'rxjs';
 import { UserManagerService } from 'src/app/domain/managers/user-manager.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
