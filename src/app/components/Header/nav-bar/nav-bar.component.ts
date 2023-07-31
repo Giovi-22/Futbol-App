@@ -33,6 +33,7 @@ export class NavBarComponent implements OnInit {
   @Input() isSmall:boolean=true;
   isLogged$= new Observable<boolean>();
   searchField!:FormGroup;
+  
   constructor(
     private userM: UserManagerService,
     private sessionM: SessionManagerService,
