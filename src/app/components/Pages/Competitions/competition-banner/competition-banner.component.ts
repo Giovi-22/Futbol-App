@@ -29,6 +29,12 @@ export class CompetitionBannerComponent implements OnInit{
   currentSeason:string="";
 
   @Output() screen = new EventEmitter();
+  screens = [
+    "teams",
+    "standings",
+    "matches"
+  ]
+  selectedButtons =[true,false,false]
   constructor(
     private competitionM:CompetitionManagerService,
     private teamM:TeamManagerService
@@ -49,6 +55,13 @@ export class CompetitionBannerComponent implements OnInit{
 
     selectCompetitionScreen(screen:string){
       this.screen.emit(screen);
+      this.selectedButtons = this.screens.map(scr =>{ 
+        if(scr === screen){
+          return  true;
+        }
+        return false;
+      })
+    
     }
 
     getCompetition(season:string){

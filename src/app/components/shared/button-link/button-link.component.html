@@ -1,6 +1,6 @@
 <span [ngSwitch]="type">
 <a *ngSwitchCase="'primary'" class="primary">{{title}}</a>
-<button *ngSwitchCase="'secondary'" class="btn btn-outline-secondary"><ng-content ></ng-content></button>
+<button *ngSwitchCase="'secondary'" class={{buttonClass}}><ng-content ></ng-content></button>
 <p *ngSwitchDefault>
 
 </p>

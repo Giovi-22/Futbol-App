@@ -37,7 +37,7 @@ export class NavBarComponent implements OnInit {
     private userM: UserManagerService,
     private sessionM: SessionManagerService,
     private fb: FormBuilder,
-    private teamM: TeamManagerService
+    private teamM: TeamManagerService,
   ) { 
   }
 

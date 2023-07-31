@@ -8,9 +8,9 @@
             </div>
         </div>
         <div class="competition__banner__bottom-navbar">
-            <app-button-link type="secondary" (click)="selectCompetitionScreen('teams')">Teams</app-button-link>
-            <app-button-link type="secondary" (click)="selectCompetitionScreen('standings')">Standings</app-button-link>
-            <app-button-link type="secondary" (click)="selectCompetitionScreen('matches')">Matches</app-button-link>
+            <app-button-link [isSelected]="selectedButtons[0]" type="secondary" (click)="selectCompetitionScreen('teams')">Teams</app-button-link>
+            <app-button-link [isSelected]="selectedButtons[1]" type="secondary" (click)="selectCompetitionScreen('standings')">Standings</app-button-link>
+            <app-button-link [isSelected]="selectedButtons[2]" type="secondary" (click)="selectCompetitionScreen('matches')">Matches</app-button-link>
             <div class="competition__banner__season">
                 <p>Season</p>
                 <app-dropdown [menuItems]="seasons" (item)="getCompetition($event)"></app-dropdown>
