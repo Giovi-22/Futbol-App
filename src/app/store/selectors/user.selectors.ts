@@ -17,6 +17,6 @@ export const isLogged = createSelector(
 
 export const favoriteTeamList = createSelector(
   selectUserFeature,
-  (state: UserState) => state.favoriteTeams
+  (state: UserState) => state.user.favoriteTeams
 )
 

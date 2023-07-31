@@ -7,6 +7,9 @@ import { SessionFutbolServerStrategy } from '../strategies/session/sessionFutbol
 import {LogIn, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
 import UserEntity from '../entities/UserEntity';
 import { UserManagerService } from './user-manager.service';
+import { UserRepositoryNgrxStoreService } from 'src/app/data/repositories/user/user-repository-ngrx-store.service';
+import { catchError, map, throwError } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,34 +21,35 @@ export class SessionManagerService {
     private http: HttpClient,
     private router: Router,
     private toastr: ToastrService,
-    private userM: UserManagerService
+    private userM: UserManagerService,
+    private userStorage: UserRepositoryNgrxStoreService
     ) {
     this.#session = new SessionFutbolServerStrategy(this.http);
    }
 
    logIn(user:LogIn){
-      return this.#session.logIn(user).subscribe({
-         next:(response)=>{
+      return this.#session.logIn(user).pipe(
+         map((response)=>{
+            console.log("El resultado del login: ",response)
             if(response.status.includes('success')){
-               if(!(response.data.user instanceof UserEntity)){
-                  localStorage.setItem('user',response.data.token);
-                  this.userM.setUser(response.data.user);
-                  this.userM.setUserLoggedIn(true);
-               }
-               this.toastr.success(response.message,"Login",{closeButton:true,easing:"ease-in"});     
+               localStorage.setItem('user',response.token);
+               this.userM.setUser(response.user);
+               this.userM.setUserLoggedIn(true);   
             }
-         },
-         error:(error:HttpErrorResponse)=>{
-          this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Login failed!",{closeButton:true,easing:"ease-in"});
-         }
-      });
+            return response;
+         }),
+         catchError((error)=>{
+            return throwError(error);
+         })
+      );
+      
    }
 
    current(){
       return this.#session.current();
    }
 
-   singUp(user:UserEntity){
+   singUp(user:Partial<UserEntity>){
     this.#session.signUp(user).subscribe({
       next:(result)=>{
          if(result.status.includes('success')){

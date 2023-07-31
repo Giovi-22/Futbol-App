@@ -26,11 +26,11 @@ export class FavoritesComponent implements OnInit {
     this.userM.getFavoriteTeams().subscribe({
       next:(result)=>{
         console.log("La lista de equipos favoritos es: ",result)
-        if(result instanceof HttpErrorResponse){
-          console.log(result.message)
-        }else{
-          this.favoriteTeams = result;
-        }
+          if(!result){
+            this.favoriteTeams = [];
+          }else{
+            this.favoriteTeams = result;
+          }
       },
       error:(error)=>{
         console.log(error)

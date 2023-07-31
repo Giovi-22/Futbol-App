@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 
 import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
 import { LogIn } from 'src/app/models/interfaces/session.interfaces';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class SignInComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private sessionM: SessionManagerService,
-    private router:Router
+    private router:Router,
+    private toastr: ToastrService
     ) { }
 
   ngOnInit(): void {
@@ -41,7 +43,16 @@ export class SignInComponent implements OnInit {
       email: this.formSession.get("email")?.value,
       password: this.formSession.get("password")?.value
     }
-    this.sessionM.logIn(session);
+    this.sessionM.logIn(session).subscribe({
+      next:(result)=>{
+        this.toastr.success("Log-in successfully","Login",{closeButton:true,easing:"ease-in"}); 
+        console.log("Redirigiendo...")
+      },
+      error:(error)=>{
+        console.log("llega hasta el componente",error)
+        this.toastr.error(`Error: ${error.status}`,"Login failed!",{closeButton:true,easing:"ease-in"});
+      }
+    });
     
   }
 

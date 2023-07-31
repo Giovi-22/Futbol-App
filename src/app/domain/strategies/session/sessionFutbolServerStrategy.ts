@@ -1,8 +1,9 @@
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { SessionStrategy } from './sessionStrategy.interface';
 import UserEntity from '../../entities/UserEntity';
-import { LogIn, LoginResponse, ResponseData, RestorePassword, User } from 'src/app/models/interfaces/session.interfaces';
+import { LogIn, LoginResponse, ResponseData, ResponseDto, RestorePassword, User } from 'src/app/models/interfaces/session.interfaces';
+import { TeamEntity } from '../../entities/TeamEntity';
 
 export class SessionFutbolServerStrategy implements SessionStrategy  {
 
@@ -20,10 +21,32 @@ export class SessionFutbolServerStrategy implements SessionStrategy  {
 
     
 
-    logIn(User: LogIn):Observable<LoginResponse> {
+    logIn(User: LogIn):Observable<ResponseDto> {
 
         const url = `${this.#urlSession}/login`;
-        return this.http.post<LoginResponse>(url,User,this.httpOptions);
+        return this.http.post<LoginResponse>(url,User,this.httpOptions).pipe(
+            map((response)=>{
+                console.log("la respuesta al login es: ",response.data)
+                const teams=response.data.user.favoriteTeams?.map(team=>new TeamEntity(team));
+                const resp = {
+                user: new UserEntity({
+                    ...response.data.user,
+                    favoriteTeams: teams || []
+                }),
+                token:response.data.token,
+                status:response.status
+                }
+                return resp;
+            }),
+            catchError((error)=>{
+                console.log("EL error en el metodo http: ",error)
+                const newError = new HttpErrorResponse({
+                    status:error.status,
+                    error:error.error
+                });
+                return throwError(newError)
+            })
+        );
 
     }
 
@@ -36,7 +59,8 @@ export class SessionFutbolServerStrategy implements SessionStrategy  {
                         email:result.data.email,
                         firstName:result.data.firstName,
                         lastName:result.data.lastName,
-                        password:""
+                        password:"",
+                        favoriteTeams:result.data.favoriteTeams || []
                     })
                     console.log("el user: ",user)
                     return observer.next(user);
@@ -53,7 +77,7 @@ export class SessionFutbolServerStrategy implements SessionStrategy  {
         return this.http.post<ResponseData>("http://localhost:8081/api/session/logout",{},this.httpOptions);
     }
 
-    signUp(User: UserEntity):Observable<ResponseData>{
+    signUp(User: Partial<UserEntity>):Observable<ResponseData>{
         const url = `${this.#urlSession}/signup`; 
         return new Observable((observer)=>{
         this.http.post<ResponseData>(url,User,this.httpOptions).subscribe({

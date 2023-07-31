@@ -44,8 +44,12 @@ export class UserManagerService {
       })
     )
   }
-  getFavoriteTeams():Observable<TeamEntity[]>{
+  getFavoriteTeams():Observable<TeamEntity[] | undefined>{
     return this.userStorage.getFavoriteTeamList();
+  }
+
+  updatFavoriteTeams(teams:TeamEntity[]){
+    this.userStorage.updateFavoriteList(teams);
   }
 
   removeFavoriteTeam(teamCode:number){

@@ -37,12 +37,12 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(){
-    const newUser = new UserEntity({
+    const newUser:Partial<UserEntity> ={
       email:this.signUpForm.get('email')?.value,
       firstName: this.signUpForm.get('firstName')?.value,
       lastName: this.signUpForm.get('lastName')?.value,
       password: this.signUpForm.get('password')?.value
-    })
+    }
     this.sessionM.singUp(newUser);
   }
 

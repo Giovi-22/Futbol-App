@@ -9,13 +9,12 @@ import { isLogged } from '../selectors/user.selectors';
 
 export const initialState:UserState = {
     isLogged:false,
-    favoritePlayers:[],
-    favoriteTeams:[],
     user: new UserEntity({
         email:"",
         firstName:"",
         lastName:"",
-        password:""
+        password:"",
+        favoriteTeams:[]
     })
 }
 
@@ -36,7 +35,10 @@ export const userReducer = createReducer(
     on(updateFavoriteTeamList,(state,{teamList})=>{
         return{
             ...state,
+            user:{
+            ...state.user,
             favoriteTeams:teamList
+            }
         }
     })
 

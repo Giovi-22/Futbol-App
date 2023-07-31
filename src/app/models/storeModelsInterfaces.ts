@@ -21,11 +21,8 @@ export interface TeamsState{
 }
 
 export interface UserState{
-
     user:UserEntity,
     isLogged:boolean,
-    favoriteTeams:TeamEntity [],
-    favoritePlayers: TeamEntity[]
 }
 //------------------------------------------
 

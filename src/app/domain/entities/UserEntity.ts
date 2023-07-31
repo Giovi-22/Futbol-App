@@ -14,6 +14,7 @@ class UserEntity{
         this.lastName = user.lastName,
         this.email = user.email,
         this.password = user.password
+        this.favoriteTeams = user.favoriteTeams;
     }
 }
 

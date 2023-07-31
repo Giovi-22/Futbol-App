@@ -1,5 +1,5 @@
 import { TeamEntity } from "src/app/domain/entities/TeamEntity";
-import UserEntity from "src/app/domain/entities/UserEntity";
+import UserEntity from 'src/app/domain/entities/UserEntity';
 
 export interface LogIn{
     email:string,
@@ -11,11 +11,18 @@ export interface User{
     lastName:string;
     password:string;
     email:string;
+    favoriteTeams:TeamEntity[];
 }
 export interface LoginResponse{
     message:string,
     status:string,
     data:{token:string,user:UserEntity}
+}
+export interface ResponseDto{
+    user: UserEntity,
+    token:string,
+    status:string
+
 }
 export interface ResponseData{
     status:string,

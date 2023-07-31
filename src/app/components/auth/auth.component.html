@@ -2,7 +2,7 @@
     <div class="navbar__auth">
         <button *ngIf="!(isLogged$ | async)" class="btn btn-outline-secondary"  routerLink="/sign-in">SIGN IN</button>
         <button *ngIf="!(isLogged$ | async)" class="btn btn-primary" routerLink="/sign-up">SIGN UP</button>
-        <button *ngIf="(isLogged$ | async)" class="btn btn-outline-secondary"  (click)="signOut()">SIGN OUT</button>
+        <button *ngIf="(isLogged$ | async)" class="btn btn-outline-secondary"  (click)="signOut()">LOG OUT</button>
     </div>
 </ng-container>
 <ng-template #elseTemplate>
@@ -13,7 +13,7 @@
         <ul class="dropdown-menu dropdown-menu-end">
             <li class="dropdown-menu-items" *ngIf="!(isLogged$ | async)"  routerLink="/sign-in"><span>Sign in</span></li>
             <li class="dropdown-menu-items" *ngIf="!(isLogged$ | async)"  routerLink="/sign-up"><span>Sign up</span></li>
-            <li class="dropdown-menu-items" *ngIf="(isLogged$ | async)"  (click)="signOut()">SIGN OUT</li>
+            <li class="dropdown-menu-items" *ngIf="(isLogged$ | async)"  (click)="signOut()">Log out</li>
         </ul>
     </div>
 </ng-template>
