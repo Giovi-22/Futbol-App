@@ -1,4 +1,5 @@
 import { User } from "src/app/models/interfaces/session.interfaces";
+import { TeamEntity } from "./TeamEntity";
 
 class UserEntity{
 
@@ -6,6 +7,7 @@ class UserEntity{
     lastName:string;
     password:string;
     email:string;
+    favoriteTeams?:TeamEntity[];
 
     constructor(user:User){
         this.firstName = user.firstName,

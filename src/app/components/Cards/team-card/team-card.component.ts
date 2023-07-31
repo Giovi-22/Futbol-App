@@ -5,6 +5,8 @@ import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 import { UserManagerService } from 'src/app/domain/managers/user-manager.service';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-team-card',
@@ -25,7 +27,8 @@ export class TeamCardComponent implements OnInit {
   constructor(
     private router:Router,
     private teamM: TeamManagerService,
-    private userM: UserManagerService
+    private userM: UserManagerService,
+    private toastr: ToastrService
     ) { 
     
   }
@@ -44,10 +47,49 @@ export class TeamCardComponent implements OnInit {
   addToFavorite(toggle:boolean){
     this.toggleButton = !toggle;
     if(this.toggleButton){
-      console.log("el estado del boton: ",this.toggleButton)
+      //agregar equipo a la lista de favoritos
+      this.userM.setFavoriteTeam(this.teamData).subscribe({
+        next:(result)=>{
+            if(result.status.includes('success')){
+              this.toastr.info(
+                'Successfully added to the favorite list',
+                'Team',
+                {
+                  progressBar:true,
+                  progressAnimation:'increasing',
+                  easeTime:400,
+                  timeOut:3000,
+                  newestOnTop:true,
+                  positionClass: "toast-top-center"
+                })
+            }
+        },
+        error:(error:HttpErrorResponse)=>{
+          this.toastr.error(`Could not add the team to the favorite list, ${error.status}`,"Error");
+        }
+      })
       return this.favoriteClass = "bi bi-star-fill favorite favorite-true";
     }
-    console.log("el estado del boton: ",this.toggleButton)
+    //eliminar equipo de la lista
+    this.userM.removeFavoriteTeam(this.teamData.id || 0).subscribe({
+      next:(result)=>{
+          this.toastr.info(
+            'Successfully removed team from the favorite list',
+            'Team',
+            {
+              progressBar:true,
+              progressAnimation:'increasing',
+              easeTime:400,
+              timeOut:3000,
+              newestOnTop:true,
+              positionClass: "toast-top-center"
+            })
+      },
+      error:(error)=>{
+        this.toastr.error(`Could not remove the team from the favorite list, ${error.status}`,"Error");
+
+      }
+    })
     return this.favoriteClass = "bi bi-star favorite favorite-false";
 
   }

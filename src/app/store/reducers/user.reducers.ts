@@ -4,7 +4,7 @@ import { TeamsState, UserState } from "src/app/models/storeModelsInterfaces";
 import { loadPopular, loadTeam, loadTeams, loadedTeams } from "../actions/teams.actions";
 import { TeamEntity } from "src/app/domain/entities/TeamEntity";
 import UserEntity from "src/app/domain/entities/UserEntity";
-import { loadUser, setUserLoggedIn } from "@store/actions/user.actions";
+import { loadUser, setUserLoggedIn, updateFavoriteTeamList } from "@store/actions/user.actions";
 import { isLogged } from '../selectors/user.selectors';
 
 export const initialState:UserState = {
@@ -32,5 +32,12 @@ export const userReducer = createReducer(
             ...state,
             isLogged
         }
+    }),
+    on(updateFavoriteTeamList,(state,{teamList})=>{
+        return{
+            ...state,
+            favoriteTeams:teamList
+        }
     })
+
 )

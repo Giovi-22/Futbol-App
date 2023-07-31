@@ -4,7 +4,7 @@ import UserEntity from '../entities/UserEntity';
 import { TeamEntity } from '../entities/TeamEntity';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UserApiStrategy } from '../strategies/user/userStrategies';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,21 +36,27 @@ export class UserManagerService {
 //---------FAVORITES-------------------
 
   setFavoriteTeam(team:TeamEntity){
-    this.#userServer.setFavoriteTeam(team).subscribe({
-      next:(result)=>{
-
-      },
-      error:(error:HttpErrorResponse)=>{
-
-      }
-    })
+    return this.#userServer.setFavoriteTeam(team).pipe(
+      map((result)=>{
+        console.log("La lista actualizada: ",result)
+        this.userStorage.updateFavoriteList(result.data.favoriteTeams || []);
+        return result
+      })
+    )
   }
-  getFavoriteTeams():Observable<TeamEntity[] | HttpErrorResponse>{
-    return this.#userServer.getFavoriteTeams();
+  getFavoriteTeams():Observable<TeamEntity[]>{
+    return this.userStorage.getFavoriteTeamList();
   }
 
   removeFavoriteTeam(teamCode:number){
-    this.#userServer.removeFavoriteTeam(teamCode);
+    return this.#userServer.removeFavoriteTeam(teamCode).pipe(
+      map((result)=>{
+        console.log("removiendo el equipo")
+        console.log("la lista devuelta es: ",result)
+        this.userStorage.updateFavoriteList(result.data.favoriteTeams || []);
+        return result;
+      })
+    );
   }
   
 }
