@@ -28,12 +28,13 @@ import { Positions } from 'src/app/models/interfaces/dtoInterfaces';
 export class TeamComponent implements OnInit {
 
   team:TeamEntity;
-  team$ = new Observable<TeamEntity>();
+  players!:Squad[];
   positions:Positions={
     Goalkeeper:[],
     Defence:[],
     Midfield:[],
-    Offence:[]
+    Offence:[],
+    Reserva:[]
   }
   constructor(private teamM: TeamManagerService) { 
     this.team = new TeamEntity({
@@ -49,7 +50,20 @@ export class TeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.team$ = this.teamM.getStoreCurrent();
+    this.teamM.getStoreCurrent().subscribe({
+      next:(result)=>{
+        if(result.squad?.length){
+          this.players = [...result.squad];
+          this.players.forEach(player=>{
+            if(!player.position){
+              this.positions['Reserva'].push(player)
+            }
+            this.positions[player.position].push(player)
+          })
+        }
+        console.log("Las posiciones son: ",this.positions)
+      }
+    })
   }
 
 }

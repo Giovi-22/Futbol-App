@@ -9,45 +9,45 @@
     <span class="area__grande visita"></span>
     <div class="arquero">
         <div class="jugador pos__1" data-message="jugador 1">1
-            <span class="player__data">hola mundo</span>
+            <app-player-card *ngIf="positions['Goalkeeper'].length" class="player__data" [player]="positions['Goalkeeper'][0]"></app-player-card>
         </div>
     </div>
     
     <div class="defensores">
         <div class="jugador pos__2" data-message="jugador 2">2
-            <span class="player__data">hola mundo</span>
+            <app-player-card *ngIf="positions['Defence'].length" class="player__data" [player]="positions['Defence'][0]"></app-player-card>
         </div>
         <div class="jugador pos__3" data-message="jugador 3">3
-            <span class="player__data">hola mundo</span>
+            <app-player-card *ngIf="positions['Defence'].length" class="player__data" [player]="positions['Defence'][1]"></app-player-card>
         </div>
         <div class="jugador pos__4" data-message="jugador 4">4
-            <span class="player__data">hola mundo</span>
+            <app-player-card *ngIf="positions['Defence'].length" class="player__data" [player]="positions['Defence'][2]"></app-player-card>
         </div>
         <div class="jugador pos__5" data-message="jugador 5">5
-            <span class="player__data">hola mundo</span>
+             <app-player-card *ngIf="positions['Defence'].length" class="player__data" [player]="positions['Defence'][3]"></app-player-card>
         </div>
         
     </div>
     <div class="mediocampo">
         <div class="jugador pos__6" data-message="jugador 6">6
-            <span class="player__data">hola mundo</span>
+             <app-player-card *ngIf="positions['Midfield'].length" class="player__data" [player]="positions['Midfield'][0]"></app-player-card>
         </div>
         <div class="jugador pos__7" data-message="jugador 7">7
-            <span class="player__data">hola mundo</span>
+             <app-player-card *ngIf="positions['Midfield'].length" class="player__data" [player]="positions['Midfield'][1]"></app-player-card>
         </div>
         <div class="jugador pos__8" data-message="jugador 8">8
-            <span class="player__data">hola mundo</span>
+             <app-player-card *ngIf="positions['Midfield'].length" class="player__data" [player]="positions['Midfield'][2]"></app-player-card>
         </div>
     </div>
     <div class="delanteros">
         <div class="jugador pos__10" data-message="jugador 10">10
-            <span class="player__data">hola mundo</span>
+             <app-player-card *ngIf="positions['Offence'].length" class="player__data" [player]="positions['Offence'][0]"></app-player-card>
         </div>
         <div class="jugador pos__9" data-message="jugador 9">9
-            <span class="player__data">hola mundo</span>
+             <app-player-card *ngIf="positions['Offence'].length" class="player__data" [player]="positions['Offence'][1]"></app-player-card>
         </div>
         <div class="jugador pos__11" data-message="jugador 11">11
-            <span class="player__data">hola mundo</span>
+             <app-player-card *ngIf="positions['Offence'].length" class="player__data" [player]="positions['Offence'][2]"></app-player-card>
         </div>
     </div>
 </div>
