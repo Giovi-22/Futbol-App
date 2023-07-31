@@ -1,7 +1,7 @@
 <app-team-banner></app-team-banner>
 <div class="team__main__content">
     <div class="team__sidebar">
-        <div class="team__sidebar__position" >
+        <div class="team__sidebar__left" >
             <pre *ngFor="let player of (team$ |async)?.squad">{{player.name}}</pre>
         </div>
     </div>

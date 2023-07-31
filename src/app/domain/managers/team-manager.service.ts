@@ -48,6 +48,7 @@ export class TeamManagerService  {
   }
 
   findApiTeams(competitionCode:string ="PL",filter?:ApiFootballDataFilters){
+    console.log("La estrategia es: ",this.apiStrategy)
     this.apiStrategy.getTeams(competitionCode,filter).subscribe(
       (result)=>{
         this.storeStrategy.setTeams(result)
@@ -58,6 +59,11 @@ export class TeamManagerService  {
     )
   }
 
+  searchTeam(teamName:string){
+    console.log("el team buscado es: ",teamName)
+    console.log("La estrategia es: ",this.apiStrategy)
+    return this.apiStrategy.getTeamsByName(teamName);
+  }
   getStoreTeam(teamCode:number){
     return this.storeStrategy.getCurrent() 
   }

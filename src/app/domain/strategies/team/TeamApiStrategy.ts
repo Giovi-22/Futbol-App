@@ -68,4 +68,8 @@ export class TeamFootballDataApiStrategy implements TeamApiStrategy{
             })
         })
     }
+
+  getTeamsByName(teamName: string): Observable<TeamEntity[]> {
+    return new Observable();
+  }
 }

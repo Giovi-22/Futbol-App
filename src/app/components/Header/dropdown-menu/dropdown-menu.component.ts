@@ -42,6 +42,7 @@ export class DropdownMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.competitions$ = this.competitionM.getCompetitions();
+    this.teamM.setApiStrategy('TeamfootballApi');
   }
 
 }

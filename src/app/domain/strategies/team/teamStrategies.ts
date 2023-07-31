@@ -10,4 +10,5 @@ export interface TeamStoreStrategy{
 export interface TeamApiStrategy{
     getTeam(teamId:number):Observable<TeamEntity>,   
     getTeams(competitionCode:string,filter?:ApiFootballDataFilters):Observable<TeamEntity[]> 
+    getTeamsByName(teamName:string):Observable<TeamEntity[]>
   }

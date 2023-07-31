@@ -23,6 +23,7 @@ export class TeamCardComponent implements OnInit {
   
   toggleButton:boolean = false;
   favoriteClass:string = "bi bi-star favorite favorite-false";
+  favoriteTeams!:TeamEntity[];
 
   constructor(
     private router:Router,
@@ -39,9 +40,26 @@ export class TeamCardComponent implements OnInit {
     console.log("va a buscar los datos")
   }
 
+  #isOnFavoriteList(teams:TeamEntity[]){
+    const result = teams.find(team => team.id === this.teamData.id);
+    if(result){
+      console.log("el equipo esta en la list0a de favoritos")
+      this.favoriteClass = "bi bi-star-fill favorite favorite-true";
+      this.toggleButton = true;
+    }
+    return false;
+  }
 
   ngOnInit(): void {
    this.isLogged$ = this.userM.userIsLogged();
+   this.teamM.setApiStrategy('TeamfootballApi');
+   this.userM.getFavoriteTeams().subscribe({
+    next:(teams)=>{
+      if(teams){
+        this.#isOnFavoriteList(teams);
+      }
+    }
+   })
   }
 
   addToFavorite(toggle:boolean){

@@ -8,14 +8,14 @@
 
 .terreno{
     width: 350px;
-    height: 600px;
+    height: 500px;
     background-color: #34a852;
     border: 2px solid  #71c287;
     position:relative;
 }
 .cancha{
     width: 320px;
-    height: 570px;
+    height: 470px;
     border: 2px solid  #71c287;
     position: absolute;
     left:50%;
@@ -81,10 +81,11 @@
 .jugador{
     width: 30px;
     height: 30px;
-    background-color:transparent;
-    border: 2px solid  #71c287;
+    background-color: blue;
+    border: 2px solid  #e7e7f0;
     border-radius: 50%;
     text-align: center;
+    color: white;
 }
 
 .jugador:hover .player__data{
@@ -108,7 +109,7 @@
 
 .defensores{
     position: relative;
-    top:100px;
+    top:80px;
     width: 100%;
     height: 130px;
 }
@@ -142,7 +143,7 @@
     top:50%;
     left:50%;
     height: 100px;
-    transform: translate(-50%,-80%);
+    transform: translate(-50%,-50%);
     
 }
 
@@ -155,20 +156,20 @@
 .pos__7{
     position: absolute;
     right: 10%;
-    top:70px;
+    top:50px;
 
 }
 
 .pos__8 {
     position: absolute;
     left: 10%;
-    top:70px;
+    top:50px;
 
 }
 
 .delanteros{
     position: absolute;
-    top:400px;
+    top:300px;
     width: 100%;
     height: 100px;
    

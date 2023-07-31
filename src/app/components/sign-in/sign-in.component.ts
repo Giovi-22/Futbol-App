@@ -46,7 +46,7 @@ export class SignInComponent implements OnInit {
     this.sessionM.logIn(session).subscribe({
       next:(result)=>{
         this.toastr.success("Log-in successfully","Login",{closeButton:true,easing:"ease-in"}); 
-        console.log("Redirigiendo...")
+        setTimeout(()=>{this.router.navigate(["/"])},3000);
       },
       error:(error)=>{
         console.log("llega hasta el componente",error)

@@ -5,7 +5,6 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { DropdownMenuComponent } from '../dropdown-menu/dropdown-menu.component';
 import { RouterModule } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { NavbarSmallSizeComponent } from './navbar-small-size/navbar-small-size.component';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +12,6 @@ import { NavbarSmallSizeComponent } from './navbar-small-size/navbar-small-size.
   imports: [
     CommonModule,
     NavBarComponent,
-    NavbarSmallSizeComponent,
     DropdownMenuComponent,
     RouterModule
   ],

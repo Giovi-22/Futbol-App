@@ -7,6 +7,8 @@ import { SessionManagerService } from 'src/app/domain/managers/session-manager.s
 import { UserManagerService } from 'src/app/domain/managers/user-manager.service';
 import { Observable } from 'rxjs';
 import { AuthComponent } from '../../auth/auth.component';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 
 
 @Component({
@@ -16,7 +18,8 @@ import { AuthComponent } from '../../auth/auth.component';
     CommonModule,
     RouterModule,
     ButtonLinkComponent,
-    AuthComponent
+    AuthComponent,
+    ReactiveFormsModule
   ],
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
@@ -29,10 +32,12 @@ export class NavBarComponent implements OnInit {
   @Input() isLarge:boolean=true;
   @Input() isSmall:boolean=true;
   isLogged$= new Observable<boolean>();
-
+  searchField!:FormGroup;
   constructor(
     private userM: UserManagerService,
     private sessionM: SessionManagerService,
+    private fb: FormBuilder,
+    private teamM: TeamManagerService
   ) { 
   }
 
@@ -42,10 +47,32 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLogged$ = this.userM.userIsLogged();
+    this.searchField = this.fb.group({
+      search:[''],
+    })
+
   }
 
   signOut(){
     this.sessionM.logOut();
+  }
+
+  onSearch(){
+    this.teamM.setApiStrategy('TeamServer');
+    console.log("click en busqueda")
+    const teamName = this.searchField.get('search')?.value
+    this.teamM.searchTeam(teamName).subscribe({
+      next:((result)=>{
+        console.log("El team buscado: ",result)
+        this.teamM.setApiStrategy('TeamfootballApi');
+      }),
+      error:((error)=>{
+        console.log("El error es :",error);
+        this.teamM.setApiStrategy('TeamfootballApi');
+      })
+    })
+    
+
   }
 
 }

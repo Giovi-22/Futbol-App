@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import { AppState } from '@store/app.state';
+import { TeamApiServerRepositoryService } from 'src/app/data/repositories/team/team-api-server-repository.service';
 import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team/team-repository-ngrx-store.service';
 import { TeamRepository } from 'src/app/models/interfaces/repositories/teamRepository.interface';
 
@@ -15,7 +17,7 @@ class StoreRepositoryFactory{
 
     constructor(
         private store: Store<AppState>, 
-        
+        private http: HttpClient
         )
         {
         this.storeRepository = this.store;    
