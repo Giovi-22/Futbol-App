@@ -18,3 +18,11 @@
     justify-content: center;
     align-items: center;
 }
+
+.dropdown-menu-items{
+    cursor: pointer;
+}
+
+.dropdown-menu-items:hover{
+    background-color: rgba(231, 225, 225, 0.336);
+}

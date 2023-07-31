@@ -11,9 +11,9 @@
             <i class="bi bi-person-fill"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
-            <li *ngIf="!(isLogged$ | async)"  routerLink="/sign-in"><span>Sign in</span></li>
-            <li *ngIf="!(isLogged$ | async)"  routerLink="/sign-up"><span>Sign up</span></li>
-            <li *ngIf="(isLogged$ | async)"  (click)="signOut()">SIGN OUT</li>
+            <li class="dropdown-menu-items" *ngIf="!(isLogged$ | async)"  routerLink="/sign-in"><span>Sign in</span></li>
+            <li class="dropdown-menu-items" *ngIf="!(isLogged$ | async)"  routerLink="/sign-up"><span>Sign up</span></li>
+            <li class="dropdown-menu-items" *ngIf="(isLogged$ | async)"  (click)="signOut()">SIGN OUT</li>
         </ul>
     </div>
 </ng-template>

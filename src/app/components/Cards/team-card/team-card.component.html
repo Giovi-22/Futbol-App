@@ -1,5 +1,5 @@
-<div class="card" (click)="navigateTo(teamData.id || 1)">
+<div class="card">
     <p>{{teamData.name}}</p>
-    <img src={{teamData.logo}}>
-    <button *ngIf="(isLogged$ |async )"class="btn btn-outline-info">F</button>
+    <i  *ngIf="(isLogged$ |async )" class={{favoriteClass}} (click)="addToFavorite(toggleButton)"></i>
+    <img (click)="navigateTo(teamData.id || 1)" src={{teamData.logo}}>
 </div>

@@ -11,7 +11,7 @@
             <app-button-link *ngIf="(isLogged$ |async)" title="favorites" routerLink="/favorites" type="primary"></app-button-link>
         </div>
         <div class="navbar__search input-group">
-            <input type="text" class="form-control" placeholder="Search a competition...">
+            <input type="text" class="form-control" placeholder="Search...">
             <button class="btn btn-outline-primary"><i class="bi bi-search"></i></button>
         </div>
     </ng-container>
@@ -25,7 +25,7 @@
                 <li class="dropdown-menu-items" (click)="setMenu(true)"><span>Leagues</span></li>
                 <li class="dropdown-menu-items" routerLink="/about-us"><span>About us</span></li>
             </ul>
-            <input type="text" class="form-control" placeholder="Search a competition...">
+            <input type="text" class="form-control" placeholder="Search...">
             <button class="btn btn-outline-primary"><i class="bi bi-search"></i></button>
         </div>
     </ng-template>

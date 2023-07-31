@@ -18,6 +18,9 @@ export class TeamCardComponent implements OnInit {
 
   @Input() teamData:TeamEntity = new TeamEntity({});
   isLogged$ = new Observable<boolean>();
+  
+  toggleButton:boolean = false;
+  favoriteClass:string = "bi bi-star favorite favorite-false";
 
   constructor(
     private router:Router,
@@ -36,6 +39,17 @@ export class TeamCardComponent implements OnInit {
 
   ngOnInit(): void {
    this.isLogged$ = this.userM.userIsLogged();
+  }
+
+  addToFavorite(toggle:boolean){
+    this.toggleButton = !toggle;
+    if(this.toggleButton){
+      console.log("el estado del boton: ",this.toggleButton)
+      return this.favoriteClass = "bi bi-star-fill favorite favorite-true";
+    }
+    console.log("el estado del boton: ",this.toggleButton)
+    return this.favoriteClass = "bi bi-star favorite favorite-false";
+
   }
 
 }
