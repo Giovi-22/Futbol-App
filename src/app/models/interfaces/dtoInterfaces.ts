@@ -36,6 +36,14 @@ export interface ApiFootballDataFilters{
 export interface Positions{
     [Defence:string]:Squad[],
   }
+
+export interface PlayerDto {
+    id:          number;
+    name:        string;
+    position:    string;
+    dateOfBirth: string;
+    nationality: string;
+}
 //-------------------------------------------
 export interface Competitions {
     count:        number;

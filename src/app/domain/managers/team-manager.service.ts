@@ -47,6 +47,16 @@ export class TeamManagerService  {
     )
   }
 
+  findApiPlayers(playerList:number[]){
+    this.apiStrategy.getPlayers(playerList).subscribe({
+      next:(result)=>{
+        this.storeStrategy.setPlayers(result);
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    });
+  }
   findApiTeams(competitionCode:string ="PL",filter?:ApiFootballDataFilters){
     console.log("La estrategia es: ",this.apiStrategy)
     this.apiStrategy.getTeams(competitionCode,filter).subscribe(
@@ -83,6 +93,10 @@ export class TeamManagerService  {
 
   getStorePopularTeams(){
   return this.storeStrategy.getPopularTeams();
+  }
+
+  getPlayers(){
+    return this.storeStrategy.getListOfPlayers();
   }
 
 }

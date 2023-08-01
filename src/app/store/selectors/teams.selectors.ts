@@ -25,3 +25,8 @@ export const popularTeams = createSelector(
   selectTeamsFeature,
   (state: TeamsState)=> state.popularTeams
 )
+
+export const listOfPlayers = createSelector(
+  selectTeamsFeature,
+  (state: TeamsState)=> state.players
+)

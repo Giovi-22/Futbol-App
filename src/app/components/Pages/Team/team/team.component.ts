@@ -37,7 +37,7 @@ export class TeamComponent implements OnInit {
     Offence:[],
     Reserva:[]
   }
-  playersIdList!:Number[];
+  playersIdList!:number[];
 
   constructor(private teamM: TeamManagerService) { 
     this.team = new TeamEntity({
@@ -58,14 +58,23 @@ export class TeamComponent implements OnInit {
         if(result.squad?.length){
           console.log("HAY JUGADORES")
           this.players = [...result.squad];
+          this.playersIdList = this.players.map(player=>player.id);
+          /*
           this.positions['Goalkeeper']= this.players.filter(player => player.position.includes('Goalkeeper'));
           this.positions['Defence']= this.players.filter(player => player.position.includes('Defence'));
           this.positions['Midfield']= this.players.filter(player => player.position.includes('Midfield'));
           this.positions['Offence']= this.players.filter(player => player.position.includes('Offence'));
           this.isPositions = true;
+          */
       }
     }
     })
+    
+    if(this.playersIdList.length){
+      this.teamM.setApiStrategy('TeamServer');
+      this.teamM.findApiPlayers(this.playersIdList);
+    }
+ 
   
   }
 
