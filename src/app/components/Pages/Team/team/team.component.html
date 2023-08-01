@@ -5,5 +5,5 @@
             <pre *ngFor="let player of players">{{player.name}}</pre>
         </div>
     </div>
-       <app-football-field [positions]="positions" ></app-football-field>
+       <app-football-field *ngIf="isPositions" [positions]="positions" ></app-football-field>
 </div>

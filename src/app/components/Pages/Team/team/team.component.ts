@@ -29,6 +29,7 @@ export class TeamComponent implements OnInit {
 
   team:TeamEntity;
   players!:Squad[];
+  isPositions:boolean = false;
   positions:Positions={
     Goalkeeper:[],
     Defence:[],
@@ -36,7 +37,6 @@ export class TeamComponent implements OnInit {
     Offence:[],
     Reserva:[]
   }
-
   playersIdList!:Number[];
 
   constructor(private teamM: TeamManagerService) { 
@@ -56,19 +56,16 @@ export class TeamComponent implements OnInit {
     this.teamM.getStoreCurrent().subscribe({
       next:(result)=>{
         if(result.squad?.length){
+          console.log("HAY JUGADORES")
           this.players = [...result.squad];
-          this.players.forEach(player=>{
-            this.playersIdList.push(player.id);
-            if(!player.position){
-              this.positions['Reserva'].push(player)
-            }
-            this.positions[player.position].push(player)
-          })
-        }
-        console.log("Las posiciones son: ",this.positions)
+          this.positions['Goalkeeper']= this.players.filter(player => player.position.includes('Goalkeeper'));
+          this.positions['Defence']= this.players.filter(player => player.position.includes('Defence'));
+          this.positions['Midfield']= this.players.filter(player => player.position.includes('Midfield'));
+          this.positions['Offence']= this.players.filter(player => player.position.includes('Offence'));
+          this.isPositions = true;
       }
+    }
     })
-
   
   }
 
