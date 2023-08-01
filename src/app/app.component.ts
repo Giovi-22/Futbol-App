@@ -3,7 +3,6 @@ import { OnInit } from '@angular/core'
 import { Component } from '@angular/core'
 import { SessionManagerService } from './domain/managers/session-manager.service';
 import { UserManagerService } from './domain/managers/user-manager.service';
-import UserEntity from './domain/entities/UserEntity';
 
 
 @Component({

@@ -7,6 +7,7 @@ import { ButtonLinkComponent } from 'src/app/components/shared/button-link/butto
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { DropdownComponent } from 'src/app/components/shared/dropdown/dropdown.component';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
+import * as moment from 'moment';
 
 
 
@@ -78,7 +79,7 @@ export class CompetitionBannerComponent implements OnInit{
     this.competitionM.getCompetition().subscribe(
       (competition)=>{
         this.competition = competition;
-        this.currentSeason = competition.currentSeason?.startDate.split('-')[0]||"";
+        this.currentSeason = moment(competition.currentSeason?.startDate).format('YYYY');
       }
     )
   }

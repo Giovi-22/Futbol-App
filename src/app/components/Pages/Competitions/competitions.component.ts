@@ -76,6 +76,7 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log("Competition on init")
     this.screen="teams"
     this.competitionM.getCurrent().subscribe(
       (competition)=>{
@@ -98,6 +99,7 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log("Competition destroy")
     this.teamSubscription.unsubscribe();
     this.competitionSubscription.unsubscribe();
   }

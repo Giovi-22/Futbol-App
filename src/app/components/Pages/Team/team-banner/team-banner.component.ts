@@ -23,6 +23,7 @@ export class TeamBannerComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    console.log("dentro de on init en team")
     this.teamM.getStoreCurrent().subscribe(
       (team)=>{
         console.log("el equipo: ",team)
