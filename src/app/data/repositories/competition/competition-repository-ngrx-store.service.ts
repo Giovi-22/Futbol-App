@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '@store/app.state';
-import { currentCompetition, loadMatches, loadStandings, loadedCompetitions, saveCompetition } from '../../../store/actions/competitions.actions';
-import { matchesList, selectCompetition, selectCompetitionsList, selectCurrentCompetition, standingsList } from '../../../store/selectors/competitions.selectors';
+import { currentCompetition, loadMatches, loadStandings, loadedCompetitions, saveCompetition, setCurrentSeason } from '../../../store/actions/competitions.actions';
+import { matchesList, selectCompetition, selectCompetitionsList, selectCurrentCompetition, standingsList, getCurrentSeason } from '../../../store/selectors/competitions.selectors';
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 import { Standing } from 'src/app/models/interfaces/competitioniterfaces';
@@ -31,6 +31,11 @@ export class CompetitionRepositoryNgrxStoreService implements CompetitionReposit
   setCurrent(competitionCode:string){
       this.store.dispatch(currentCompetition({current:competitionCode}))
   }
+
+  setCurrentSeason(season:string){
+    this.store.dispatch(setCurrentSeason({currentSeason:season}));
+  }
+
   addMatches(matches:MatchEntity[]){
     this.store.dispatch(loadMatches({matches}))
   }
@@ -56,6 +61,10 @@ export class CompetitionRepositoryNgrxStoreService implements CompetitionReposit
 
   getStandings(){
     return this.store.select(standingsList);
+  }
+
+  getCurrentSeason(){
+    return this.store.select(getCurrentSeason);
   }
 
 

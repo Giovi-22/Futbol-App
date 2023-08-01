@@ -34,3 +34,8 @@ export const standingsList = createSelector(
   selectCompetitionsFeature,
   (state: CompetitionsState)=>state.standings
 )
+
+export const getCurrentSeason = createSelector(
+  selectCompetitionsFeature,
+  (state: CompetitionsState)=>state.currentSeason
+)

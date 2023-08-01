@@ -32,4 +32,9 @@ export const loadStandings =  createAction(
     props<{standings:Standing[]}>()
 )
 
+export const setCurrentSeason =  createAction(
+    '[Competition Season] current season',
+    props<{currentSeason:string}>()
+)
+
  

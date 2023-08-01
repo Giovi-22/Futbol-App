@@ -8,6 +8,7 @@ export interface CompetitionsState{
     loading:boolean,
     current:string,
     competition:CompetitionEntity,
+    currentSeason:string,
     competitions:CompetitionEntity[],
     matches:MatchEntity[],
     standings: Standing[],

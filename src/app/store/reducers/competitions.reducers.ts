@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { currentCompetition, loadCompetitions, loadMatches, loadStandings, loadedCompetitions, saveCompetition } from "../actions/competitions.actions";
+import { currentCompetition, loadCompetitions, loadMatches, loadStandings, loadedCompetitions, saveCompetition, setCurrentSeason } from "../actions/competitions.actions";
 import { CompetitionsState } from "src/app/models/storeModelsInterfaces";
 import { CompetitionEntity } from "src/app/domain/entities/CompetitionEntity";
 
@@ -14,7 +14,8 @@ export const initialState:CompetitionsState = {
     },
     current: "PL",
     matches:[],
-    standings:[]
+    standings:[],
+    currentSeason:""
 };
 
 export const competitionReducer = createReducer(
@@ -54,6 +55,12 @@ export const competitionReducer = createReducer(
             ...state,
             loading:false,
             standings
+        }
+    }),
+    on(setCurrentSeason,(state,{currentSeason})=>{
+        return{
+            ...state,
+            currentSeason
         }
     })
 )

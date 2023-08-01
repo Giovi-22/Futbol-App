@@ -7,7 +7,6 @@ import { ButtonLinkComponent } from 'src/app/components/shared/button-link/butto
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { DropdownComponent } from 'src/app/components/shared/dropdown/dropdown.component';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
-import * as moment from 'moment';
 
 
 
@@ -66,11 +65,12 @@ export class CompetitionBannerComponent implements OnInit{
     }
 
     getCompetition(season:string){
-      console.log("la temporada seleccionada: ",season)
       this.competitionM.findStandings(this.competition.code,{season:season});
       this.competitionM.findMatches(this.competition.code,{season:season});
       this.teamM.findApiTeams(this.competition.code,{season:season})
+      this.competitionM.setCurrentSeason(season);
       this.currentSeason = season;
+      
     }
 
   ngOnInit(): void {
@@ -79,9 +79,13 @@ export class CompetitionBannerComponent implements OnInit{
     this.competitionM.getCompetition().subscribe(
       (competition)=>{
         this.competition = competition;
-        this.currentSeason = moment(competition.currentSeason?.startDate).format('YYYY');
       }
     )
+    this.competitionM.getSeason().subscribe({
+      next:(result)=>{
+        this.currentSeason = result;
+      }
+    })
   }
 
 

@@ -5,6 +5,7 @@ import { CompetitionApiStrategy } from '../strategies/competition/competitionStr
 import CompetitionApiStrategyFactory from '../factory/competition/strategyFactory';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,9 @@ export class CompetitionManagerService {
   findCompetition(competitionCode:string,filter?:ApiFootballDataFilters){
     this.strategy.getCompetition(competitionCode,filter).subscribe(
       (result)=>{
-        this.storage.saveCompetition(result)
+        this.storage.saveCompetition(result);
+        const currentSeason = moment(result.currentSeason?.startDate).format('YYYY');
+        this.storage.setCurrentSeason(currentSeason);
       },
       (error)=>{
         this.router.navigate(['not-found',error])
@@ -67,6 +70,10 @@ export class CompetitionManagerService {
     this.storage.setCurrent(competition);
   }
 
+  setCurrentSeason(season:string){
+    this.storage.setCurrentSeason(season);
+  }
+
   getCurrent(){
     return this.storage.getCurrent();
   }
@@ -85,6 +92,10 @@ export class CompetitionManagerService {
 
   getStandings(){
     return this.storage.getStandings();
+  }
+
+  getSeason(){
+    return this.storage.getCurrentSeason();
   }
 
 }
