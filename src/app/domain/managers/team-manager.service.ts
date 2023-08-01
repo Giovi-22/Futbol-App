@@ -37,7 +37,7 @@ export class TeamManagerService  {
   
 
   findApiTeam(teamCode:number=86){
-    this.apiStrategy.getTeam(teamCode).subscribe(
+    return this.apiStrategy.getTeam(teamCode).subscribe(
       (team)=>{
         this.storeStrategy.setTeam(team);
       },

@@ -67,6 +67,14 @@ $backgroundColor: tools.colors("white");
     background-color: rgba(231, 225, 225, 0.336);
 }
 
+.finded-teams{
+    position: absolute;
+    top:150%;
+    background-color: white;
+    z-index: 10;
+    width: 100%;
+}
+
 @media screen and (max-width:660px) {
     .logo{
         height: 40px;

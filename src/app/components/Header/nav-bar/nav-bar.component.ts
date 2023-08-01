@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 import { AuthComponent } from '../../auth/auth.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
+import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
+import { SearchComponent } from '../search/search.component';
 
 
 @Component({
@@ -19,7 +21,8 @@ import { TeamManagerService } from 'src/app/domain/managers/team-manager.service
     RouterModule,
     ButtonLinkComponent,
     AuthComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SearchComponent
   ],
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
@@ -33,6 +36,8 @@ export class NavBarComponent implements OnInit {
   @Input() isSmall:boolean=true;
   isLogged$= new Observable<boolean>();
   searchField!:FormGroup;
+  findedTeams:TeamEntity[] = [];
+  openSearch:boolean = false;
   
   constructor(
     private userM: UserManagerService,
@@ -65,15 +70,19 @@ export class NavBarComponent implements OnInit {
     this.teamM.searchTeam(teamName).subscribe({
       next:((result)=>{
         console.log("El team buscado: ",result)
+        this.findedTeams = result;
         this.teamM.setApiStrategy('TeamfootballApi');
+        this.openSearch = true;
       }),
       error:((error)=>{
         console.log("El error es :",error);
         this.teamM.setApiStrategy('TeamfootballApi');
       })
     })
-    
+  }
 
+  openSearchMenu(open:boolean){
+    this.openSearch = open;
   }
 
 }

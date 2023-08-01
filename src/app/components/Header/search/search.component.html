@@ -1,1 +1,5 @@
-<p>search works!</p>
+<div *ngFor="let team of teams"class="team" (click)="onSelectedTeam(team)">
+    <img src={{team.logo}}>
+    <p>{{team.name}}</p>
+</div>
+<hr>
