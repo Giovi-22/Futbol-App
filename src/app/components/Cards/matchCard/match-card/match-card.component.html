@@ -1,8 +1,17 @@
-<div class="match__card">
-    <div class="match__card__teams">
-        <img src={{match.homeTeam?.logo}} class="match__home">
-        <span>VS</span>
-        <img src={{match.awayTeam?.logo}} class="match__away">
+<div class="card__team__container">
+    <div class="card__team__container-teams">
+        <span><img src={{match.homeTeam?.logo}} class="match__home"> {{match.homeTeam?.name}}</span>
+        <span><img src={{match.awayTeam?.logo}} class="match__away"> {{match.awayTeam?.name}}</span>
     </div>
-<p>{{match.utcDate}}</p>
+    <div class="card__text">
+        <h4>VS</h4>
+    </div>
+    
+    <div class="card__team__container-date">
+        <p>{{match.utcDate}}</p>
+    </div>
+</div>
+<div class="card__competition">
+    <img *ngIf="competition" src={{competition.logo}} class="competition__img">
+    <h5 *ngIf="competition" >{{competition.name}}</h5>
 </div>

@@ -36,6 +36,9 @@ export class TeamComponent implements OnInit {
     Offence:[],
     Reserva:[]
   }
+
+  playersIdList!:Number[];
+
   constructor(private teamM: TeamManagerService) { 
     this.team = new TeamEntity({
       area:{code:"",flag:"",id:0,name:""},
@@ -55,6 +58,7 @@ export class TeamComponent implements OnInit {
         if(result.squad?.length){
           this.players = [...result.squad];
           this.players.forEach(player=>{
+            this.playersIdList.push(player.id);
             if(!player.position){
               this.positions['Reserva'].push(player)
             }
@@ -64,6 +68,8 @@ export class TeamComponent implements OnInit {
         console.log("Las posiciones son: ",this.positions)
       }
     })
+
+  
   }
 
 }
