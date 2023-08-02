@@ -4,7 +4,7 @@ import { TeamsState, UserState } from "src/app/models/storeModelsInterfaces";
 import { loadPopular, loadTeam, loadTeams, loadedTeams } from "../actions/teams.actions";
 import { TeamEntity } from "src/app/domain/entities/TeamEntity";
 import UserEntity from "src/app/domain/entities/UserEntity";
-import { loadUser, setUserLoggedIn, updateFavoriteTeamList } from "@store/actions/user.actions";
+import { loadUser, setUserLoggedIn, updateFavoriteTeamList } from "src/app/data/ngrxStore/actions/user.actions";
 import { isLogged } from '../selectors/user.selectors';
 
 export const initialState:UserState = {

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { loadPlayers, loadPopular, loadTeam, loadedTeams } from '../../../store/actions/teams.actions';
-import { AppState } from '@store/app.state';
-import { selectTeamsList, selectedTeam, popularTeams, listOfPlayers } from '../../../store/selectors/teams.selectors';
+import { loadPlayers, loadPopular, loadTeam, loadedTeams } from '../../ngrxStore/actions/teams.actions';
+import { AppState } from 'src/app/data/ngrxStore/app.state';
+import { selectTeamsList, selectedTeam, popularTeams, listOfPlayers } from '../../ngrxStore/selectors/teams.selectors';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { TeamRepository } from '../../../models/interfaces/repositories/teamRepository.interface';
 import PlayerEntity from 'src/app/domain/entities/PlayerEntity';

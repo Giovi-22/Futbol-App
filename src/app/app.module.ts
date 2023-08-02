@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { ToastrModule } from 'ngx-toastr'
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ROOT_REDUCERS } from '@store/app.state' 
+import { ROOT_REDUCERS } from 'src/app/data/ngrxStore/app.state' 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // This Module Imports

@@ -1,13 +1,13 @@
 :host{
     width: 200px;
-    height: 400px;
+    max-height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     gap: 10px;
     background: #ECE9E6;  /* fallback for old browsers */
-    overflow: scroll;
+    overflow: auto;
 }
 
 .team{

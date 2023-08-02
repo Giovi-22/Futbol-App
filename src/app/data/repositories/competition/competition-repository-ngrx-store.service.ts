@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { AppState } from '@store/app.state';
-import { currentCompetition, loadMatches, loadStandings, loadedCompetitions, saveCompetition, setCurrentSeason } from '../../../store/actions/competitions.actions';
-import { matchesList, selectCompetition, selectCompetitionsList, selectCurrentCompetition, standingsList, getCurrentSeason } from '../../../store/selectors/competitions.selectors';
+import { AppState } from 'src/app/data/ngrxStore/app.state';
+import { currentCompetition, loadMatches, loadStandings, loadedCompetitions, saveCompetition, setCurrentSeason } from '../../ngrxStore/actions/competitions.actions';
+import { matchesList, selectCompetition, selectCompetitionsList, selectCurrentCompetition, standingsList, getCurrentSeason } from '../../ngrxStore/selectors/competitions.selectors';
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 import { Standing } from 'src/app/models/interfaces/competitioniterfaces';

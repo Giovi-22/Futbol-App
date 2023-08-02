@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadUser, setUserLoggedIn, updateFavoriteTeamList } from '@store/actions/user.actions';
-import { AppState } from '@store/app.state';
-import { favoriteTeamList, selectUser } from '@store/selectors/user.selectors';
+import { loadUser, setUserLoggedIn, updateFavoriteTeamList } from 'src/app/data/ngrxStore/actions/user.actions';
+import { AppState } from 'src/app/data/ngrxStore/app.state';
+import { favoriteTeamList, selectUser } from 'src/app/data/ngrxStore/selectors/user.selectors';
 import UserEntity from 'src/app/domain/entities/UserEntity';
-import { isLogged } from '../../../store/selectors/user.selectors';
+import { isLogged } from '../../ngrxStore/selectors/user.selectors';
 import { UserRepository } from 'src/app/models/interfaces/repositories/userRepository.interface';
 import { Observable } from 'rxjs';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';

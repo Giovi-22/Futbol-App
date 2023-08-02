@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { AppState } from '@store/app.state';
+import { AppState } from 'src/app/data/ngrxStore/app.state';
 import { TeamApiServerRepositoryService } from 'src/app/data/repositories/team/team-api-server-repository.service';
 import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team/team-repository-ngrx-store.service';
 import { TeamRepository } from 'src/app/models/interfaces/repositories/teamRepository.interface';

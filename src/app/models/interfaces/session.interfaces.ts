@@ -50,6 +50,6 @@ export interface RestorePassword{
 }
 
 export interface ErrorData{
-    status:string,
+    status:number,
     message:string
 }

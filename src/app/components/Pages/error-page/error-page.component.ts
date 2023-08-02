@@ -12,7 +12,11 @@ import { ErrorData } from 'src/app/models/interfaces/session.interfaces';
 })
 export class ErrorPageComponent implements OnInit {
 
-  @Input() error!:ErrorData;
+  @Input() error:ErrorData={
+    message:"",
+    status:404
+  }
+  
   constructor(
     private router: Router,
     private activateRoute: ActivatedRoute
@@ -21,11 +25,9 @@ export class ErrorPageComponent implements OnInit {
   ngOnInit(): void {
     this.activateRoute.paramMap.subscribe(
       (params)=>{
-        const parametro:any = params.get('message')
         console.log(params)
-        //this.error.message = params.get('message') || "";
-        //this.error.status = params.get('status') || "";
-        //console.log("Los parametros del error son: ",this.error);
+        this.error.message = params.get('message') || "";
+        this.error.status = Number(params.get('status')) || 0;
       }
       )
   }

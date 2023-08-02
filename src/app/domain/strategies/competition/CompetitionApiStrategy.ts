@@ -6,7 +6,7 @@ import { CompetitionEntity } from "../../entities/CompetitionEntity";
 import { Competition, Competitions, Standing } from 'src/app/models/interfaces/competitioniterfaces';
 import { MatchEntity } from '../../entities/MatchEntity';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
-import { competitions } from '@store/competitions';
+import { competitions } from 'src/app/data/ngrxStore/competitions';
 import { APIMatches } from 'src/app/models/interfaces/matchesInterfaces';
 import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
 
