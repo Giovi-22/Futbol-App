@@ -5,6 +5,11 @@ export interface DropdownItem{
     name:string
 }
 
+export interface Error{
+    message:string,
+    status:number
+}
+
 export interface TeamDto{
         area?:                AreaDto;
         id?:                  number;

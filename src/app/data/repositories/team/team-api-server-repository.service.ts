@@ -5,7 +5,7 @@ import PlayerEntity from 'src/app/domain/entities/PlayerEntity';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { TeamApiStrategy } from 'src/app/models/interfaces/strategies/teamStrategies';
 import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
-import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
+import { ApiFootballDataFilters, Error } from 'src/app/models/interfaces/dtoInterfaces';
 import { ResponseData, ResponseTeamPlayers, ResponseUser } from 'src/app/models/interfaces/session.interfaces';
 
 @Injectable({
@@ -40,8 +40,12 @@ export class TeamApiServerRepositoryService implements TeamApiStrategy {
                 });
               observer.next(team);
             },
-            (error)=>{
-              throw new Error(`No se pudieron obtener los datos: ${error}`)
+            (error:HttpErrorResponse)=>{
+              const newError:Error={
+                message: error.error.message,
+                status:error.status
+              }
+             observer.error(newError)
             }
           )
       });

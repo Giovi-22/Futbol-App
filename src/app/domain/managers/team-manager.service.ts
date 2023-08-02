@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 import { TeamApiStrategy } from '../../models/interfaces/strategies/teamStrategies';
 import ApiStrategyFactory from '../factory/team/apiStrategyFactory';
 import { TeamStoreRepository } from 'src/app/models/interfaces/repositories/teamRepository.interface';
-import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
+import { ApiFootballDataFilters, Error } from 'src/app/models/interfaces/dtoInterfaces';
 import { popularTeams } from 'src/app/data/ngrxStore/popularTeams';
 import StoreRepositoryFactory from '../factory/team/storeStrategyFactory';
+import { ErrorService } from 'src/app/services/error.service';
 
 
 @Injectable({
@@ -21,7 +22,8 @@ export class TeamManagerService  {
   constructor(
     private storeStrategyFactory: StoreRepositoryFactory,
     private apiStrategyFactory: ApiStrategyFactory,
-    private router: Router
+    private router: Router,
+    private errorS: ErrorService
   ) 
   { 
     this.apiStrategy = this.apiStrategyFactory.create('TeamfootballApi');
@@ -38,14 +40,14 @@ export class TeamManagerService  {
   
 
   findApiTeam(teamCode:number=86){
-    return this.apiStrategy.getTeam(teamCode).subscribe(
-      (team)=>{
+    return this.apiStrategy.getTeam(teamCode).subscribe({
+      next:(team)=>{
         this.storeStrategy.setTeam(team);
       },
-      (error)=>{
-        this.router.navigate(['not-found',error])
+      error:(error:Error)=>{
+        this.errorS.dispatchError(error)
       }
-    )
+    })
   }
 
   findApiPlayers(playerList:number[]){

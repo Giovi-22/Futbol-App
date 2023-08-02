@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { Error } from '../models/interfaces/dtoInterfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ErrorService {
     private router: Router
   ) { }
 
-  showError(error:string){
-    this.router.navigate(['notfound',{message:"Page don't found",status:404}]);
+  dispatchError(error:Error){
+    this.router.navigate(['notfound',{message:error.message,status:error.status}]);
   }
 }

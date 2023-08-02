@@ -10,8 +10,6 @@ import { TeamManagerService } from 'src/app/domain/managers/team-manager.service
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
 import { DropdownComponent } from '../../shared/dropdown/dropdown.component';
 import { Router } from '@angular/router';
-import { ErrorService } from 'src/app/services/error.service';
-
 
 @Component({
   selector: 'app-home',
@@ -33,7 +31,6 @@ export class HomeComponent implements OnInit {
     private competitionM: CompetitionManagerService,
     private teamM: TeamManagerService,
     private router: Router,
-    private errorS: ErrorService
     ) { }
 
   ngOnInit(): void {
@@ -50,10 +47,6 @@ export class HomeComponent implements OnInit {
     this.competitionM.findMatches(competitionCode);
     this.teamM.findApiTeams(competitionCode);
     this.router.navigate(['competitions']);
-  }
-
-  showError(){
-    this.errorS.showError("hola mundo");
   }
 
 }
