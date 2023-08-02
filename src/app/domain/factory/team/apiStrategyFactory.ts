@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
-import { TeamApiStrategy } from '../../strategies/team/teamStrategies';
+import { TeamApiStrategy } from '../../../models/interfaces/strategies/teamStrategies';
 import { TeamApiServerRepositoryService } from 'src/app/data/repositories/team/team-api-server-repository.service';
 import { TeamFootballDataRepository } from 'src/app/data/repositories/team/TeamFootballDataRepository';
 

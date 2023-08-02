@@ -19,7 +19,6 @@ import { MainComponent } from './components/Main/main/main.component';
 
 import StrategyFactory from './domain/factory/team/apiStrategyFactory'
 import { SessionRequestInterceptorService } from './services/session-request-interceptor.service'
-import { UserApiStrategy } from './domain/strategies/user/userStrategies'
 
 
 @NgModule({

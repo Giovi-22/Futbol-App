@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import PlayerEntity from 'src/app/domain/entities/PlayerEntity';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
-import { TeamApiStrategy } from 'src/app/domain/strategies/team/teamStrategies';
+import { TeamApiStrategy } from 'src/app/models/interfaces/strategies/teamStrategies';
 import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 import { ResponseData, ResponseTeamPlayers, ResponseUser } from 'src/app/models/interfaces/session.interfaces';

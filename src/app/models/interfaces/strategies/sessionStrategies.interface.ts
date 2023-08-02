@@ -1,8 +1,8 @@
 import { LogIn, LoginResponse, ResponseData, ResponseDto, RestorePassword } from "src/app/models/interfaces/session.interfaces";
-import UserEntity from "../../entities/UserEntity";
+import UserEntity from "../../../domain/entities/UserEntity";
 import { Observable } from 'rxjs';
 
-export interface SessionStrategy{
+export interface SessionApiStrategy{
     logIn(User:LogIn):Observable<ResponseDto>,
     signUp(User:UserEntity):Observable<ResponseData>,
     logOut():Observable<ResponseData>,

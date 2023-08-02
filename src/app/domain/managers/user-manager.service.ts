@@ -2,20 +2,23 @@ import { Injectable } from '@angular/core';
 import { UserRepositoryNgrxStoreService } from 'src/app/data/repositories/user/user-repository-ngrx-store.service';
 import UserEntity from '../entities/UserEntity';
 import { TeamEntity } from '../entities/TeamEntity';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { UserApiStrategy } from '../strategies/user/userStrategies';
+import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { UserApiStrategy } from '../../models/interfaces/strategies/userStrategies.interfaces';
+import { UserServerRepository } from 'src/app/data/repositories/user/userServerRepository';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserManagerService {
+
     #userServer:UserApiStrategy;
+
   constructor(
     private userStorage: UserRepositoryNgrxStoreService,
     private http:HttpClient
   ) { 
-    this.#userServer = new UserApiStrategy(http);
+    this.#userServer = new UserServerRepository(http);
   }
 
   setUser(user:UserEntity){

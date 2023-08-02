@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { TeamEntity } from "../../../domain/entities/TeamEntity";
 import { Competitions, Team } from "src/app/models/interfaces/competitioniterfaces";
-import { TeamApiStrategy } from "../../../domain/strategies/team/teamStrategies";
+import { TeamApiStrategy } from "../../../models/interfaces/strategies/teamStrategies";
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
 import PlayerEntity from 'src/app/domain/entities/PlayerEntity';

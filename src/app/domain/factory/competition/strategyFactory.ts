@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { CompetitionApiStrategy } from '../../../models/interfaces/strategies/competitionStrategy.interface';
+import { CompetitionApiStrategy } from '../../../models/interfaces/strategies/competitionStrategies.interface';
 import { HttpClient } from '@angular/common/http';
 import { CompetitionFootballDataRepository } from '../../../data/repositories/competition/CompetitionFootballDataRepository';
 

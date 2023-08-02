@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { TeamEntity } from '../../entities/TeamEntity';
+import { TeamEntity } from '../../../domain/entities/TeamEntity';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
-import PlayerEntity from '../../entities/PlayerEntity';
+import PlayerEntity from '../../../domain/entities/PlayerEntity';
 
 export interface TeamStoreStrategy{
     getTeam(teamId:number):Observable<TeamEntity>,

@@ -1,11 +1,10 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
-import { TeamEntity } from "../../entities/TeamEntity";
-import { UserStrategy } from "./userStrategy.interfaces";
+import { TeamEntity } from "../../../domain/entities/TeamEntity";
 import { Observable } from "rxjs";
 import { ResponseData, ResponseUser } from "src/app/models/interfaces/session.interfaces";
+import { UserApiStrategy } from "src/app/models/interfaces/strategies/userStrategies.interfaces";
 
-
-export class UserApiStrategy implements UserStrategy{
+export class UserServerRepository implements UserApiStrategy{
 
     #urlUser:string='http://localhost:8081/api/users/team';
 

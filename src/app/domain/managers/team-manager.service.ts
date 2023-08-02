@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { TeamApiStrategy } from '../strategies/team/teamStrategies';
+import { TeamApiStrategy } from '../../models/interfaces/strategies/teamStrategies';
 import ApiStrategyFactory from '../factory/team/apiStrategyFactory';
 import { TeamRepository } from 'src/app/models/interfaces/repositories/teamRepository.interface';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';

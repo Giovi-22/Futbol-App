@@ -1,11 +1,11 @@
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse} from "@angular/common/http";
-import { SessionStrategy } from '../../../domain/strategies/session/sessionStrategy.interface';
+import { SessionApiStrategy } from '../../../models/interfaces/strategies/sessionStrategies.interface';
 import UserEntity from '../../../domain/entities/UserEntity';
 import { LogIn, LoginResponse, ResponseData, ResponseDto, RestorePassword, User } from 'src/app/models/interfaces/session.interfaces';
 import { TeamEntity } from '../../../domain/entities/TeamEntity';
 
-export class SessionFutbolServerRepository implements SessionStrategy  {
+export class SessionFutbolServerRepository implements SessionApiStrategy  {
 
     #urlSession:string='http://localhost:8081/api/session'
     httpOptions= {
