@@ -8,46 +8,57 @@
     <span class="area__chica visita"></span>
     <span class="area__grande visita"></span>
     <div class="arquero">
-        <div class="jugador pos__1" data-message="jugador 1">1
+        <div class="jugador pos__1" data-message="jugador 1">
+            <span *ngIf="positions['Goalkeeper'].length" >{{positions['Goalkeeper'][0].shirtNumber || 1}}</span>
             <app-player-card *ngIf="positions['Goalkeeper'].length" class="player__data" [player]="positions['Goalkeeper'][0]"></app-player-card>
         </div>
     </div>
     
     <div class="defensores">
-        <div class="jugador pos__2" data-message="jugador 2">2
+        <div class="jugador pos__2" data-message="jugador 2">
+            <span *ngIf="positions['Defence'].length">{{positions['Defence'][0].shirtNumber || 2}}</span>
             <app-player-card *ngIf="positions['Defence'].length" class="player__data" [player]="positions['Defence'][0]"></app-player-card>
         </div>
-        <div class="jugador pos__3" data-message="jugador 3">3
+        <div class="jugador pos__3" data-message="jugador 3">
+            <span *ngIf="positions['Defence'].length" >{{positions['Defence'][1].shirtNumber || 3}}</span>
             <app-player-card *ngIf="positions['Defence'].length" class="player__data" [player]="positions['Defence'][1]"></app-player-card>
         </div>
-        <div class="jugador pos__4" data-message="jugador 4">4
+        <div class="jugador pos__4" data-message="jugador 4">
+            <span *ngIf="positions['Defence'].length">{{positions['Defence'][2].shirtNumber || 4}}</span>
             <app-player-card *ngIf="positions['Defence'].length" class="player__data" [player]="positions['Defence'][2]"></app-player-card>
         </div>
-        <div class="jugador pos__5" data-message="jugador 5">5
-             <app-player-card *ngIf="positions['Defence'].length" class="player__data" [player]="positions['Defence'][3]"></app-player-card>
+        <div class="jugador pos__5" data-message="jugador 5">
+            <span *ngIf="positions['Defence'].length" >{{positions['Defence'][3].shirtNumber || 5}}</span>
+            <app-player-card *ngIf="positions['Defence'].length" class="player__data" [player]="positions['Defence'][3]"></app-player-card>
         </div>
         
     </div>
     <div class="mediocampo">
-        <div class="jugador pos__6" data-message="jugador 6">6
-             <app-player-card *ngIf="positions['Midfield'].length" class="player__data" [player]="positions['Midfield'][0]"></app-player-card>
+        <div class="jugador pos__6" data-message="jugador 6">
+            <span *ngIf="positions['Midfield'].length" >{{positions['Midfield'][0].shirtNumber || 6}}</span>
+            <app-player-card *ngIf="positions['Midfield'].length" class="player__data" [player]="positions['Midfield'][0]"></app-player-card>
         </div>
-        <div class="jugador pos__7" data-message="jugador 7">7
-             <app-player-card *ngIf="positions['Midfield'].length" class="player__data" [player]="positions['Midfield'][1]"></app-player-card>
+        <div class="jugador pos__7" data-message="jugador 7">
+            <span *ngIf="positions['Midfield'].length" >{{positions['Midfield'][1].shirtNumber || 7}}</span>
+            <app-player-card *ngIf="positions['Midfield'].length" class="player__data" [player]="positions['Midfield'][1]"></app-player-card>
         </div>
-        <div class="jugador pos__8" data-message="jugador 8">8
-             <app-player-card *ngIf="positions['Midfield'].length" class="player__data" [player]="positions['Midfield'][2]"></app-player-card>
+        <div class="jugador pos__8" data-message="jugador 8">
+            <span *ngIf="positions['Midfield'].length" >{{positions['Midfield'][2].shirtNumber || 8}}</span>
+            <app-player-card *ngIf="positions['Midfield'].length" class="player__data" [player]="positions['Midfield'][2]"></app-player-card>
         </div>
     </div>
     <div class="delanteros">
-        <div class="jugador pos__10" data-message="jugador 10">10
-             <app-player-card *ngIf="positions['Offence'].length" class="player__data" [player]="positions['Offence'][0]"></app-player-card>
+        <div class="jugador pos__10" data-message="jugador 10">
+            <span *ngIf="positions['Offence'].length" >{{positions['Offence'][0].shirtNumber || 10}}</span>
+            <app-player-card *ngIf="positions['Offence'].length" class="player__data" [player]="positions['Offence'][0]"></app-player-card>
         </div>
-        <div class="jugador pos__9" data-message="jugador 9">9
-             <app-player-card *ngIf="positions['Offence'].length" class="player__data" [player]="positions['Offence'][1]"></app-player-card>
+        <div class="jugador pos__9" data-message="jugador 9">
+            <span *ngIf="positions['Offence'].length" >{{positions['Offence'][1].shirtNumber || 9}}</span>
+            <app-player-card *ngIf="positions['Offence'].length" class="player__data" [player]="positions['Offence'][1]"></app-player-card>
         </div>
-        <div class="jugador pos__11" data-message="jugador 11">11
-             <app-player-card *ngIf="positions['Offence'].length" class="player__data" [player]="positions['Offence'][2]"></app-player-card>
+        <div class="jugador pos__11" data-message="jugador 11">
+            <span *ngIf="positions['Offence'].length" >{{positions['Offence'][2].shirtNumber || 11}}</span>
+            <app-player-card *ngIf="positions['Offence'].length" class="player__data" [player]="positions['Offence'][2]"></app-player-card>
         </div>
     </div>
 </div>

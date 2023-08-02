@@ -55,7 +55,6 @@ export class TeamApiServerRepositoryService implements TeamApiStrategy {
     console.log("el team buscado es: ",teamName)
     return this.http.get<ResponseUser>(url,{headers:this.headers}).pipe(
           map((result)=>{
-            console.log("el resultado es: ",teamName)
             const teams = result.data.map(team=>new TeamEntity({     
               id: team.id,    
               name: team.name,    
@@ -77,10 +76,8 @@ export class TeamApiServerRepositoryService implements TeamApiStrategy {
 
   getPlayers(playersList: number[]): Observable<PlayerEntity[]> {
     const url = `${this.#urlTeams}/players`;
-    console.log("los jugadores para el body: ",playersList)
     return this.http.post<ResponseTeamPlayers>(url,{players:playersList},{headers:this.headers}).pipe(
           map((result)=>{
-              console.log("La lista de jugadores es: ",result.data);
               return result.data
           }),
           catchError((error)=>{

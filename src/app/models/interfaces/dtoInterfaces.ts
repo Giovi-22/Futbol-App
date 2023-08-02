@@ -45,6 +45,7 @@ export interface PlayerDto {
     position:    string;
     dateOfBirth: string;
     nationality: string;
+    shirtNumber: number | null;
 }
 //-------------------------------------------
 export interface Competitions {

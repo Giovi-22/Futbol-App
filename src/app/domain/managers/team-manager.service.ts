@@ -7,6 +7,7 @@ import StoreRepositoryFactory from '../factory/team/storeFactory';
 import { TeamRepository } from 'src/app/models/interfaces/repositories/teamRepository.interface';
 import { Router } from '@angular/router';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
+import { catchError, map, throwError } from 'rxjs';
 
 
 @Injectable({
@@ -48,17 +49,17 @@ export class TeamManagerService  {
   }
 
   findApiPlayers(playerList:number[]){
-    this.apiStrategy.getPlayers(playerList).subscribe({
-      next:(result)=>{
+    return this.apiStrategy.getPlayers(playerList).pipe(
+      map((result)=>{
         this.storeStrategy.setPlayers(result);
-      },
-      error:(error)=>{
-        console.log(error);
-      }
-    });
+        return result;
+      }),
+      catchError((error)=>{
+        return throwError(error);
+      })
+    );
   }
   findApiTeams(competitionCode:string ="PL",filter?:ApiFootballDataFilters){
-    console.log("La estrategia es: ",this.apiStrategy)
     this.apiStrategy.getTeams(competitionCode,filter).subscribe(
       (result)=>{
         this.storeStrategy.setTeams(result)

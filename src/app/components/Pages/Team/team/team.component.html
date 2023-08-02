@@ -2,7 +2,22 @@
 <div class="team__main__content">
     <div class="team__sidebar">
         <div class="team__sidebar__left" >
-            <pre *ngFor="let player of players">{{player.name}}</pre>
+            <div class="goalkeeper">
+                <h4>GOALKEEPERS</h4>
+                <pre *ngFor="let player of positions['Goalkeeper']" class="player">{{player.name | uppercase}}</pre>
+            </div>
+            <div class="defenders">
+                <h4>DEFENDERS</h4>
+                <pre *ngFor="let player of positions['Defence']" class="player">{{player.name | uppercase}}</pre>
+            </div>
+            <div class="midfielders">
+                <h4>MIDFIELDERS</h4>
+                <pre *ngFor="let player of positions['Midfield']" class="player">{{player.name | uppercase}}</pre>
+            </div>
+            <div class="attackers">
+                <h4>ATTACKERS</h4>
+                <pre *ngFor="let player of positions['Offence']" class="player">{{player.name | uppercase}}</pre>
+            </div>
         </div>
     </div>
        <app-football-field *ngIf="isPositions" [positions]="positions" ></app-football-field>

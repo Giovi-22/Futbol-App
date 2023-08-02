@@ -32,6 +32,6 @@ export class FootballFieldComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-
+    console.log("Las posiciones en football field component: ",this.positions)
   }
 }
