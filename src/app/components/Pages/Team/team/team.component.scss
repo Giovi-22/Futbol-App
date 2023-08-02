@@ -17,9 +17,8 @@
     grid-template-columns: 50% 50%;
     grid-template-rows: auto;
     gap:20px;
-    width: 400px;
+    width: auto;
     margin-left: 10px;
-    border-radius: 5px;
     padding: 0 5px;
     pre{
         margin: 5px;
@@ -46,7 +45,19 @@ h4{
 @media screen and (max-width:660px) {
     .team__main__content{
         flex-direction: column;
+        align-items: center;
         overflow: scroll;
+    }
+    .team__sidebar__left{
+        margin: 0;
+        gap:10px;
+    }
+    .player{
+        width: 90%;
+        overflow: hidden;
+    }
+    h4{
+        font-size: 1.2rem;
     }
 }
 

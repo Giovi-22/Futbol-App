@@ -15,7 +15,6 @@
   max-height: 90%;
   -webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 	animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-
 }
 
 .logo:hover{
@@ -24,7 +23,7 @@
 }
 
 
-.equipo{
+.team{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,7 +43,29 @@
   }
 }
 
+@media screen and (max-width:660px) {
+  :host{
+    padding: 0 5px;
+  }
+  .logo{
+    width: auto;
+    height: auto;
+    max-width:70%;
+    max-height: 70%;
+ }
+ .team{
+  h4{
+    color: #808080c4;
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
 
+  h2{
+    font-size: 1rem;
+    font-weight: 700;
+  }
+}
+}
 
 
 @-webkit-keyframes scale-out-center {

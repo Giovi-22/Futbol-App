@@ -1,6 +1,6 @@
 <app-team-banner></app-team-banner>
 <div class="team__main__content">
-    <div class="team__sidebar">
+    <div>
         <div class="team__sidebar__left" >
             <div class="goalkeeper">
                 <h4>GOALKEEPERS</h4>
@@ -20,5 +20,6 @@
             </div>
         </div>
     </div>
-       <app-football-field *ngIf="isPositions" [positions]="positions" ></app-football-field>
+    
+    <app-football-field *ngIf="isPositions" [positions]="positions" ></app-football-field>
 </div>
