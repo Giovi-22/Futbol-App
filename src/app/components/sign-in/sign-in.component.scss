@@ -14,7 +14,17 @@ form{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    width: 400px;
     button{
         align-self: center;
+    }
+    input{
+        width: 300px;
+    }
+}
+
+@media screen and (max-width:660px) {
+    form{
+        width: 350px;
     }
 }
