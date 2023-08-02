@@ -1,7 +1,7 @@
 import { Observable} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { competitionStrategy } from "src/app/models/interfaces/strategiesInterfaces";
+import { competitionStrategy } from "src/app/models/interfaces/strategies/strategiesInterfaces";
 import { CompetitionEntity } from "../../../domain/entities/CompetitionEntity";
 import { Competition, Competitions, Standing } from 'src/app/models/interfaces/competitioniterfaces';
 import { MatchEntity } from '../../../domain/entities/MatchEntity';

@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { currentCompetition, loadCompetitions, loadMatches, loadStandings, loadedCompetitions, saveCompetition, setCurrentSeason } from "../actions/competitions.actions";
-import { CompetitionsState } from "src/app/models/storeModelsInterfaces";
+import { CompetitionsState } from "src/app/models/storeModels.Interfaces";
 import { CompetitionEntity } from "src/app/domain/entities/CompetitionEntity";
 
 export const initialState:CompetitionsState = {

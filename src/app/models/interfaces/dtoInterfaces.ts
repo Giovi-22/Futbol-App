@@ -1,13 +1,9 @@
-import { TeamEntity } from "src/app/domain/entities/TeamEntity";
-import { Team } from "./competitioniterfaces";
 import PlayerEntity from "src/app/domain/entities/PlayerEntity";
 
 export interface DropdownItem{
     image:string,
     name:string
 }
-
-
 
 export interface TeamDto{
         area?:                AreaDto;

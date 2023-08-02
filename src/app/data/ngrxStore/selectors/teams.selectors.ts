@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from '../app.state';
-import {  TeamsState } from 'src/app/models/storeModelsInterfaces';
+import {  TeamsState } from 'src/app/models/storeModels.Interfaces';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
  
  

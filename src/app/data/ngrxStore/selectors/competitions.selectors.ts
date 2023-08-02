@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from '../app.state';
-import { CompetitionsState } from 'src/app/models/storeModelsInterfaces';
+import { CompetitionsState } from 'src/app/models/storeModels.Interfaces';
  
  
 export const selectCompetitionsFeature = (state: AppState) => state.competitions;
