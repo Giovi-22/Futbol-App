@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CompetitionRepositoryNgrxStoreService } from './competition-repository-ngrx-store.service';
+import { CompetitionNgrxStoreRepositoryService } from './competition-repository-ngrx-store.service';
 
 describe('CompetitionRepositoryNgrxStoreService', () => {
-  let service: CompetitionRepositoryNgrxStoreService;
+  let service: CompetitionNgrxStoreRepositoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CompetitionRepositoryNgrxStoreService);
+    service = TestBed.inject(CompetitionNgrxStoreRepositoryService);
   });
 
   it('should be created', () => {

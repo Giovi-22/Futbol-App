@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { CompetitionEntity } from '../../entities/CompetitionEntity';
+import { CompetitionEntity } from '../../../domain/entities/CompetitionEntity';
 import { Standing } from 'src/app/models/interfaces/competitioniterfaces';
-import { MatchEntity } from '../../entities/MatchEntity';
+import { MatchEntity } from '../../../domain/entities/MatchEntity';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 
 

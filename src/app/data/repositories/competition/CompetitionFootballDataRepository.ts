@@ -2,15 +2,15 @@ import { Observable} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { competitionStrategy } from "src/app/models/interfaces/strategiesInterfaces";
-import { CompetitionEntity } from "../../entities/CompetitionEntity";
+import { CompetitionEntity } from "../../../domain/entities/CompetitionEntity";
 import { Competition, Competitions, Standing } from 'src/app/models/interfaces/competitioniterfaces';
-import { MatchEntity } from '../../entities/MatchEntity';
+import { MatchEntity } from '../../../domain/entities/MatchEntity';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 import { competitions } from 'src/app/data/ngrxStore/competitions';
 import { APIMatches } from 'src/app/models/interfaces/matchesInterfaces';
 import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
 
-export class CompetitionFootballDataApiStrategy implements competitionStrategy{
+export class CompetitionFootballDataRepository implements competitionStrategy{
 
     #urlCompetition:string='https://api.football-data.org/v4/competitions';
     

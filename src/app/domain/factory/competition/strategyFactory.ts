@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { CompetitionApiStrategy } from '../../strategies/competition/competitionStrategy.interface';
-import { CompetitionFootballDataApiStrategy } from '../../strategies/competition/CompetitionApiStrategy';
+import { CompetitionApiStrategy } from '../../../models/interfaces/strategies/competitionStrategy.interface';
 import { HttpClient } from '@angular/common/http';
+import { CompetitionFootballDataRepository } from '../../../data/repositories/competition/CompetitionFootballDataRepository';
 
 
 @Injectable({
@@ -22,7 +22,7 @@ class CompetitionApiStrategyFactory{
         
         create(strategy:string): CompetitionApiStrategy {
             switch(strategy){
-                case 'CompetitionfootballApi': return new CompetitionFootballDataApiStrategy(this.#httpClient);
+                case 'CompetitionfootballApi': return new CompetitionFootballDataRepository(this.#httpClient);
                 default: throw new Error("La Estrategia seleccionada no existe");
             }
     }

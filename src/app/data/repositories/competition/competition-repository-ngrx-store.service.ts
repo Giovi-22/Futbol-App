@@ -13,7 +13,7 @@ import { CompetitionRepository } from 'src/app/models/interfaces/repositories/co
 @Injectable({
   providedIn: 'root'
 })
-export class CompetitionRepositoryNgrxStoreService implements CompetitionRepository{
+export class CompetitionNgrxStoreRepositoryService implements CompetitionRepository{
 
   constructor(
     private store:Store<AppState>
