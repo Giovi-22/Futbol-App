@@ -3,19 +3,20 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { SessionFutbolServerStrategy } from '../strategies/session/sessionFutbolServerStrategy';
 import {LogIn, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
 import UserEntity from '../entities/UserEntity';
 import { UserManagerService } from './user-manager.service';
 import { UserRepositoryNgrxStoreService } from 'src/app/data/repositories/user/user-repository-ngrx-store.service';
 import { catchError, map, throwError } from 'rxjs';
+import { SessionFutbolServerRepository } from 'src/app/data/repositories/session/sessionFutbolServerRepository';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionManagerService {
 
-  #session:SessionFutbolServerStrategy;
+  #session:SessionFutbolServerRepository;
 
   constructor(
     private http: HttpClient,
@@ -24,7 +25,7 @@ export class SessionManagerService {
     private userM: UserManagerService,
     private userStorage: UserRepositoryNgrxStoreService
     ) {
-    this.#session = new SessionFutbolServerStrategy(this.http);
+    this.#session = new SessionFutbolServerRepository(this.http);
    }
 
    logIn(user:LogIn){

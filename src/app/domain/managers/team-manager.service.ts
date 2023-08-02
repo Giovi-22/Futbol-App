@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 
 import { TeamApiStrategy } from '../strategies/team/teamStrategies';
 import ApiStrategyFactory from '../factory/team/apiStrategyFactory';
-import StoreRepositoryFactory from '../factory/team/storeFactory';
 import { TeamRepository } from 'src/app/models/interfaces/repositories/teamRepository.interface';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 import { popularTeams } from 'src/app/data/ngrxStore/popularTeams';
+import StoreRepositoryFactory from '../factory/team/storeStrategyFactory';
 
 
 @Injectable({
