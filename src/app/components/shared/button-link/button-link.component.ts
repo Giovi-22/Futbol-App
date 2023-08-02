@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-button-link',
@@ -14,21 +15,38 @@ export class ButtonLinkComponent implements OnInit, OnChanges {
   @Input() title:string = " ";
   @Input() navigateTo:string="";
   @Input() isSelected:boolean = false;
-
-  buttonClass:string = "btn btn-outline-secondary";
-  constructor() { }
+  breakpointSmall:boolean = false;
+  buttonClasses = {
+    type:"btn btn-outline-secondary",
+    size:""
+  }
+  
+  constructor(
+    private breakointObserver : BreakpointObserver
+  ) { }
 
   ngOnInit(): void {
-    
+    this.breakointObserver.observe(["(max-width:660px)"]).subscribe({
+      next:(result)=>{
+        this.breakpointSmall = result.breakpoints["(max-width:660px)"];
+        if(this.breakpointSmall){
+          this.buttonClasses.size="btn-sm";
+        }else{
+          this.buttonClasses.size="";
+        }
+      }
+    })
+  }
+  getClasses(){
+    return `${this.buttonClasses.type} ${this.buttonClasses.size}`;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['isSelected']){
-      console.log("el boton esta seleccionado",changes['isSelected'].currentValue)
       if(changes['isSelected'].currentValue){
-        this.buttonClass = "btn btn-secondary";
+        this.buttonClasses.type="btn btn-secondary"     
       }else{
-        this.buttonClass = "btn btn-outline-secondary";
+        this.buttonClasses.type="btn btn-outline-secondary"   
       }
 
   }
