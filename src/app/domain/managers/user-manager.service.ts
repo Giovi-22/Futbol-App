@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
+
 import { UserRepositoryNgrxStoreService } from 'src/app/data/repositories/user/user-repository-ngrx-store.service';
 import UserEntity from '../entities/UserEntity';
 import { TeamEntity } from '../entities/TeamEntity';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
 import { UserApiStrategy } from '../../models/interfaces/strategies/userStrategies.interfaces';
 import { UserServerRepository } from 'src/app/data/repositories/user/userServerRepository';
 

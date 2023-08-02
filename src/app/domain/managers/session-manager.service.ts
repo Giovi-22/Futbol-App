@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, map, throwError } from 'rxjs';
 
 import {LogIn, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
 import UserEntity from '../entities/UserEntity';
 import { UserManagerService } from './user-manager.service';
 import { UserRepositoryNgrxStoreService } from 'src/app/data/repositories/user/user-repository-ngrx-store.service';
-import { catchError, map, throwError } from 'rxjs';
 import { SessionFutbolServerRepository } from 'src/app/data/repositories/session/sessionFutbolServerRepository';
 
 
@@ -40,6 +40,7 @@ export class SessionManagerService {
             return response;
          }),
          catchError((error)=>{
+            this.userM.setUserLoggedIn(false); 
             return throwError(error);
          })
       );
@@ -47,7 +48,13 @@ export class SessionManagerService {
    }
 
    current(){
-      return this.#session.current();
+      return this.#session.current().pipe(
+         map((result)=>{return result}),
+         catchError((error)=>{
+            this.userM.setUserLoggedIn(false); 
+            return throwError(error);
+         })
+      );
    }
 
    singUp(user:Partial<UserEntity>){
@@ -58,6 +65,7 @@ export class SessionManagerService {
          }
       },
       error:(error:HttpErrorResponse)=>{
+         this.userM.setUserLoggedIn(false); 
          this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Signup failed!",{closeButton:true,easing:"ease-in"});
       }
     })

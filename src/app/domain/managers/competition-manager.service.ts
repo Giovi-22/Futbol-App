@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 import { CompetitionNgrxStoreRepositoryService } from 'src/app/data/repositories/competition/competition-repository-ngrx-store.service';
 import { CompetitionApiStrategy } from '../../models/interfaces/strategies/competitionStrategies.interface';
 import CompetitionApiStrategyFactory from '../factory/competition/strategyFactory';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
-import { Router } from '@angular/router';
-import * as moment from 'moment';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class CompetitionManagerService {
   constructor( 
     private storage:  CompetitionNgrxStoreRepositoryService,
     private strategyFactory: CompetitionApiStrategyFactory,
-    private router: Router
+    private router: Router,
+    private erroS: ErrorService
     ) {
       this.strategy = this.strategyFactory.create('CompetitionfootballApi');
     }
@@ -27,7 +29,7 @@ export class CompetitionManagerService {
           this.storage.saveCompetitions(list);
       },
       (error)=>{
-        this.router.navigate(['not-found',error])
+        this.erroS.dispatchError(error);
       })
   }
 
@@ -39,7 +41,7 @@ export class CompetitionManagerService {
         this.storage.setCurrentSeason(currentSeason);
       },
       (error)=>{
-        this.router.navigate(['not-found',error])
+        this.erroS.dispatchError(error);
       }
     )
   }
@@ -50,7 +52,7 @@ export class CompetitionManagerService {
         this.storage.addMatches(result);
       },
       (error)=>{
-        this.router.navigate(['not-found',error])
+        this.erroS.dispatchError(error);
       }
     )
   }
@@ -61,7 +63,7 @@ export class CompetitionManagerService {
         this.storage.addStandings(result);
       },
       (error)=>{
-        this.router.navigate(['not-found',error])
+        this.erroS.dispatchError(error);
       }
     )
   }
