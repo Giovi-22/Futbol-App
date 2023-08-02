@@ -3,9 +3,8 @@ import { Injectable } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/data/ngrxStore/app.state';
-import { TeamApiServerRepositoryService } from 'src/app/data/repositories/team/team-api-server-repository.service';
 import { TeamRepositoryNgrxStoreService } from 'src/app/data/repositories/team/team-repository-ngrx-store.service';
-import { TeamRepository } from 'src/app/models/interfaces/repositories/teamRepository.interface';
+import { TeamStoreRepository } from 'src/app/models/interfaces/repositories/teamRepository.interface';
 
 
 @Injectable({
@@ -23,7 +22,7 @@ class StoreRepositoryFactory{
         this.storeRepository = this.store;    
         }
         
-        create(strategy:string): TeamRepository {
+        create(strategy:string): TeamStoreRepository {
             switch(strategy){
                 case 'NgrxStore': return new TeamRepositoryNgrxStoreService(this.storeRepository);
                 default: throw new Error("La Estrategia seleccionada no existe");

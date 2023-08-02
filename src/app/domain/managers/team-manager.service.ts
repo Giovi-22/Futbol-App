@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { TeamApiStrategy } from '../../models/interfaces/strategies/teamStrategies';
 import ApiStrategyFactory from '../factory/team/apiStrategyFactory';
-import { TeamRepository } from 'src/app/models/interfaces/repositories/teamRepository.interface';
+import { TeamStoreRepository } from 'src/app/models/interfaces/repositories/teamRepository.interface';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 import { popularTeams } from 'src/app/data/ngrxStore/popularTeams';
 import StoreRepositoryFactory from '../factory/team/storeStrategyFactory';
@@ -16,7 +16,7 @@ import StoreRepositoryFactory from '../factory/team/storeStrategyFactory';
 export class TeamManagerService  {
   
   apiStrategy: TeamApiStrategy ;
-  storeStrategy: TeamRepository;
+  storeStrategy: TeamStoreRepository;
     ; 
   constructor(
     private storeStrategyFactory: StoreRepositoryFactory,

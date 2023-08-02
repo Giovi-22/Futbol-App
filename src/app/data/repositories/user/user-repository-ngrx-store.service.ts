@@ -5,14 +5,14 @@ import { AppState } from 'src/app/data/ngrxStore/app.state';
 import { favoriteTeamList, selectUser } from 'src/app/data/ngrxStore/selectors/user.selectors';
 import UserEntity from 'src/app/domain/entities/UserEntity';
 import { isLogged } from '../../ngrxStore/selectors/user.selectors';
-import { UserRepository } from 'src/app/models/interfaces/repositories/userRepository.interface';
+import { UserStoreRepository } from 'src/app/models/interfaces/repositories/userRepository.interface';
 import { Observable } from 'rxjs';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserRepositoryNgrxStoreService implements UserRepository {
+export class UserRepositoryNgrxStoreService implements UserStoreRepository {
 
   constructor(private store: Store<AppState>) { }
 

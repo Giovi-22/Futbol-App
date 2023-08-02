@@ -3,7 +3,7 @@ import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 import { Standing } from '../competitioniterfaces';
 
-export interface CompetitionRepository{
+export interface CompetitionStoreRepository{
     saveCompetitions(competitions:CompetitionEntity[]):void;
     saveCompetition(competition:CompetitionEntity):void;
     setCurrent(competitionCode:string):void;

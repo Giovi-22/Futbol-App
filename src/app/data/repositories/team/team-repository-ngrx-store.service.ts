@@ -6,13 +6,13 @@ import { loadPlayers, loadPopular, loadTeam, loadedTeams } from '../../ngrxStore
 import { AppState } from 'src/app/data/ngrxStore/app.state';
 import { selectTeamsList, selectedTeam, popularTeams, listOfPlayers } from '../../ngrxStore/selectors/teams.selectors';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
-import { TeamRepository } from '../../../models/interfaces/repositories/teamRepository.interface';
+import { TeamStoreRepository } from '../../../models/interfaces/repositories/teamRepository.interface';
 import PlayerEntity from 'src/app/domain/entities/PlayerEntity';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeamRepositoryNgrxStoreService implements TeamRepository {
+export class TeamRepositoryNgrxStoreService implements TeamStoreRepository {
 
   constructor(
     private store: Store<AppState>,
