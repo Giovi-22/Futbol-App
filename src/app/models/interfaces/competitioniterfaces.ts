@@ -90,7 +90,7 @@ export interface Squad {
     id:          number;
     name:        string;
     position:    Position;
-    dateOfBirth: string;
+    dateOfBirth: Date;
     nationality: string;
 }
 

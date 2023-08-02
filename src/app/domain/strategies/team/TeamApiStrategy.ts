@@ -5,6 +5,7 @@ import { Competitions, Team } from "src/app/models/interfaces/competitioniterfac
 import { TeamApiStrategy } from "./teamStrategies";
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
+import PlayerEntity from '../../entities/PlayerEntity';
 
 
 export class TeamFootballDataApiStrategy implements TeamApiStrategy{
@@ -70,6 +71,10 @@ export class TeamFootballDataApiStrategy implements TeamApiStrategy{
     }
 
   getTeamsByName(teamName: string): Observable<TeamEntity[]> {
+    return new Observable();
+  }
+
+  getPlayers(playersList: number[]): Observable<PlayerEntity[]> {
     return new Observable();
   }
 }

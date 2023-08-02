@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Squad } from 'src/app/models/interfaces/competitioniterfaces';
+import PlayerEntity from 'src/app/domain/entities/PlayerEntity';
 
 @Component({
   selector: 'app-player-card',
@@ -11,7 +12,7 @@ import { Squad } from 'src/app/models/interfaces/competitioniterfaces';
 })
 export class PlayerCardComponent implements OnInit {
 
-  @Input() player!:Squad;
+  @Input() player!:PlayerEntity;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -10,6 +10,7 @@ import { TeamManagerService } from 'src/app/domain/managers/team-manager.service
 import { FootballFieldComponent } from 'src/app/components/football-field/football-field.component';
 import { Squad } from 'src/app/models/interfaces/competitioniterfaces';
 import { Positions } from 'src/app/models/interfaces/dtoInterfaces';
+import PlayerEntity from 'src/app/domain/entities/PlayerEntity';
 
 
 @Component({
@@ -25,10 +26,10 @@ import { Positions } from 'src/app/models/interfaces/dtoInterfaces';
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })
-export class TeamComponent implements OnInit {
+export class TeamComponent implements OnInit, OnDestroy {
 
   team:TeamEntity;
-  players!:Squad[];
+  players!:PlayerEntity[];
   isPositions:boolean = false;
   positions:Positions={
     Goalkeeper:[],
@@ -57,25 +58,36 @@ export class TeamComponent implements OnInit {
       next:(result)=>{
         if(result.squad?.length){
           console.log("HAY JUGADORES")
-          this.players = [...result.squad];
+          this.players = result.squad.map(player => new PlayerEntity({
+            dateOfBirth: player.dateOfBirth.toString(),
+            id:player.id,
+            name:player.name,
+            nationality:player.nationality,
+            position:player.position
+          }));
           this.playersIdList = this.players.map(player=>player.id);
-          /*
-          this.positions['Goalkeeper']= this.players.filter(player => player.position.includes('Goalkeeper'));
-          this.positions['Defence']= this.players.filter(player => player.position.includes('Defence'));
-          this.positions['Midfield']= this.players.filter(player => player.position.includes('Midfield'));
-          this.positions['Offence']= this.players.filter(player => player.position.includes('Offence'));
-          this.isPositions = true;
-          */
+          this.teamM.setApiStrategy('TeamServer');
+          this.teamM.findApiPlayers(this.playersIdList);
       }
     }
     })
     
-    if(this.playersIdList.length){
-      this.teamM.setApiStrategy('TeamServer');
-      this.teamM.findApiPlayers(this.playersIdList);
+    this.teamM.getPlayers().subscribe({
+      next:(result)=>{
+        if(result){
+        this.positions['Goalkeeper']= result.filter(player => player.position.includes('Goalkeeper'));
+          this.positions['Defence']= this.players.filter(player => player.position.includes('Defence'));
+          this.positions['Midfield']= this.players.filter(player => player.position.includes('Midfield'));
+          this.positions['Offence']= this.players.filter(player => player.position.includes('Offence'));
+          console.log("las posiciones son: ",this.positions)
+          this.isPositions = true;
+      }
     }
- 
-  
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.teamM.setApiStrategy('TeamfootballApi');
   }
 
 }

@@ -1,4 +1,6 @@
+import { TeamEntity } from "src/app/domain/entities/TeamEntity";
 import { Team } from "./competitioniterfaces";
+import PlayerEntity from "src/app/domain/entities/PlayerEntity";
 
 export interface DropdownItem{
     image:string,
@@ -34,7 +36,7 @@ export interface ApiFootballDataFilters{
 }
 
 export interface Positions{
-    [Defence:string]:Squad[],
+    [Defence:string]:PlayerEntity[],
   }
 
 export interface PlayerDto {
