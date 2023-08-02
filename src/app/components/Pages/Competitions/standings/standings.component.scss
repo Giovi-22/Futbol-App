@@ -17,3 +17,16 @@ table{
         text-align:left;
     }
 }
+
+@media screen and (max-width:660px) {
+    table{
+        width: 90%;
+    }
+    td{
+        text-align: center;
+    }
+    .team__name-row{
+        text-align: left;
+    }
+    
+}

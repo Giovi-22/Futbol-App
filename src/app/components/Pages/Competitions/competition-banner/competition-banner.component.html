@@ -3,9 +3,7 @@
         <div class="competition__banner__top">
             <img src={{competition.logo}} class="slide-in-left">
             <h2>{{competition.name}}</h2>
-            <div *ngIf="competition.currentSeason" class="competition__season">
-            <pre>SEASON {{currentSeason}}</pre>
-            </div>
+            <p *ngIf="competition.currentSeason" class="competition__season" >SEASON {{currentSeason}}</p>
         </div>
         <div class="competition__banner__bottom-navbar">
             <app-button-link [isSelected]="selectedButtons[0]" type="secondary" (click)="selectCompetitionScreen('teams')">Teams</app-button-link>

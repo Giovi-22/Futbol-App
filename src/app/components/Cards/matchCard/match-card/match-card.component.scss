@@ -1,3 +1,5 @@
+$scale:1.1;
+
 :host{
     width: 400px;
     height: 150px;
@@ -88,6 +90,15 @@ span{
     max-width: 30px;
     max-height: 30px;
 }
+@media screen and (max-width:660px) {
+    :host{
+        width: 350px;
+    }
+    h4{
+        font-size: 1rem;
+    }
+    $scale:1.02;
+  }
 
 
 @-webkit-keyframes scale-in-center {
@@ -97,8 +108,8 @@ span{
       opacity: 1;
     }
     100% {
-      -webkit-transform: scale(1.1);
-              transform: scale(1.1);
+      -webkit-transform: scale($scale);
+              transform: scale($scale);
       opacity: 1;
     }
   }
@@ -109,8 +120,8 @@ span{
       opacity: 1;
     }
     100% {
-      -webkit-transform: scale(1.1);
-              transform: scale(1.1);
+      -webkit-transform: scale($scale);
+              transform: scale($scale);
       opacity: 1;
     }
   }

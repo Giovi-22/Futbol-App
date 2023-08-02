@@ -41,7 +41,13 @@
 
   
   //-------------ANIMACIONES-------------------
-  
+  @media screen and (max-width:660px) {
+    h4{
+      font-size: 1.2rem;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
   @-webkit-keyframes text-focus-in {
       0% {
         -webkit-filter: blur(12px);
