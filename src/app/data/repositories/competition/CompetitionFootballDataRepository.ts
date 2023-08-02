@@ -1,11 +1,11 @@
 import { Observable} from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { competitionStrategy } from "src/app/models/interfaces/strategies/strategiesInterfaces";
 import { CompetitionEntity } from "../../../domain/entities/CompetitionEntity";
 import { Competition, Competitions, Standing } from 'src/app/models/interfaces/competitioniterfaces';
 import { MatchEntity } from '../../../domain/entities/MatchEntity';
-import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
+import { ApiFootballDataFilters, Error } from 'src/app/models/interfaces/dtoInterfaces';
 import { competitions } from 'src/app/data/ngrxStore/competitions';
 import { APIMatches } from 'src/app/models/interfaces/matchesInterfaces';
 import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
@@ -29,8 +29,8 @@ export class CompetitionFootballDataRepository implements competitionStrategy{
         const newUrl = getUrlWithParams(url,filter);
     
         return new Observable<CompetitionEntity>((observer)=>{
-         this.http.get<Competition>(newUrl,{headers:this.headers}).subscribe(
-           (result)=>{
+         this.http.get<Competition>(newUrl,{headers:this.headers}).subscribe({
+           next:(result)=>{
             const competition = new CompetitionEntity({
               id:result.id,                     
               area:result.area,                  
@@ -41,10 +41,14 @@ export class CompetitionFootballDataRepository implements competitionStrategy{
             })
             observer.next(competition)
           },
-          (error)=>{
-            throw new Error(`No se pudieron obtener los datos,${error}`)
+          error:(error:HttpErrorResponse)=>{
+            const newError:Error={
+                message:error.error.message,
+                status: error.status
+            }
+            observer.error(newError);
           }
-         )
+         })
         });
     }
 
@@ -61,13 +65,17 @@ export class CompetitionFootballDataRepository implements competitionStrategy{
         const newUrl = getUrlWithParams(url,filter);
 
         return new Observable<Standing[]>((observer)=>{
-            this.http.get<Competitions>(newUrl,{headers:this.headers}).subscribe(
-              (result)=>{
+            this.http.get<Competitions>(newUrl,{headers:this.headers}).subscribe({
+              next:(result)=>{
                 observer.next(result.standings);
               },
-              (error)=>{
-                throw new Error(`No se pudieron obtener los datos,${error}`);
-              });
+              error:(error:HttpErrorResponse)=>{
+                const newError:Error={
+                    message:error.error.message,
+                    status: error.status
+                }
+                observer.error(newError);
+              }});
         })
     }
 
@@ -77,8 +85,8 @@ export class CompetitionFootballDataRepository implements competitionStrategy{
         const newUrl = getUrlWithParams(url,filter);
 
         return new Observable<MatchEntity[]>((observer)=>{
-            this.http.get<APIMatches>(newUrl,{headers:this.headers}).subscribe(
-                (result)=>{
+            this.http.get<APIMatches>(newUrl,{headers:this.headers}).subscribe({
+                next:(result)=>{
                     const matches:MatchEntity[] = result.matches.map(match=> 
                         new MatchEntity({
                             area: match.area,
@@ -103,10 +111,14 @@ export class CompetitionFootballDataRepository implements competitionStrategy{
                         }));
                     observer.next(matches)
                 },
-                (error)=>{
-                    throw new Error(`No se pudieron obtener los datos,${error}`);
-                }
-            )
+                error:(error:HttpErrorResponse)=>{
+                    const newError:Error={
+                        message:error.error.message,
+                        status: error.status
+                    };
+                    observer.error(newError);
+                  }
+            })
         });
     }
 

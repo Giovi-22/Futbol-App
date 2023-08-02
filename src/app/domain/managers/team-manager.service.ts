@@ -67,7 +67,7 @@ export class TeamManagerService  {
         this.storeStrategy.setTeams(result)
       },
       (error)=>{
-        this.router.navigate(['not-found',error])
+        this.errorS.dispatchError(error)
       }
     )
   }

@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { TeamEntity } from "../../../domain/entities/TeamEntity";
 import { Competitions, Team } from "src/app/models/interfaces/competitioniterfaces";
 import { TeamApiStrategy } from "../../../models/interfaces/strategies/teamStrategies";
-import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
+import { ApiFootballDataFilters, Error } from 'src/app/models/interfaces/dtoInterfaces';
 import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
 import PlayerEntity from 'src/app/domain/entities/PlayerEntity';
 
@@ -24,8 +24,8 @@ export class TeamFootballDataRepository implements TeamApiStrategy{
     getTeam(teamCode:number=86){
         const url = `${this.#urlTeams}/${teamCode}`;
         return new Observable<TeamEntity>((observer)=>{
-            this.http.get<Team>(url,{headers:this.headers}).subscribe(
-              (result)=>{
+            this.http.get<Team>(url,{headers:this.headers}).subscribe({
+              next:(result)=>{
                   const team = new TeamEntity({
                       area: result.area,     
                       id: result.id,    
@@ -38,10 +38,16 @@ export class TeamFootballDataRepository implements TeamApiStrategy{
                   });
                 observer.next(team);
               },
-              (error)=>{
-                throw new Error(`No se pudieron obtener los datos: ${error}`)
+              error:(error:HttpErrorResponse)=>{
+                console.log("El error en team",error)
+                const newError:Error={
+                  message:error.error.message,
+                  status:error.status
+                
+                }
+                observer.error(newError);
               }
-            )
+            })
         });
     }
 
@@ -50,8 +56,8 @@ export class TeamFootballDataRepository implements TeamApiStrategy{
         const url = `${this.#urlCompetition}/${competitionCode}/teams`;
         const newUrl = getUrlWithParams(url,filter);
         return new Observable<TeamEntity[]>((observer)=>{
-            this.http.get<Competitions>(newUrl,{headers:this.headers}).subscribe(
-              (result)=>{
+            this.http.get<Competitions>(newUrl,{headers:this.headers}).subscribe({
+              next:(result)=>{
                 const teams = result.teams?.map(team=>new TeamEntity({
                   area: team.area,     
                   id: team.id,    
@@ -65,8 +71,14 @@ export class TeamFootballDataRepository implements TeamApiStrategy{
             
                 observer.next(teams);
               },
-              (error)=>{
-                throw new Error(`No se pudieron obtener los datos: ${error}`);
+              error:(error:HttpErrorResponse)=>{
+                const newError:Error={
+                  message:error.error.message,
+                  status:error.status
+                
+                }
+                observer.error(newError);
+              }
             })
         })
     }
