@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { TeamFootballDataApiStrategy } from '../../strategies/team/TeamApiStrategy';
+
 import { TeamApiStrategy } from '../../strategies/team/teamStrategies';
 import { TeamApiServerRepositoryService } from 'src/app/data/repositories/team/team-api-server-repository.service';
+import { TeamFootballDataRepository } from 'src/app/data/repositories/team/TeamFootballDataRepository';
 
 
 
@@ -21,7 +22,7 @@ class ApiStrategyFactory{
         
         create(strategy:string): TeamApiStrategy {
             switch(strategy){
-                case 'TeamfootballApi': return new TeamFootballDataApiStrategy(this.httpClient);
+                case 'TeamfootballApi': return new TeamFootballDataRepository(this.httpClient);
                 case 'TeamServer': return new TeamApiServerRepositoryService(this.httpClient);
                 default: throw new Error("La Estrategia seleccionada no existe");
             }
