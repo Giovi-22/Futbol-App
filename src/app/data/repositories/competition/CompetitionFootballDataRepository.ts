@@ -16,7 +16,7 @@ export class CompetitionFootballDataRepository implements competitionStrategy{
     
     headers:HttpHeaders = new HttpHeaders({
         'Content-Type':'application/json',
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': 'main--chic-duckanoo-ad7ca7.netlify.app',
         'X-Auth-Token': '860f9df0ee73439a9cc24ca71319e092' //ToDo: move to a env var
         })
 
