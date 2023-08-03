@@ -8,6 +8,7 @@
     gap: 10px;
     background: #ECE9E6;  /* fallback for old browsers */
     overflow: auto;
+    padding-top: 10px;
 }
 
 .team{
@@ -17,6 +18,7 @@
     gap: 10px;
     padding:5px;
     border-radius: 5px;
+    cursor: pointer;
     img{
         width: auto;
         height: auto;
