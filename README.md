@@ -40,129 +40,20 @@ Se puede buscar los equipos y resultados de una temporada específica selecciona
 Si desea ver la formación de un equipo, debe hacer click en el equipo deseado. la aplicación redirigira hacia la vista de equipos, en donde se muestran los jugadores y la formación inicial.
 
 ### BUSQUEDA
-En esta versión de la aplicación, el buscador solo permite buscar por nombre de equipo
-# Angular Template
+En esta versión de la aplicación, el buscador solo permite buscar por nombre de equipo. El buscador busca en el servidor de Futbol App todas las coincidencias con el nombre y devuelve los resultados. Los resultados se muestran en una lista desplegable en donde se puede hacer click para seleccionar el equipo deseado y se redirigirá a la pantalla que muestra la informacion de este.
 
-This template was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8
+### SESION
+Un usuario puede iniciar sesion en la aplicación o registrarse en esta.
+Para iniciar sesion, haga clic en el boton SIGN IN. Ingrese su email y contraseña, si los datos son correctos, el usuario tendrá acceso a poder guardar equipos en su lista de favoritos. Solo los usuarios registrados tienen acceso a este servicio.
 
----
+Para registrarse en la aplicación haga clic en el boton SIGN UP, debe completar todos los campos requeridos. Una finalizado el registo, se enviará un email al usuario con sus datos.
 
-## Development server
+Si un usuario olvida su contraseña, puede solicitar renovarla. Para hacer esto, debe dirigirse a la seccion de SIGN IN hacer click en Forgot Password?, se le pedirá que ingrese su email. Si el email es correcto recibirá un correo con un link para cambiar la contraseña.
+ATENCIÓN!!! SOLO DISPONE DE 5 min PARA RENOVAR EL PASSWORD
 
-Run `yarn start` or `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## TECNOLOGÍAS USADAS
+  * @ngrx/store - Se utilizó para guardar de forma global los datos de la app.
+  * bootstrap   - Se utilizó para dar estilo a los componentes   
+  * moment      - Se utilizó para formatear las fechas
+  * ngx-toastr  - Se utilizó para mostrar comentarios de retroalimentación al usuario
 
-### Development server options
-
-to serve normal use this configuration:
-
-```
-  yarn start || npm run start
-```
-
-to serve and automatically open the browser use this configuration:
-
-```
-  yarn start:open || npm run start:open
-```
-
-to serve and access from a local network use this configuration:
-
-```
-  yarn start:host || npm run start:host
-```
-
-to serve as `production` run use this configuration:
-
-```
-  yarn start:prod || npm run start:prod
-```
-
-<!-- ## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`. -->
-
----
-
-## Build
-
-Run `yarn build:option` or `npm run build:option` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-### Build options
-
-to compile for `development` use this configuration:
-
-```
-  yarn build:dev || npm run build:dev
-```
-
-to compile for `production` use this configuration:
-
-```
-  yarn build:prod || npm run build:prod
-```
-
-to compile for `webpack-bundle-analyzer` use this configuration:
-
-```
-  yarn build:stats || npm run build:stats
-```
-
----
-
-## Linter
-
-Run `yarn lint` or `npm run lint` to show in the terminal the error that linter finds according to the configuration
-
-### Linter options
-
-to show error use this configuration:
-
-```
-  yarn lint || npm run lint
-```
-
-to show error and automatically fix it use this configuration:
-
-```
-  yarn lint:fix || npm run lint:fix
-```
-
-to run linter default inside angular use this configuration:
-
-```
-  yarn lint:ng || npm run lint:ng
-```
-
-to show error and automatically fix it use ng configuration:
-
-```
-  yarn lint:ng:fix || npm run lint:ng:fix
-```
-
----
-
-## Husky
-
-At the end of the installation of all the packages, husky will be installed, a tool that will allow us to automatically run `git hooks`, in our case to run the `commitlint` and `eslint` linters before committing.
-
----
-
-## Tools
-
-### Webpack Bundle Analyzer
-
-`Webpack-bundle-analyzer` is a tool that allows us to graphically see when our application weighs and segmented by modules, this helps us to discover failures in the application's performance
-
-to use `webpack-bundle-analyzer`, before you must use this command `yarn build:stats` or `npm run build:stats` which generates the stats files that allow webpack-bundle-analyzer to work properly
-
-```
-  yarn analyze || npm run analyze
-```
-
-<!-- ## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io). -->
-
-<!-- ## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities. -->

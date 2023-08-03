@@ -25,7 +25,7 @@
                 <li class="dropdown-menu-items" routerLink="/"><span>Home</span></li>
                 <li class="dropdown-menu-items" (click)="setMenu(true)"><span>Leagues</span></li>
                 <li class="dropdown-menu-items" routerLink="/about-us"><span>About us</span></li>
-                <li *ngIf="(isLogged$ |async)" routerLink="/favorites"><span>Wishing list</span></li>
+                <li class="dropdown-menu-items" *ngIf="(isLogged$ |async)" routerLink="/favorites"><span>Wishing list</span></li>
             </ul>
             <input type="text" class="form-control" placeholder="Search..." formControlName="search">
             <button class="btn btn-outline-primary" (click)="onSearch()"><i class="bi bi-search"></i></button>
