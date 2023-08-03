@@ -49,7 +49,6 @@ export class SignInComponent implements OnInit {
         setTimeout(()=>{this.router.navigate(["/"])},3000);
       },
       error:(error)=>{
-        console.log("llega hasta el componente",error)
         this.toastr.error(`Error: ${error.status}`,"Login failed!",{closeButton:true,easing:"ease-in"});
       }
     });

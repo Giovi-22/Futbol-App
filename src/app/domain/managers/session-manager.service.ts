@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, throwError } from 'rxjs';
@@ -7,7 +6,6 @@ import { catchError, map, throwError } from 'rxjs';
 import {LogIn, RestorePassword } from 'src/app/models/interfaces/session.interfaces';
 import UserEntity from '../entities/UserEntity';
 import { UserManagerService } from './user-manager.service';
-import { UserRepositoryNgrxStoreService } from 'src/app/data/repositories/user/user-repository-ngrx-store.service';
 import { SessionFutbolServerRepository } from 'src/app/data/repositories/session/sessionFutbolServerRepository';
 
 
@@ -20,10 +18,8 @@ export class SessionManagerService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
     private toastr: ToastrService,
     private userM: UserManagerService,
-    private userStorage: UserRepositoryNgrxStoreService
     ) {
     this.#session = new SessionFutbolServerRepository(this.http);
    }
@@ -31,7 +27,6 @@ export class SessionManagerService {
    logIn(user:LogIn){
       return this.#session.logIn(user).pipe(
          map((response)=>{
-            console.log("El resultado del login: ",response)
             if(response.status.includes('success')){
                localStorage.setItem('user',response.token);
                this.userM.setUser(response.user);

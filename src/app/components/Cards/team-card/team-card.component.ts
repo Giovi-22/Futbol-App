@@ -37,13 +37,11 @@ export class TeamCardComponent implements OnInit {
   navigateTo(tid:number){
     this.teamM.findApiTeam(tid);
     this.router.navigate([`/team`]);
-    console.log("va a buscar los datos")
   }
 
   #isOnFavoriteList(teams:TeamEntity[]){
     const result = teams.find(team => team.id === this.teamData.id);
     if(result){
-      console.log("el equipo esta en la list0a de favoritos")
       this.favoriteClass = "bi bi-star-fill favorite favorite-true";
       this.toggleButton = true;
     }

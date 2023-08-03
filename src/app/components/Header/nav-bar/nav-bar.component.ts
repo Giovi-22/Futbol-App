@@ -65,17 +65,14 @@ export class NavBarComponent implements OnInit {
 
   onSearch(){
     this.teamM.setApiStrategy('TeamServer');
-    console.log("click en busqueda")
     const teamName = this.searchField.get('search')?.value
     this.teamM.searchTeam(teamName).subscribe({
       next:((result)=>{
-        console.log("El team buscado: ",result)
         this.findedTeams = result;
         this.teamM.setApiStrategy('TeamfootballApi');
         this.openSearch = true;
       }),
       error:((error)=>{
-        console.log("El error es :",error);
         this.teamM.setApiStrategy('TeamfootballApi');
       })
     })

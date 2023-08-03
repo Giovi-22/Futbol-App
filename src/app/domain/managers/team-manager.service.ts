@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { catchError, map, throwError } from 'rxjs';
-import { Router } from '@angular/router';
 
 import { TeamApiStrategy } from '../../models/interfaces/strategies/teamStrategies';
 import ApiStrategyFactory from '../factory/team/apiStrategyFactory';
@@ -22,7 +21,6 @@ export class TeamManagerService  {
   constructor(
     private storeStrategyFactory: StoreRepositoryFactory,
     private apiStrategyFactory: ApiStrategyFactory,
-    private router: Router,
     private errorS: ErrorService
   ) 
   { 
@@ -73,10 +71,9 @@ export class TeamManagerService  {
   }
 
   searchTeam(teamName:string){
-    console.log("el team buscado es: ",teamName)
-    console.log("La estrategia es: ",this.apiStrategy)
     return this.apiStrategy.getTeamsByName(teamName);
   }
+
   getStoreTeam(teamCode:number){
     return this.storeStrategy.getCurrent() 
   }
@@ -84,7 +81,6 @@ export class TeamManagerService  {
   getStoreCurrent(){
     return this.storeStrategy.getCurrent();
   }
-
 
   getStoreTeams(){
     return this.storeStrategy.getTeams();

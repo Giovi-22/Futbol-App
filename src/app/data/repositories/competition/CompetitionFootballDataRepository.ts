@@ -53,7 +53,6 @@ export class CompetitionFootballDataRepository implements competitionStrategy{
     }
 
     getCompetitions(): Observable<CompetitionEntity[]> {
-    console.log("buscando datos de la api")
      return new Observable((observer)=>{
         observer.next(competitions);
      })

@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
+
 import { TeamEntity } from "../../../domain/entities/TeamEntity";
 import { Competitions, Team } from "src/app/models/interfaces/competitioniterfaces";
 import { TeamApiStrategy } from "../../../models/interfaces/strategies/teamStrategies";
@@ -39,7 +40,6 @@ export class TeamFootballDataRepository implements TeamApiStrategy{
                 observer.next(team);
               },
               error:(error:HttpErrorResponse)=>{
-                console.log("El error en team",error)
                 const newError:Error={
                   message:error.error.message,
                   status:error.status
@@ -52,7 +52,6 @@ export class TeamFootballDataRepository implements TeamApiStrategy{
     }
 
     getTeams(competitionCode:string="PL",filter?:ApiFootballDataFilters){
-
         const url = `${this.#urlCompetition}/${competitionCode}/teams`;
         const newUrl = getUrlWithParams(url,filter);
         return new Observable<TeamEntity[]>((observer)=>{

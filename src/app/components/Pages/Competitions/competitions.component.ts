@@ -1,14 +1,13 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
-import { Observable, Subscription } from 'rxjs';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { MatchCardComponent } from '../../Cards/matchCard/match-card/match-card.component';
 import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 import { CompetitionBannerComponent } from './competition-banner/competition-banner.component';
-import { Standing, Table } from 'src/app/models/interfaces/competitioniterfaces';
+import { Table } from 'src/app/models/interfaces/competitioniterfaces';
 import { StandingsComponent } from './standings/standings.component';
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 
@@ -26,13 +25,12 @@ import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
   templateUrl: './competitions.component.html',
   styleUrls: ['./competitions.component.scss']
 })
-export class CompetitionsComponent implements OnInit, OnDestroy {
+export class CompetitionsComponent implements OnInit{
 
   @Input() cambio:boolean = false;
+
   teams: TeamEntity[];
   matchs: MatchEntity[];
-  teamSubscription:Subscription = new Subscription();
-  competitionSubscription:Subscription = new Subscription();
   screen:string ="teams";
   currentCompetition:string;
   standings: Table[];
@@ -76,7 +74,6 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log("Competition on init")
     this.screen="teams"
     this.competitionM.getCurrent().subscribe(
       (competition)=>{
@@ -88,20 +85,11 @@ export class CompetitionsComponent implements OnInit, OnDestroy {
         this.competition = result;
       }
     )
-    this.teamSubscription = this.teamM.getStoreTeams().subscribe(
+    this.teamM.getStoreTeams().subscribe(
       (teams)=>{
         this.teams = teams;
-      },
-      (error)=>{
-        console.log(error)
       });
 
-  }
-
-  ngOnDestroy(): void {
-    console.log("Competition destroy")
-    this.teamSubscription.unsubscribe();
-    this.competitionSubscription.unsubscribe();
   }
 
 }

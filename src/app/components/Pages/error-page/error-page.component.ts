@@ -25,7 +25,6 @@ export class ErrorPageComponent implements OnInit {
   ngOnInit(): void {
     this.activateRoute.paramMap.subscribe(
       (params)=>{
-        console.log(params)
         this.error.message = params.get('message') || "";
         this.error.status = Number(params.get('status')) || 0;
       }

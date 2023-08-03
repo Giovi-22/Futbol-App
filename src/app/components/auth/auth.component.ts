@@ -32,7 +32,6 @@ export class AuthComponent implements OnInit {
     this.isLogged$ = this.userM.userIsLogged();
     this.breakointObserver.observe("(min-width:850px)").subscribe({
       next:(result)=>{
-        console.log("El breakpoint es: ",result)
         this.breakpoint=result.matches;
       }
     })

@@ -20,11 +20,9 @@ export class CompetitionNgrxStoreRepositoryService implements CompetitionStoreRe
   ) { }
 
   saveCompetitions(competitions:CompetitionEntity[]){
-    console.log("guardando las competiciones en el store")
     this.store.dispatch(loadedCompetitions({competitions}))
   }
   saveCompetition(competition:CompetitionEntity){
-    console.log("guardando las competiciones en el store")
     this.store.dispatch(saveCompetition({competition}))
   }
 

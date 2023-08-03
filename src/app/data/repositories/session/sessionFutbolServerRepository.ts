@@ -1,5 +1,6 @@
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse} from "@angular/common/http";
+
 import { SessionApiStrategy } from '../../../models/interfaces/strategies/sessionStrategies.interface';
 import UserEntity from '../../../domain/entities/UserEntity';
 import { LogIn, LoginResponse, ResponseData, ResponseDto, RestorePassword, User } from 'src/app/models/interfaces/session.interfaces';
@@ -26,7 +27,6 @@ export class SessionFutbolServerRepository implements SessionApiStrategy  {
         const url = `${this.#urlSession}/login`;
         return this.http.post<LoginResponse>(url,User,this.httpOptions).pipe(
             map((response)=>{
-                console.log("la respuesta al login es: ",response.data)
                 const teams=response.data.user.favoriteTeams?.map(team=>new TeamEntity(team));
                 const resp = {
                 user: new UserEntity({
@@ -39,7 +39,6 @@ export class SessionFutbolServerRepository implements SessionApiStrategy  {
                 return resp;
             }),
             catchError((error)=>{
-                console.log("EL error en el metodo http: ",error)
                 const newError = new HttpErrorResponse({
                     status:error.status,
                     error:error.error
@@ -62,7 +61,6 @@ export class SessionFutbolServerRepository implements SessionApiStrategy  {
                         password:"",
                         favoriteTeams:result.data.favoriteTeams || []
                     })
-                    console.log("el user: ",user)
                     return observer.next(user);
             },
             error:(error:HttpErrorResponse)=>{

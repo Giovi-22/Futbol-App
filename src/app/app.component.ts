@@ -21,22 +21,16 @@ export class AppComponent implements OnInit{
 	ngOnInit(): void {
 		const user = localStorage.getItem('user');
 		if(user){
-			console.log("el usuario esta loggeado")
 			this.sessionM.current().subscribe({
 				next:(result)=>{
-					console.log("EL user en app component: ",result);
 					if(result instanceof String){
-						console.log("no es instancia de user")
 					}else{					
-						console.log("el usurario es una instancia");
-						console.log("El usuario es: ",result)
 						this.userM.setUser(result);
 						this.userM.setUserLoggedIn(true);
 					}
 					
 				},
 				error:(error)=>{
-					console.log("El error en app component: ",error);
 					localStorage.removeItem('user');
 					this.userM.setUserLoggedIn(false);
 				}
@@ -45,7 +39,6 @@ export class AppComponent implements OnInit{
 		return;
 		}
 		this.userM.setUserLoggedIn(false);
-		console.log("el usuario no esta logeado")
 	}
 	
 

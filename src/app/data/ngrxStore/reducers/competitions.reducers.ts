@@ -22,7 +22,6 @@ export const competitionReducer = createReducer(
     initialState,
     on(loadCompetitions,(state)=>{return {...state,loading:true}}),
     on(saveCompetition,(state,{competition})=>{
-        console.log("CUrrent: ",competition)
         return{
             ...state,
             loading:false,

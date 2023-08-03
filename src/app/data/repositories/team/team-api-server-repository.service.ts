@@ -1,12 +1,12 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
+
 import PlayerEntity from 'src/app/domain/entities/PlayerEntity';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { TeamApiStrategy } from 'src/app/models/interfaces/strategies/teamStrategies';
-import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
 import { ApiFootballDataFilters, Error } from 'src/app/models/interfaces/dtoInterfaces';
-import { ResponseData, ResponseTeamPlayers, ResponseUser } from 'src/app/models/interfaces/session.interfaces';
+import { ResponseTeamPlayers, ResponseUser } from 'src/app/models/interfaces/session.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +56,6 @@ export class TeamApiServerRepositoryService implements TeamApiStrategy {
 
   getTeamsByName(teamName:string){
     const url = `${this.#urlTeams}/team/name/${teamName}`;
-    console.log("el team buscado es: ",teamName)
     return this.http.get<ResponseUser>(url,{headers:this.headers}).pipe(
           map((result)=>{
             const teams = result.data.map(team=>new TeamEntity({     

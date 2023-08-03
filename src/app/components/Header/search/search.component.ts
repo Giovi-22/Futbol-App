@@ -28,7 +28,6 @@ export class SearchComponent implements OnInit {
   }
 
   onSelectedTeam(team:TeamEntity){
-    console.log("El equipo seleccionado es: ",team)
     this.teamM.findApiTeam(team.id);
     this.openMenu.emit(false);
     this.router.navigate(['/team']);

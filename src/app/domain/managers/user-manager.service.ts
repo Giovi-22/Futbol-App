@@ -42,7 +42,6 @@ export class UserManagerService {
   setFavoriteTeam(team:TeamEntity){
     return this.#userServer.setFavoriteTeam(team).pipe(
       map((result)=>{
-        console.log("La lista actualizada: ",result)
         this.userStorage.updateFavoriteList(result.data.favoriteTeams || []);
         return result
       })
@@ -59,8 +58,6 @@ export class UserManagerService {
   removeFavoriteTeam(teamCode:number){
     return this.#userServer.removeFavoriteTeam(teamCode).pipe(
       map((result)=>{
-        console.log("removiendo el equipo")
-        console.log("la lista devuelta es: ",result)
         this.userStorage.updateFavoriteList(result.data.favoriteTeams || []);
         return result;
       })
