@@ -52,7 +52,7 @@ export class CompetitionManagerService {
         this.storage.addMatches(result);
       },
       (error)=>{
-        this.erroS.dispatchError(error);
+        //this.erroS.dispatchError(error);
       }
     )
   }
@@ -63,7 +63,7 @@ export class CompetitionManagerService {
         this.storage.addStandings(result);
       },
       (error)=>{
-        this.erroS.dispatchError(error);
+       // this.erroS.dispatchError(error);
       }
     )
   }
