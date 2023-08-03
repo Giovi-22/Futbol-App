@@ -16,7 +16,8 @@ export class CompetitionFootballDataRepository implements competitionStrategy{
     
     headers:HttpHeaders = new HttpHeaders({
         'Content-Type':'application/json',
-        'X-Auth-Token': '860f9df0ee73439a9cc24ca71319e092'
+        'Access-Control-Allow-Origin': '*',
+        'X-Auth-Token': '860f9df0ee73439a9cc24ca71319e092' //ToDo: move to a env var
         })
 
     constructor(
