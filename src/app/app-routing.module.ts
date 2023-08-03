@@ -11,6 +11,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component'
 import { RestorePasswordComponent } from './components/Pages/RestorePassword/restore-password/restore-password.component'
 import { ChangePasswordComponent } from './components/Pages/ChangePassword/change-password/change-password.component'
 import { FavoritesComponent } from './components/Pages/favorites/favorites.component'
+import { AboutUsComponent } from './components/Pages/about-us/about-us.component'
 
 const routes: Routes = [
 	{
@@ -27,7 +28,7 @@ const routes: Routes = [
 	},
 	{
 		path:'about-us',
-		component: ErrorPageComponent
+		component: AboutUsComponent
 	}, 
 	{
 		path: 'sign-in',
