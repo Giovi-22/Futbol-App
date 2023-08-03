@@ -5,10 +5,11 @@ import { SessionApiStrategy } from '../../../models/interfaces/strategies/sessio
 import UserEntity from '../../../domain/entities/UserEntity';
 import { LogIn, LoginResponse, ResponseData, ResponseDto, RestorePassword, User } from 'src/app/models/interfaces/session.interfaces';
 import { TeamEntity } from '../../../domain/entities/TeamEntity';
+import { environment } from '@environment';
 
 export class SessionFutbolServerRepository implements SessionApiStrategy  {
 
-    #urlSession:string='http://localhost:8081/api/session'
+    #urlSession:string=`${environment.api_futbolServer_url}/session`;
     httpOptions= {
     headers:{
             "Content-Type":'application/json',

@@ -3,10 +3,12 @@ import { TeamEntity } from "../../../domain/entities/TeamEntity";
 import { Observable } from "rxjs";
 import { ResponseData, ResponseUser } from "src/app/models/interfaces/session.interfaces";
 import { UserApiStrategy } from "src/app/models/interfaces/strategies/userStrategies.interfaces";
+import { environment } from "@environment";
 
 export class UserServerRepository implements UserApiStrategy{
 
-    #urlUser:string='http://localhost:8081/api/users/team';
+    #urlUser:string=`${environment.api_futbolServer_url}/users/team`;
+    
 
     httpOptions= {
         headers:{

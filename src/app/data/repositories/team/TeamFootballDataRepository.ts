@@ -7,17 +7,18 @@ import { TeamApiStrategy } from "../../../models/interfaces/strategies/teamStrat
 import { ApiFootballDataFilters, Error } from 'src/app/models/interfaces/dtoInterfaces';
 import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
 import PlayerEntity from 'src/app/domain/entities/PlayerEntity';
+import { environment } from '@environment';
 
 
 
 export class TeamFootballDataRepository implements TeamApiStrategy{
 
-    #urlCompetition:string='https://api.football-data.org/v4/competitions';
-    #urlTeams:string='https://api.football-data.org/v4/teams'
+    #urlCompetition:string=`${environment.api_footballData_url}/competitions`;
+    #urlTeams:string=`${environment.api_footballData_url}/teams`
     
     headers:HttpHeaders = new HttpHeaders({
         'Content-Type':'application/json',
-        'X-Auth-Token': '860f9df0ee73439a9cc24ca71319e092'
+        'X-Auth-Token': environment.api_footballData_token
     })
     
     constructor(private http: HttpClient){}

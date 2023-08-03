@@ -59,6 +59,10 @@ $backgroundColor: tools.colors("white");
     height: 70%;
     border-radius: 3px;
 }
+
+.dropdown-menu{
+    padding-left: 5px;
+}
 .dropdown-menu-items{
     cursor: pointer;
 }

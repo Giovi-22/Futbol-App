@@ -9,15 +9,17 @@ import { ApiFootballDataFilters, Error } from 'src/app/models/interfaces/dtoInte
 import { competitions } from 'src/app/data/ngrxStore/competitions';
 import { APIMatches } from 'src/app/models/interfaces/matchesInterfaces';
 import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
+import { environment } from '@environment';
 
 export class CompetitionFootballDataRepository implements competitionStrategy{
 
-    #urlCompetition:string='https://api.football-data.org/v4/competitions';
+    #urlCompetition:string= `${environment.api_footballData_url}/competitions`;
     
     headers:HttpHeaders = new HttpHeaders({
         'Content-Type':'application/json',
-        'Access-Control-Allow-Origin': 'https://main--chic-duckanoo-ad7ca7.netlify.app',
-        'X-Auth-Token': '860f9df0ee73439a9cc24ca71319e092' //ToDo: move to a env var
+        'X-Auth-Token': environment.api_footballData_token
+
+
         })
 
     constructor(
