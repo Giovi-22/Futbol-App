@@ -1,3 +1,46 @@
+#          ![Futbol App-icon](https://github.com/Giovi-22/Futbol-App/assets/98109747/272efad7-e91c-448f-a51b-479b62ad5000)
+
+FUTBOL APP es una aplicación web diseñada con el objetivo de brindar información relacionada al fútbol. Los fanáticos de este deporte podrán acceder al estado de los torneos y equipos del mundo, como así también acceder a datos de los jugadores.
+
+La aplicación está diseñada con el framework Angular en su versión 14.
+
+## INSTALACIÓN
+Para instalar la app es necesario descargar los archivos del repositorio o bien, si se utiliza la aplicación Git, se puede clonar el repositorio directamente desde consola.
+
+A través del siguiente link se puede acceder al proyecto: [a link] https://github.com/Giovi-22/Futbol-App
+
+Una vez dentro del repositorio se puede hacer click en el botón "<>Code" en donde se descarga el proyecto en formato .zip como así también se puede copiar el link para realizar el clonado a través de Git.
+
+Descargado el proyecto, abrir la consola de comandos, ingresar a la carpeta principal del proyecto y ejecutar los siguientes comandos:
+
+    * $ cd <dirección a la carpeta principal del proyecto> 
+    * $ npm install - para instalar la aplicación y sus dependencias. 
+    * ....
+    * Una vez completada la instalación ejecute el comando 
+    * $ ng serve - para correr la aplicación y poder verla en el navegador. 
+
+## USANDO LA APLICACIÓN
+Dentro de la app encontrará la barra de navegación superior para navegar a través de las siguientes secciones: 
+
+      * Leagues - se desplegará un menú con las ligas disponibles.
+      * About us - contiene información relacionada a los creadores de la aplicacion.
+      * Home/logo - navega hacia la pagína de inicio. 
+      * una barra de busqueda en donde podrá buscar por nombre de equipos.
+      * Sign in - para iniciar sesion en su cuenta de Futbol App
+      * Sign up - para registrarse en Futbol App
+### HOME
+La pantalla inicial o de bienvenida muestra los equipos mas buscados así también como las competencias mas populares.
+Se puede hacer click, tanto en las competencias como en los equipos para ver la información correspondiente.
+
+### LEAGUES
+Haciendo click en el boton leagues en la barra de navegación se desplegará un menú que contiene las ligas disponibles para consultar.
+Seleccionada la liga, la aplicación redirige la navegación a una pantalla en donde se muestra los equipos que participan en la temporada actual. Se puede seleccionar, a través del boton standings, la vista de posiciones de los equipos con respecto a los puntos obtenidos en los partidos disputados. También se pueden ver los próximos partidos a disputar haciendo click en el botón Matches.
+Se puede buscar los equipos y resultados de una temporada específica seleccionando el año de inicio de la temporada a travéz de un botón desplegable en el que se muestra inicialmente, la temporada en curso.
+
+Si desea ver la formación de un equipo, debe hacer click en el equipo deseado. la aplicación redirigira hacia la vista de equipos, en donde se muestran los jugadores y la formación inicial.
+
+### BUSQUEDA
+En esta versión de la aplicación, el buscador solo permite buscar por nombre de equipo
 # Angular Template
 
 This template was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8
