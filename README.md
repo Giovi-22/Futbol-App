@@ -1,5 +1,7 @@
 #          ![Futbol App-icon](https://github.com/Giovi-22/Futbol-App/assets/98109747/272efad7-e91c-448f-a51b-479b62ad5000)
 
+https://main--chic-duckanoo-ad7ca7.netlify.app/
+
 FUTBOL APP es una aplicación web diseñada con el objetivo de brindar información relacionada al fútbol. Los fanáticos de este deporte podrán acceder al estado de los torneos y equipos del mundo, como así también acceder a datos de los jugadores.
 
 La aplicación está diseñada con el framework Angular en su versión 14.
