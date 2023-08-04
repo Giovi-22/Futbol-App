@@ -7,13 +7,14 @@ import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { TeamApiStrategy } from 'src/app/models/interfaces/strategies/teamStrategies';
 import { ApiFootballDataFilters, Error } from 'src/app/models/interfaces/dtoInterfaces';
 import { ResponseTeamPlayers, ResponseUser } from 'src/app/models/interfaces/session.interfaces';
+import { environment } from '@environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamApiServerRepositoryService implements TeamApiStrategy {
 
-  #urlTeams:string='http://localhost:8081/api/teams'
+  #urlTeams:string=`${environment.api_futbolServer_url}/teams;`
   headers = new HttpHeaders({
       'Content-Type':'application/json',
       'X-Auth-Token': '860f9df0ee73439a9cc24ca71319e092'
