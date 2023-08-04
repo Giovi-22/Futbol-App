@@ -9,7 +9,7 @@ import { environment } from '@environment';
 
 export class SessionFutbolServerRepository implements SessionApiStrategy  {
 
-    #urlSession:string=`${environment.api_futbolServer_url}/session`;
+    #urlSession:string=`${environment.api_futbolServer_url}session`;
     httpOptions= {
     headers:{
             "Content-Type":'application/json',
