@@ -73,7 +73,7 @@ export class SessionFutbolServerRepository implements SessionApiStrategy  {
 
     logOut():Observable<ResponseData> {
         const url = `${this.#urlSession}/logout`; 
-        return this.http.post<ResponseData>("http://localhost:8081/api/session/logout",{},this.httpOptions);
+        return this.http.post<ResponseData>(url,{},this.httpOptions);
     }
 
     signUp(User: Partial<UserEntity>):Observable<ResponseData>{
