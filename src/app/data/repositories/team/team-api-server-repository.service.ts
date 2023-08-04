@@ -14,7 +14,7 @@ import { environment } from '@environment';
 })
 export class TeamApiServerRepositoryService implements TeamApiStrategy {
 
-  #urlTeams:string=`${environment.api_futbolServer_url}/teams;`
+  #urlTeams:string=`${environment.api_futbolServer_url}/teams`
   headers = new HttpHeaders({
       'Content-Type':'application/json',
       'X-Auth-Token': '860f9df0ee73439a9cc24ca71319e092'
