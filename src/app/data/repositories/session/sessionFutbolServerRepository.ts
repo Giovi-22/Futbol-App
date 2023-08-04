@@ -9,12 +9,12 @@ import { environment } from '@environment';
 
 export class SessionFutbolServerRepository implements SessionApiStrategy  {
 
-    #urlSession:string=`https://futbolapp-server-3r9p-dev.fl0.io/api/session`;
+    //#urlSession:string=`https://futbolapp-server-3r9p-dev.fl0.io/api/session`;
+    #urlSession:string=`${environment.api_futbolServer_url}/session`;
     httpOptions= {
     headers:{
             "Content-Type":'application/json',
         },
-    withCredentials:true
     }
     
     constructor(

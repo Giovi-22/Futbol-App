@@ -14,7 +14,6 @@ export class UserServerRepository implements UserApiStrategy{
         headers:{
                 "Content-Type":'application/json',
             },
-        withCredentials:true
         }
 
     constructor(
