@@ -1,5 +1,12 @@
-#          ![Futbol App-icon](https://github.com/Giovi-22/Futbol-App/assets/98109747/272efad7-e91c-448f-a51b-479b62ad5000)
+<p align="center" margin="0">
+   <img src="./src/assets/Futbol App-icon.svg" width="300px" height="100px">
+</p>
 
+# Trabajo práctico Syloper
+#### Integrantes:
+   * Serafin Emmanuel Scabuzzo
+   * Giovanni Barolin 
+### Link a la aplicación:
 https://main--chic-duckanoo-ad7ca7.netlify.app/
 
 FUTBOL APP es una aplicación web diseñada con el objetivo de brindar información relacionada al fútbol. Los fanáticos de este deporte podrán acceder al estado de los torneos y equipos del mundo, como así también acceder a datos de los jugadores.
