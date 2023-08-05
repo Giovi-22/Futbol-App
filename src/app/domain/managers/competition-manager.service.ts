@@ -23,6 +23,10 @@ export class CompetitionManagerService {
       this.strategy = this.strategyFactory.create('CompetitionfootballApi');
     }
 
+    setApiStrategy(strategy:string){
+      this.strategy = this.strategyFactory.create(strategy);
+    }
+
   findCompetitions(){
     this.strategy.getCompetitions().subscribe(
       (list)=>{
