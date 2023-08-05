@@ -7,6 +7,7 @@ import { CompetitionApiStrategy } from '../../models/interfaces/strategies/compe
 import CompetitionApiStrategyFactory from '../factory/competition/strategyFactory';
 import { ApiFootballDataFilters } from 'src/app/models/interfaces/dtoInterfaces';
 import { ErrorService } from 'src/app/services/error.service';
+import { environment } from '@environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class CompetitionManagerService {
     private router: Router,
     private erroS: ErrorService
     ) {
-      this.strategy = this.strategyFactory.create('CompetitionfootballApi');
+      this.strategy = this.strategyFactory.create(environment.api_competitionStrategy);
     }
 
     setApiStrategy(strategy:string){
