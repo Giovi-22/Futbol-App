@@ -10,6 +10,7 @@ import { FootballFieldComponent } from 'src/app/components/football-field/footba
 import { Positions } from 'src/app/models/interfaces/dtoInterfaces';
 import PlayerEntity from 'src/app/domain/entities/PlayerEntity';
 import { PlayerCardComponent } from 'src/app/components/Cards/player-card/player-card.component';
+import { environment } from '@environment';
 
 
 @Component({
@@ -103,7 +104,7 @@ export class TeamComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.teamM.setApiStrategy('TeamfootballApi');
+    this.teamM.setApiStrategy(environment.api_teamStrategy);
   }
 
 }

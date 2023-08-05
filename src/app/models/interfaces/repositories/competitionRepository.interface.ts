@@ -3,6 +3,7 @@ import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
 import { Competition, Competitions, Standing } from '../competitioniterfaces';
 import { APIMatches } from '../matchesInterfaces';
+import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 
 export interface CompetitionStoreRepository{
     saveCompetitions(competitions:CompetitionEntity[]):void;
@@ -34,5 +35,11 @@ export interface MatchesApiServerRepository {
     status:string,
     message:string,
     data: APIMatches
+}
+
+export interface TeamsApiServerRepository {
+    status:string,
+    message:string,
+    data: TeamEntity[];
 }
 

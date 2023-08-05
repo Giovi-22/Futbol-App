@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { SearchComponent } from '../search/search.component';
+import { environment } from '@environment';
 
 
 @Component({
@@ -69,11 +70,11 @@ export class NavBarComponent implements OnInit {
     this.teamM.searchTeam(teamName).subscribe({
       next:((result)=>{
         this.findedTeams = result;
-        this.teamM.setApiStrategy('TeamfootballApi');
+        this.teamM.setApiStrategy(environment.api_teamStrategy);
         this.openSearch = true;
       }),
       error:((error)=>{
-        this.teamM.setApiStrategy('TeamfootballApi');
+        this.teamM.setApiStrategy(environment.api_teamStrategy);
       })
     })
   }
