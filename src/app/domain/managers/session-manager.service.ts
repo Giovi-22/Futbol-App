@@ -53,17 +53,13 @@ export class SessionManagerService {
    }
 
    singUp(user:Partial<UserEntity>){
-    this.#session.signUp(user).subscribe({
-      next:(result)=>{
-         if(result.status.includes('success')){
-         this.toastr.success(result.message,"Sign Up",{closeButton:true,easing:"ease-in"});
-         }
-      },
-      error:(error:HttpErrorResponse)=>{
-         this.userM.setUserLoggedIn(false); 
-         this.toastr.error(`Error: ${error.status}, ${error.error.message}`,"Signup failed!",{closeButton:true,easing:"ease-in"});
-      }
-    })
+    return this.#session.signUp(user).pipe(
+      map((result)=>{return result}),
+      catchError((error)=>{
+        this.userM.setUserLoggedIn(false); 
+        return throwError(error)
+      })
+    );
    }
 
    restorePassword(data:RestorePassword){

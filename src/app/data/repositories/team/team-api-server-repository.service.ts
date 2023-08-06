@@ -9,7 +9,7 @@ import { ApiFootballDataFilters, Error } from 'src/app/models/interfaces/dtoInte
 import { ResponseTeamPlayers, ResponseUser } from 'src/app/models/interfaces/session.interfaces';
 import { environment } from '@environment';
 import { getUrlWithParams } from 'src/app/helpers/apiHelpers';
-import { TeamsApiServerRepository } from 'src/app/models/interfaces/repositories/competitionRepository.interface';
+import { TeamApiServerRepository, TeamsApiServerRepository } from 'src/app/models/interfaces/repositories/competitionRepository.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,26 +30,27 @@ export class TeamApiServerRepositoryService implements TeamApiStrategy {
   getTeam(teamCode:number=86){
       const url = `${this.#urlTeams}/team/${teamCode}`;
       return new Observable<TeamEntity>((observer)=>{
-          this.http.get<TeamEntity>(url,{headers:this.headers}).subscribe(
+          this.http.get<TeamApiServerRepository>(url,{headers:this.headers}).subscribe(
             (result)=>{
               console.log("El resultado en el repository: ",result)
                 const team = new TeamEntity({
-                    area: result.area,     
-                    id: result.id,    
-                    name: result.name,    
-                    shortName: result.shortName,
-                    tla: result.tla,    
-                    logo: result.logo,
-                    coach: result.coach,
-                    squad: result.squad,
+                    area: result.data.area,    
+                    id: result.data.id,    
+                    name: result.data.name,    
+                    shortName: result.data.shortName,
+                    tla: result.data.tla,    
+                    logo: result.data.crest,
+                    coach: result.data.coach,
+                    squad: result.data.squad,
                 });
               observer.next(team);
             },
             (error:HttpErrorResponse)=>{
               const newError:Error={
-                message: error.error.message,
+                message: error.error.message || "Not found",
                 status:error.status
               }
+              console.log("el error en team: ",error)
              observer.error(newError)
             }
           )
@@ -77,10 +78,11 @@ export class TeamApiServerRepositoryService implements TeamApiStrategy {
           },
           error:(error:HttpErrorResponse)=>{
             const newError:Error={
-              message:error.error.message,
+              message:error.error.message || "Not found",
               status:error.status
             
             }
+            console.log("el error en teams: ",error)
             observer.error(newError);
           }
         })
@@ -105,6 +107,7 @@ export class TeamApiServerRepositoryService implements TeamApiStrategy {
               error:error.error,
               status: error.status
             })
+            console.log("el error en teamByname: ",error)
             return throwError(newError)
           })
     );
@@ -121,6 +124,7 @@ export class TeamApiServerRepositoryService implements TeamApiStrategy {
               error:error.error,
               status: error.status
             })
+            console.log("el error en players: ",error)
             return throwError(newError)
           })
       );

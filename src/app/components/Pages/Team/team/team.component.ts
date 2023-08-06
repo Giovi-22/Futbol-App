@@ -68,35 +68,12 @@ export class TeamComponent implements OnInit, OnDestroy {
           }));
 
           this.playersIdList = this.players.map(player=>player.id);
-          this.teamM.setApiStrategy('TeamServer');
-          this.teamM.findApiPlayers(this.playersIdList).subscribe({
-            next:(result)=>{
-              this.positions['Goalkeeper']= result.filter(player => player.position.includes('Goalkeeper'));
-              this.positions['Defence']= result.filter(player => player.position.includes('Defence'));
-              this.positions['Midfield']= result.filter(player => player.position.includes('Midfield'));
-              this.positions['Offence']= result.filter(player => player.position.includes('Offence'));
-              if(!this.positions['Goalkeeper'].length){
-                this.positions['Goalkeeper']= this.players.filter(player => player.position.includes('Goalkeeper'));
-              }
-              if(!this.positions['Defence'].length){
-                this.positions['Defence']= this.players.filter(player => player.position.includes('Defence'));
-              }
-              if(!this.positions['Midfield'].length){
-                this.positions['Midfield']= this.players.filter(player => player.position.includes('Midfield'));
-              }
-              if(!this.positions['Offence'].length){
-                this.positions['Offence']= this.players.filter(player => player.position.includes('Offence'));
-              }
-              this.isPositions = true;
-            },
-            error:(error)=>{
-              this.positions['Goalkeeper']= this.players.filter(player => player.position.includes('Goalkeeper'));
-              this.positions['Defence']= this.players.filter(player => player.position.includes('Defence'));
-              this.positions['Midfield']= this.players.filter(player => player.position.includes('Midfield'));
-              this.positions['Offence']= this.players.filter(player => player.position.includes('Offence'));
-              this.isPositions = true;
-            }
-          });
+
+          this.positions['Goalkeeper']= this.players.filter(player => player.position.includes('Goalkeeper'));
+          this.positions['Defence']= this.players.filter(player => player.position.includes('Defence'));
+          this.positions['Midfield']= this.players.filter(player => player.position.includes('Midfield'));
+          this.positions['Offence']= this.players.filter(player => player.position.includes('Offence'));
+          this.isPositions = true;
       }
     }
     })

@@ -1,3 +1,4 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
 <form [formGroup]="formSession" (ngSubmit)="onSubmit()">
     <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
@@ -13,3 +14,4 @@
     <button [disabled]="!formSession.valid" type="submit" class="btn btn-outline-primary">Sign in</button>
     <span> Don't have an account? <a routerLink="/sign-up">Sign up</a></span>
 </form>
+

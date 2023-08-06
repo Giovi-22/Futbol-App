@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
-import { Competition, Competitions, Standing } from '../competitioniterfaces';
+import { Competition, Competitions, Standing, Team } from '../competitioniterfaces';
 import { APIMatches } from '../matchesInterfaces';
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 
@@ -41,5 +41,11 @@ export interface TeamsApiServerRepository {
     status:string,
     message:string,
     data: TeamEntity[];
+}
+
+export interface TeamApiServerRepository {
+    status:string,
+    message:string,
+    data: Team;
 }
 

@@ -43,9 +43,10 @@ export class CompetitionFutbolAppRepository{
           },
           error:(error:HttpErrorResponse)=>{
             const newError:Error={
-                message:error.error.message,
+                message:error.error.message || "Not found",
                 status: error.status
             }
+            console.log("el error en competition: ",error)
             observer.error(newError);
           }
          })
@@ -70,9 +71,10 @@ export class CompetitionFutbolAppRepository{
               },
               error:(error:HttpErrorResponse)=>{
                 const newError:Error={
-                    message:error.error.message,
+                    message:error.error.message || "Not found",
                     status: error.status
                 }
+                console.log("el error en standings: ",error)
                 observer.error(newError);
               }});
         })
@@ -112,9 +114,10 @@ export class CompetitionFutbolAppRepository{
                 },
                 error:(error:HttpErrorResponse)=>{
                     const newError:Error={
-                        message:error.error.message,
+                        message:error.error.message || "Not found",
                         status: error.status
                     };
+                    console.log("el error en matches: ",error)
                     observer.error(newError);
                   }
             })
