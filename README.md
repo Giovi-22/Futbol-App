@@ -7,7 +7,7 @@
    * Serafin Emmanuel Scabuzzo
    * Giovanni Barolin 
 ### Link a la aplicación:
-https://main--chic-duckanoo-ad7ca7.netlify.app/
+https://feat-futbolapp-v2--leafy-sfogliatella-3a981c.netlify.app/
 
 FUTBOL APP es una aplicación web diseñada con el objetivo de brindar información relacionada al fútbol. Los fanáticos de este deporte podrán acceder al estado de los torneos y equipos del mundo, como así también acceder a datos de los jugadores.
 
