@@ -19,7 +19,6 @@ import { Router, RouterModule } from '@angular/router';
     CompetitionCardComponent,
     TeamCardComponent,
     DropdownComponent,
-    RouterModule
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
