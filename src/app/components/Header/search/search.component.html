@@ -1,3 +1,4 @@
+<p class="notfound" *ngIf="teams.length === 0">No results found</p>
 <div *ngFor="let team of teams"class="team" (click)="onSelectedTeam(team)">
     <img src={{team.logo}}>
     <p>{{team.name}}</p>

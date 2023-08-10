@@ -80,6 +80,7 @@ export class NavBarComponent implements OnInit {
   }
 
   openSearchMenu(open:boolean){
+    console.log("El valor de open es: ",open)
     this.openSearch = open;
   }
 
