@@ -22,7 +22,6 @@ export class CompetitionManagerService {
     private erroS: ErrorService
     ) {
       this.strategy = this.strategyFactory.create(environment.api_competitionStrategy);
-      console.log("la estrategy seleccionada es: ",this.strategy)
     }
 
     setApiStrategy(strategy:string){

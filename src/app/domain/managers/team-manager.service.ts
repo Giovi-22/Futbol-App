@@ -41,7 +41,6 @@ export class TeamManagerService  {
   findApiTeam(teamCode:number=86){
     return this.apiStrategy.getTeam(teamCode).subscribe({
       next:(team)=>{
-        console.log("el equipo es: ",team)
         this.storeStrategy.setTeam(team);
       },
       error:(error:Error)=>{
@@ -63,7 +62,6 @@ export class TeamManagerService  {
   }
 
   findApiTeams(competitionCode:string ="PL",filter?:ApiFootballDataFilters){
-    console.log("La estrategia seleccionada apra teams es: ",this.apiStrategy)
     this.apiStrategy.getTeams(competitionCode,filter).subscribe(
       (result)=>{
         this.storeStrategy.setTeams(result)
