@@ -22,8 +22,8 @@ $backgroundColor: tools.colors("white");
     width: 100%;
 }
 
-
-@media screen and (max-width:660px) {
+//--------------------TABLET SIZE-----------------
+@include tools.to(tb){
     .header{
         flex-direction: column;
         justify-content: flex-start;

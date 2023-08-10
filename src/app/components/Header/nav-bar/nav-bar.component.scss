@@ -79,6 +79,20 @@ $backgroundColor: tools.colors("white");
     width: 100%;
 }
 
+//----------------------TABLET SIZE------------------------
+@include tools.to(tb){
+    .logo{
+        height: 40px;
+    }
+    :host{
+        flex-direction: column;
+    }
+    .navbar__top{
+        width: 100%;
+        padding-left: 10px;
+    }
+}
+/*
 @media screen and (max-width:660px) {
     .logo{
         height: 40px;
@@ -91,9 +105,21 @@ $backgroundColor: tools.colors("white");
         padding-left: 10px;
     }
 }
+*/
+@include tools.to(tb){
+    .logo{
+        height: 40px;
+    }
+    :host{
+        flex-direction: column;
+    }
+    .navbar__top{
+        width: 100%;
+        padding-left: 10px;
+    }
+}
 
-
-@media screen and (max-width: 850px) {
+@include tools.to(850px){
     :host{
         justify-content: space-evenly;
     }
@@ -104,7 +130,11 @@ $backgroundColor: tools.colors("white");
     app-auth{
         padding: 0 10px;
     }
+}
+/*
+@media screen and (max-width: 850px) {
+
     
 }
 
-
+*/
