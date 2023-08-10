@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { DropdownItemComponent } from './dropdown-item/dropdown-item.component';
 import { CompetitionManagerService } from 'src/app/domain/managers/competition-manager.service';
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
+import { environment } from '@environment';
 
 //---------------------------------------------------------
 @Component({
@@ -42,7 +43,7 @@ export class DropdownMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.competitions$ = this.competitionM.getCompetitions();
-    this.teamM.setApiStrategy('TeamfootballApi');
+    this.teamM.setApiStrategy(environment.api_teamStrategy);
   }
 
 }

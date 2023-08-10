@@ -7,6 +7,7 @@ import { Router, RouterModule } from '@angular/router';
 import { SessionManagerService } from 'src/app/domain/managers/session-manager.service';
 import { LogIn } from 'src/app/models/interfaces/session.interfaces';
 import { ToastrService } from 'ngx-toastr';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 
 @Component({
@@ -15,7 +16,8 @@ import { ToastrService } from 'ngx-toastr';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    SpinnerComponent
   ],
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
@@ -24,6 +26,8 @@ export class SignInComponent implements OnInit {
   isLogged:string="desactivated";
   toastMessage:string = "";
   formSession!:FormGroup;
+  isLoading:boolean = false;
+
   constructor(
     private fb: FormBuilder, 
     private sessionM: SessionManagerService,
@@ -43,12 +47,15 @@ export class SignInComponent implements OnInit {
       email: this.formSession.get("email")?.value,
       password: this.formSession.get("password")?.value
     }
+    this.isLoading = true;
     this.sessionM.logIn(session).subscribe({
       next:(result)=>{
+        this.isLoading = false;
         this.toastr.success("Log-in successfully","Login",{closeButton:true,easing:"ease-in"}); 
         setTimeout(()=>{this.router.navigate(["/"])},3000);
       },
       error:(error)=>{
+        this.isLoading = false;
         this.toastr.error(`Error: ${error.status}`,"Login failed!",{closeButton:true,easing:"ease-in"});
       }
     });

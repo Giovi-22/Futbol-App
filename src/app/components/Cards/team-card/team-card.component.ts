@@ -7,6 +7,7 @@ import { UserManagerService } from 'src/app/domain/managers/user-manager.service
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '@environment';
 
 @Component({
   selector: 'app-team-card',
@@ -50,7 +51,7 @@ export class TeamCardComponent implements OnInit {
 
   ngOnInit(): void {
    this.isLogged$ = this.userM.userIsLogged();
-   this.teamM.setApiStrategy('TeamfootballApi');
+   this.teamM.setApiStrategy(environment.api_teamStrategy);
    this.userM.getFavoriteTeams().subscribe({
     next:(teams)=>{
       if(teams){

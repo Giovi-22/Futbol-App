@@ -1,7 +1,9 @@
 import { Observable } from 'rxjs';
 import { CompetitionEntity } from 'src/app/domain/entities/CompetitionEntity';
 import { MatchEntity } from 'src/app/domain/entities/MatchEntity';
-import { Standing } from '../competitioniterfaces';
+import { Competition, Competitions, Standing, Team } from '../competitioniterfaces';
+import { APIMatches } from '../matchesInterfaces';
+import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 
 export interface CompetitionStoreRepository{
     saveCompetitions(competitions:CompetitionEntity[]):void;
@@ -16,3 +18,34 @@ export interface CompetitionStoreRepository{
     getStandings():Observable<Standing[]>;
        
 }
+
+export interface CompetitionApiServerRepository{
+        status:string,
+        message:string,
+        data: Competition;
+}
+
+export interface StandingsApiServerRepository{
+    status:string,
+    message:string,
+    data: Competitions;
+}
+
+export interface MatchesApiServerRepository {
+    status:string,
+    message:string,
+    data: APIMatches
+}
+
+export interface TeamsApiServerRepository {
+    status:string,
+    message:string,
+    data: TeamEntity[];
+}
+
+export interface TeamApiServerRepository {
+    status:string,
+    message:string,
+    data: Team;
+}
+

@@ -23,6 +23,11 @@ form{
     }
 }
 
+.spinner{
+    position: absolute;
+    top:120px;
+}
+
 @media screen and (max-width:660px) {
     form{
         width: 350px;

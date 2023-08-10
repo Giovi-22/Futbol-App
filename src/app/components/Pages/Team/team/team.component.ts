@@ -10,6 +10,7 @@ import { FootballFieldComponent } from 'src/app/components/football-field/footba
 import { Positions } from 'src/app/models/interfaces/dtoInterfaces';
 import PlayerEntity from 'src/app/domain/entities/PlayerEntity';
 import { PlayerCardComponent } from 'src/app/components/Cards/player-card/player-card.component';
+import { environment } from '@environment';
 
 
 @Component({
@@ -65,6 +66,9 @@ export class TeamComponent implements OnInit, OnDestroy {
             position:player.position,
             shirtNumber: null
           }));
+
+          this.playersIdList = this.players.map(player=>player.id);
+
           this.positions['Goalkeeper']= this.players.filter(player => player.position.includes('Goalkeeper'));
           this.positions['Defence']= this.players.filter(player => player.position.includes('Defence'));
           this.positions['Midfield']= this.players.filter(player => player.position.includes('Midfield'));

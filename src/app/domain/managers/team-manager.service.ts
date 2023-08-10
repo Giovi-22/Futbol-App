@@ -8,6 +8,7 @@ import { ApiFootballDataFilters, Error } from 'src/app/models/interfaces/dtoInte
 import { popularTeams } from 'src/app/data/ngrxStore/popularTeams';
 import StoreRepositoryFactory from '../factory/team/storeStrategyFactory';
 import { ErrorService } from 'src/app/services/error.service';
+import { environment } from '@environment';
 
 
 @Injectable({
@@ -24,7 +25,7 @@ export class TeamManagerService  {
     private errorS: ErrorService
   ) 
   { 
-    this.apiStrategy = this.apiStrategyFactory.create('TeamfootballApi');
+    this.apiStrategy = this.apiStrategyFactory.create(environment.api_teamStrategy);
     this.storeStrategy = this.storeStrategyFactory.create('NgrxStore');
   }
 
@@ -40,6 +41,7 @@ export class TeamManagerService  {
   findApiTeam(teamCode:number=86){
     return this.apiStrategy.getTeam(teamCode).subscribe({
       next:(team)=>{
+        console.log("el equipo es: ",team)
         this.storeStrategy.setTeam(team);
       },
       error:(error:Error)=>{
@@ -59,7 +61,9 @@ export class TeamManagerService  {
       })
     );
   }
+
   findApiTeams(competitionCode:string ="PL",filter?:ApiFootballDataFilters){
+    console.log("La estrategia seleccionada apra teams es: ",this.apiStrategy)
     this.apiStrategy.getTeams(competitionCode,filter).subscribe(
       (result)=>{
         this.storeStrategy.setTeams(result)

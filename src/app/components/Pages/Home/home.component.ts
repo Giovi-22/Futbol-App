@@ -9,7 +9,7 @@ import { CompetitionManagerService } from 'src/app/domain/managers/competition-m
 import { TeamManagerService } from 'src/app/domain/managers/team-manager.service';
 import { TeamCardComponent } from '../../Cards/team-card/team-card.component';
 import { DropdownComponent } from '../../shared/dropdown/dropdown.component';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
     CommonModule,
     CompetitionCardComponent,
     TeamCardComponent,
-    DropdownComponent
+    DropdownComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']

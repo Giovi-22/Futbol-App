@@ -1,3 +1,4 @@
+<app-spinner *ngIf="isLoading"  class="spinner"></app-spinner>
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
         <label for="firstName" class="form-label">First Name</label>
