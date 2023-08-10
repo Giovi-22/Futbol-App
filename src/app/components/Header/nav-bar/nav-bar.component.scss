@@ -92,32 +92,8 @@ $backgroundColor: tools.colors("white");
         padding-left: 10px;
     }
 }
-/*
-@media screen and (max-width:660px) {
-    .logo{
-        height: 40px;
-    }
-    :host{
-        flex-direction: column;
-    }
-    .navbar__top{
-        width: 100%;
-        padding-left: 10px;
-    }
-}
-*/
-@include tools.to(tb){
-    .logo{
-        height: 40px;
-    }
-    :host{
-        flex-direction: column;
-    }
-    .navbar__top{
-        width: 100%;
-        padding-left: 10px;
-    }
-}
+
+//--------------------------------------------------------
 
 @include tools.to(850px){
     :host{
@@ -131,10 +107,4 @@ $backgroundColor: tools.colors("white");
         padding: 0 10px;
     }
 }
-/*
-@media screen and (max-width: 850px) {
 
-    
-}
-
-*/
