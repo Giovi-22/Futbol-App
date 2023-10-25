@@ -12,6 +12,8 @@ import { TeamManagerService } from 'src/app/domain/managers/team-manager.service
 import { TeamEntity } from 'src/app/domain/entities/TeamEntity';
 import { SearchComponent } from '../search/search.component';
 import { environment } from '@environment';
+import { ISearchResult } from '@shared/models';
+import { SpinnerComponent } from '../../spinner/spinner.component';
 
 
 @Component({
@@ -23,7 +25,8 @@ import { environment } from '@environment';
     ButtonLinkComponent,
     AuthComponent,
     ReactiveFormsModule,
-    SearchComponent
+    SearchComponent,
+    SpinnerComponent
   ],
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
@@ -37,8 +40,10 @@ export class NavBarComponent implements OnInit {
   @Input() isSmall:boolean=true;
   isLogged$= new Observable<boolean>();
   searchField!:FormGroup;
+  searchResult:ISearchResult;
   findedTeams:TeamEntity[] = [];
   openSearch:boolean = false;
+  isLoadding:boolean = false;
   
   constructor(
     private userM: UserManagerService,
@@ -46,6 +51,11 @@ export class NavBarComponent implements OnInit {
     private fb: FormBuilder,
     private teamM: TeamManagerService,
   ) { 
+    this.searchResult = {
+      teams:[],
+      message:"",
+      error:false
+    }
   }
 
   setMenu(showMenu:boolean){
@@ -65,15 +75,25 @@ export class NavBarComponent implements OnInit {
   }
 
   onSearch(){
+    this.isLoadding = true;
     this.teamM.setApiStrategy('TeamServer');
     const teamName = this.searchField.get('search')?.value
     this.teamM.searchTeam(teamName).subscribe({
       next:((result)=>{
-        this.findedTeams = result;
+        this.searchResult.teams = result;
+        this.searchResult.error = false;
         this.teamM.setApiStrategy(environment.api_teamStrategy);
         this.openSearch = true;
+        this.isLoadding = false;
       }),
       error:((error)=>{
+        console.log("El error es: ",error)
+        this.searchResult.teams = [],
+        this.searchResult.error = true,
+        this.searchResult.message = "Teams don't found"
+        this.openSearch = true;
+        this.isLoadding = false;
+        setTimeout(()=>this.closeMenu(),2000);
         this.teamM.setApiStrategy(environment.api_teamStrategy);
       })
     })
@@ -81,6 +101,9 @@ export class NavBarComponent implements OnInit {
 
   openSearchMenu(open:boolean){
     this.openSearch = open;
+  }
+  closeMenu(){
+    this.openSearch = false;
   }
 
 }

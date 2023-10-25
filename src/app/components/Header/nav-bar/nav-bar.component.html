@@ -12,8 +12,12 @@
         </div>
         <form class="navbar__search input-group" [formGroup]="searchField" (ngSubmit)="onSearch()">
             <input type="text" class="form-control" placeholder="Search..." formControlName="search">
-            <button class="btn btn-outline-primary" (click)="onSearch()"><i class="bi bi-search"></i></button>
-            <app-search *ngIf="openSearch" [teams]="findedTeams" class="finded-teams" (openMenu)="openSearchMenu($event)"></app-search>
+            <app-spinner *ngIf="isLoadding" class="spinner"></app-spinner>
+            <button class="btn btn-outline-primary" (click)="onSearch()">
+                <i class="bi bi-search"></i>
+            </button>
+            <app-search *ngIf="openSearch" [searchResult]="searchResult" class="finded-teams" (openMenu)="openSearchMenu($event)" (click)="closeMenu()"></app-search>
+            
         </form>
     </ng-container>
     <ng-template #elseTemplate>

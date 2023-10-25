@@ -1,7 +1,8 @@
 <div class="competition__banner">
     <ng-container *ngIf="competition; else elseTemplate">
         <div class="competition__banner__top">
-            <img src={{competition.logo}} class="slide-in-left">
+            <img src={{competition.logo}} >
+            <app-spinner *ngIf="showSpinner"></app-spinner>
             <h2>{{competition.name | uppercase}}</h2>
             <p *ngIf="competition.currentSeason" class="competition__season" >SEASON {{currentSeason}}</p>
         </div>

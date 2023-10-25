@@ -17,7 +17,8 @@ import { TeamManagerService } from 'src/app/domain/managers/team-manager.service
     CommonModule,
     SpinnerComponent,
     ButtonLinkComponent,
-    DropdownComponent
+    DropdownComponent,
+    SpinnerComponent
   ],
   templateUrl: './competition-banner.component.html',
   styleUrls: ['./competition-banner.component.scss']
@@ -27,14 +28,15 @@ export class CompetitionBannerComponent implements OnInit{
   competition:CompetitionEntity;
   seasons:string[];
   currentSeason:string="";
-
+  showSpinner:boolean = false;
   @Output() screen = new EventEmitter();
   screens = [
     "teams",
     "standings",
     "matches"
   ]
-  selectedButtons =[true,false,false]
+  selectedButtons =[true,false,false];
+
   constructor(
     private competitionM:CompetitionManagerService,
     private teamM:TeamManagerService
@@ -74,10 +76,14 @@ export class CompetitionBannerComponent implements OnInit{
     }
 
   ngOnInit(): void {
+    this.showSpinner = true;
     const currentYear = new Date().getFullYear().toString();
     this.seasons.unshift(currentYear);
     this.competitionM.getCompetition().subscribe(
       (competition)=>{
+        if(competition.name.length){
+          this.showSpinner = false;
+        }
         this.competition = competition;
       }
     )
