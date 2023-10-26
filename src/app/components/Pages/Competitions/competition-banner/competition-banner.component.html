@@ -1,10 +1,16 @@
 <div class="competition__banner">
     <ng-container *ngIf="competition; else elseTemplate">
         <div class="competition__banner__top">
-            <img src={{competition.logo}} >
-            <app-spinner *ngIf="showSpinner"></app-spinner>
-            <h2>{{competition.name | uppercase}}</h2>
-            <p *ngIf="competition.currentSeason" class="competition__season" >SEASON {{currentSeason}}</p>
+            <ng-container *ngIf="isLoading; else elseTemplate">  
+                <div class="destello no-image"></div>
+                <div class="destello no-name"></div>
+                <div class="destello no-season"></div>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <img src={{competition.logo}}>
+                <h2>{{competition.name | uppercase}}</h2>
+                <p *ngIf="competition.currentSeason" class="competition__season" >SEASON {{currentSeason}}</p> 
+            </ng-template>
         </div>
         <div class="competition__banner__bottom-navbar">
             <app-button-link [isSelected]="selectedButtons[0]" type="secondary" (click)="selectCompetitionScreen('teams')">Teams</app-button-link>
@@ -17,6 +23,7 @@
         </div>
     </ng-container>
     <ng-template #elseTemplate>
+        <p>dentro del elese</p>
         <app-spinner></app-spinner>
     </ng-template>
 </div>

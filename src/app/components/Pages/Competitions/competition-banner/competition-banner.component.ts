@@ -28,7 +28,7 @@ export class CompetitionBannerComponent implements OnInit{
   competition:CompetitionEntity;
   seasons:string[];
   currentSeason:string="";
-  showSpinner:boolean = false;
+  isLoading:boolean = false;
   @Output() screen = new EventEmitter();
   screens = [
     "teams",
@@ -76,13 +76,13 @@ export class CompetitionBannerComponent implements OnInit{
     }
 
   ngOnInit(): void {
-    this.showSpinner = true;
+    this.isLoading = true;
     const currentYear = new Date().getFullYear().toString();
     this.seasons.unshift(currentYear);
     this.competitionM.getCompetition().subscribe(
       (competition)=>{
         if(competition.name.length){
-          this.showSpinner = false;
+          this.isLoading = false;
         }
         this.competition = competition;
       }
