@@ -15,7 +15,7 @@ import { TeamManagerService } from 'src/app/domain/managers/team-manager.service
 export class TeamBannerComponent implements OnInit {
 
   team:TeamEntity;
-
+  
   constructor(
     private teamM: TeamManagerService,
     ) {
@@ -23,11 +23,13 @@ export class TeamBannerComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.teamM.getStoreCurrent().subscribe(
-      (team)=>{
+    this.teamM.getStoreCurrent().subscribe({
+      next:(team)=>{
         this.team = team;
+      },
+      error:(error)=>{
+
       }
-    )
-  }
+    })}
 
 }
