@@ -21,6 +21,7 @@ export class SearchComponent implements OnInit{
  @Input() teams!:TeamEntity[];
  @Output() openMenu= new EventEmitter<boolean>();
  onCloseMenu:string = "";
+ 
   constructor(
     private teamM: TeamManagerService,
     private router: Router,

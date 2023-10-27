@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -50,6 +50,7 @@ export class NavBarComponent implements OnInit {
     private sessionM: SessionManagerService,
     private fb: FormBuilder,
     private teamM: TeamManagerService,
+    private elementRef: ElementRef
   ) { 
     this.searchResult = {
       teams:[],
@@ -104,6 +105,14 @@ export class NavBarComponent implements OnInit {
   }
   closeMenu(){
     this.openSearch = false;
+  }
+
+  @HostListener('document:click',['$event'])
+  clickOutside(event:Event){
+    const insideClick = this.elementRef.nativeElement.contains(event.target);
+    if(!insideClick){
+      this.closeMenu();
+    }
   }
 
 }
