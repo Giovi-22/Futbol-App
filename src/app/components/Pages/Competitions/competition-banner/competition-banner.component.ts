@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
@@ -39,7 +39,8 @@ export class CompetitionBannerComponent implements OnInit{
 
   constructor(
     private competitionM:CompetitionManagerService,
-    private teamM:TeamManagerService
+    private teamM:TeamManagerService,
+
     ) 
     {
       this.seasons = [
@@ -93,6 +94,8 @@ export class CompetitionBannerComponent implements OnInit{
       }
     })
   }
+
+
 
 
 

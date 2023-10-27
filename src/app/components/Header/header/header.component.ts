@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
@@ -25,7 +25,8 @@ export class HeaderComponent implements OnInit {
   breakpoint:string= "medium";
 
   constructor(
-    private breakointObserver: BreakpointObserver
+    private breakointObserver: BreakpointObserver,
+    private elementRef: ElementRef
   ) { 
     this.showMenu=false
   }
@@ -46,6 +47,14 @@ export class HeaderComponent implements OnInit {
       }
     
     })
+  }
+
+  @HostListener('document:click',['$event'])
+  clickOutside(event:Event){
+    const insideClick = this.elementRef.nativeElement.contains(event.target);
+    if(!insideClick){
+      this.setMenu(false);
+    }
   }
 
 }

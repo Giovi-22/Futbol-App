@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -25,7 +25,8 @@ export class DropdownMenuComponent implements OnInit {
   constructor(
     private router: Router,
     private competitionM: CompetitionManagerService,
-    private teamM: TeamManagerService
+    private teamM: TeamManagerService,
+
     ) {
     this.selectedCode = "PL";
     
@@ -45,5 +46,6 @@ export class DropdownMenuComponent implements OnInit {
     this.competitions$ = this.competitionM.getCompetitions();
     this.teamM.setApiStrategy(environment.api_teamStrategy);
   }
+
 
 }
